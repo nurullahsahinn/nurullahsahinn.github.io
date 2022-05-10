@@ -26,6 +26,11 @@
         background: rgb(22, 9, 39);
         
       }
+      .image{
+height: 150px;
+
+
+      }
       p {
   color: rgb(184, 184, 221);
   text-indent: 10px;
@@ -55,6 +60,12 @@
       <div class="row">
         <div class="col-4">
           <img class="image" src="./react.PNG" alt="" />
+          <img class="image" src="./react2.PNG" alt="" />
+          <img class="image" src="./react3.PNG" alt="" />
+          <img class="image" src="./react4.PNG" alt="" />
+          <img class="image" src="./react5.PNG" alt="" />
+          <img class="image" src="./react6.PNG" alt="" />
+          <img class="image" src="./react7.PNG" alt="" />
         </div>
         <div class="col-8">
           <h1>ReactJS Nedir ?</h1>
@@ -62,6 +73,24 @@
             React bir JavaScript kütüphanesi olup web uygulamaları için hızlı ve
             interaktif kullanıcı arayüzleri oluşturmada kullanılır.
           </p>
+          <hr />
+          <h1>Props Nedir ?</h1>
+          <p>
+            Props’lar , bir componentten başka bir componente veri aktarımı yapmamızı sağlar.  
+          </p>
+          <hr />
+          <p>React, kullanıcı tanımlı bir componenti temsil eden bir element görürse, JSX attributelerini tek bir obje olarak bu componente aktarır. Bu objeye "props" diyoruz.</p>
+          <hr />
+          <p>Yani bir componente</p> 
+          <code style="color: rgb(38, 240, 206);"><pre> "&lt;Welcome name="Nurullah" surname="Şahin" job="programmer" /&gt;</pre>
+            <p>gibi birden çok attribute eklediğimiz zaman, React bunları aşağıdaki gibi tek bir objede toplar, buna props denir. Ardından bu props objesini Welcome componentine parametre olarak gönderir. Hosgeldin componentinde props.name kullanım şekli ile “Nurullah” değerini çekebiliriz.</p> </code>
+            
+          <hr />
+          <p>Data; ana componentten alt componentlere geçerken alt componentler tarafından herhangi bir değişime uğramaz.Nasıl görünceklerini, ekranda nasıl bir yer kaplayacaklarını da bu fonksiyonlara verdiğimiz, input değerleriyle belirliyoruz. İşte bu input değerlere props diyoruz.</p>
+          <hr />
+          <p>Props’lar salt okunur (read-only) dir. Değiştirilemezler.</p>
+          
+          
         </div>
       </div>
       <hr />
