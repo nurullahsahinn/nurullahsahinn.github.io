@@ -1,152 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-      crossorigin="anonymous"
-    />
-
-    <title>TANITIM</title>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anasayfa - Tanıtım</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-      * {
-        margin: 0;
-        padding: 0;
-      }
-      img {
-        padding-left: 15px;
-        padding-top: 5px;
-        width: 90px;
-        height: 120px;
-        border-radius: 50px;
-      }
-      p {
-  color: rgb(213, 240, 138);
-  text-indent: 10px;
-  display: block;
-  margin-top: 1em;
-  margin-bottom: 1em;
-  margin-left: 0;
-  margin-right: 0;
-  font-family:Segoe Print;
-  font-size: 17px;
-  
-}
-      body {
-  background-image: url("resim.jpg");
-  background-color: rgba(9, 8, 20, 0.979);
-  height: 10px; 
-  
-  background-repeat: no-repeat;
-  background-size: cover; 
-  color: #f5bebe;
-  
-}
-      
-        .vr {
-            border-left: 5px solid #ece9e9;
-            height: 1000px;
-            position: absolute;
-            left: 33%;
-            margin-left: 24px;
-            top: 0;
-          }
-          .profil{
-            width: 200px;
-            height: 320px;
-            border-radius: 40%;
-            margin-top: 10px;
-            margin-left: 10px;
-          }
-          .button{
-          background-image: url("resim.jpg");
-          padding:30px 280px ;
-          border:2px #3b3232 solid;
-          border-radius: 5px;
-          margin: 270px 60px;
-}
-      
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #f0e6d2;
+            background-image: url('paper_texture.png');
+            color: #5a5a5a; 
+            margin-top: 5rem;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+        }
+        .profile-section {
+            text-align: center;
+            padding: 2rem;
+            background-color: #fff8e1; 
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+            margin-bottom: 2rem;
+        }
+        .profile-section img {
+            width: 150px;
+            height: 150px;
+            border-radius: 75px;
+        }
+        .profile-section h1 {
+            margin-top: 1rem;
+            color: #333; 
+        }
+        .content-section {
+            background-color: #fff8e1;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        .footer {
+            text-align: center;
+            padding: 1rem 0;
+            font-size: 0.8rem;
+            color: #333;
+        }
+        a, a:hover {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .btn-custom {
+            background-color: #007bff;
+            color: #ffffff;
+            border-radius: 5px;
+            padding: 0.5rem 1rem;
+            margin: 0.5rem 0;
+            transition: background-color 0.3s ease;
+        }
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <div class="container">
-      <div class="row">
-        <div class="col-4">
-          <div>
-            <img class="profil" src="./pps.jpeg" alt="" />
-            <div class="vr"></div>
-            <hr />
-            <h1>TANITIM</h1>
-            <p>
-              Ben Nurullah Şahin. Mersin Üniversitesinde Bilişim sistemleri ve teknolojileri bölümü okuyorum.
-              
-            </p>
-          </div>
-        </div>
-        <div class="col-8">
-          <div class="bilgiler">
-            <div class="row">
-              <div class="col-6">
-                <h3>HEDEF</h3>
-                <p>
-                  Kendimi sürekli geliştirmek ve yeniliğe açık olmak aynı zamanda sabırlı, istekli ve azimli olmak istiyorum. Ve yapay zeka, robotik ve siber güvenlik alanlarında geliştirmek istiyorum. 
-                </p>
-         
-              </div>
-
-              <div class="col-6">
-                <h3>ŞU AN NE YAPIYORUM?</h3>
-                <p>
-                  Şu an Python, c++, c#, html-css-javascript öğreniyorum. 
-                  Birkaç defa bilgisayar topladım. Her seferinde farklı bir sorunla karşılaştım ve bu sorunlara çözüm üretebildim. Bu sayede donanıma da ilgim başladı.
-                </p>
-                
-              </div>
+        <div class="profile-section">
+            <img src="./pps.jpeg" alt="Profil Resmi">
+            <h1>Nurullah Şahin</h1>
+            <p>Yazılım mühendisliği öğrencisi, teknoloji tutkunu, sürekli öğrenmeye ve gelişime açık.</p>
+            <div>
+                <a href="https://github.com/nurullahsahinn/" target="_blank" class="btn-custom">GitHub</a>
+                <a href="https://www.linkedin.com/in/nurullah-%C5%9Fahin-942678229/" target="_blank" class="btn-custom">Linkedin</a>
             </div>
-            <hr />
-            <div class="row">
-              <div class="col-6">
-                <h3>Proje</h3>
-                <p>
-                  ReactJS ile props kullanımı gösteren bir proje hazırladım.
-                </p>
-                <a
-                href="./proje.html" 
-                class="btn btn-primary"
-                >PROJECT</a
-              >
-              </div>
-
-              
-              <div class="button">
-                
-                <a href="https://github.com/nurullahsahinn/" target="_blank" class="btn btn-primary">GitHub</a>
-                <a href="https://www.linkedin.com/in/nurullah-%C5%9Fahin-942678229/" target="_blank" class="btn btn-primary">Linkedin</a>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
+
+        <div class="content-section">
+            <h2>Hedeflerim ve İlgilendiğim Alanlar</h2>
+            <p>Kendimi sürekli geliştirmek, yapay zeka, robotik ve mobil programlama alanlarında bilgi ve tecrübemi ilerletmek en büyük hedefim.</p>
+            <p>Şu an temel programlama dillerini öğreniyor, donanım ve yazılım dünyasında kendimi deniyor ve yeni projeler geliştiriyorum.</p>
+            <h2>Projelerim</h2>
+            <p>ReactJS ile geliştirdiğim, props kullanımını gösteren bir projem mevcut.</p>
+            <a href="./proje.html" class="btn-custom">Projelere Gözat</a>
+        </div>
+
+        <div class="footer">
+            &copy; 2024 Nurullah Şahin. Tüm Hakları Saklıdır.
+        </div>
     </div>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
-      integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
-      integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
