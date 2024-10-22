@@ -63,6 +63,13 @@
         .btn-custom:hover {
             background-color: #0056b3;
         }
+        /* Modal içindeki resim düzenlemeleri */
+        .modal-body img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%; /* Yuvarlak hale getirir */
+            object-fit: cover; /* Görüntünün düzgün oturmasını sağlar */
+        }
     </style>
 </head>
 <body>
@@ -92,15 +99,11 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
+    <div class="modal fade" id="profileModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="profileModalLabel">Profil Resmi</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center">
-                    <img src="./pps.jpeg" alt="Profil Resmi" style="width: 100%; border-radius: 10px;">
+            <div class="modal-content border-0">
+                <div class="modal-body text-center p-0">
+                    <img src="./pps.jpeg" alt="Profil Resmi">
                 </div>
             </div>
         </div>
