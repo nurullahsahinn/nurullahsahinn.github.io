@@ -29,6 +29,7 @@
             width: 150px;
             height: 150px;
             border-radius: 75px;
+            cursor: pointer;
         }
         .profile-section h1 {
             margin-top: 1rem;
@@ -67,7 +68,7 @@
 <body>
     <div class="container">
         <div class="profile-section">
-            <img src="./pps.jpeg" alt="Profil Resmi">
+            <img src="./pps.jpeg" alt="Profil Resmi" data-bs-toggle="modal" data-bs-target="#profileModal">
             <h1>Nurullah Şahin</h1>
             <p>Yazılım mühendisliği öğrencisi, teknoloji tutkunu, sürekli öğrenmeye ve gelişime açık.</p>
             <div>
@@ -87,6 +88,21 @@
 
         <div class="footer">
             &copy; 2024 Nurullah Şahin. Tüm Hakları Saklıdır.
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="profileModalLabel">Profil Resmi</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="./pps.jpeg" alt="Profil Resmi" style="width: 100%; border-radius: 10px;">
+                </div>
+            </div>
         </div>
     </div>
 
