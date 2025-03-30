@@ -1,0 +1,52 @@
+{
+  "nav.about": "Hakkımda",
+  "nav.skills": "Beceriler",
+  "nav.services": "Uzmanlık",
+  "nav.projects": "Projeler",
+  "nav.contact": "İletişim",
+  
+  "header.greeting": "Merhaba",
+  "header.im": "Ben",
+  "header.title": "Yazılım Mühendisliği <span>Öğrencisi</span>",
+  "header.description": "Teknoloji tutkunu, sürekli öğrenmeye ve gelişime açık bir yazılım mühendisliği öğrencisiyim. Yapay zeka, robotik ve mobil programlama alanlarında kendimi geliştirmeye odaklanıyorum.",
+  "header.contact": "İletişime Geç",
+  
+  "about.title": "Hakkımda",
+  "about.subtitle": "Yazılım Mühendisi",
+  "about.description": "Atatürk Üniversitesi Yazılım Mühendisliği öğrencisiyim. Yüksek motivasyona ve teknolojiye olan tutkuma dayanarak, Unreal Engine, C#, C, C++ ve Python gibi dillerle projeler geliştirerek yazılım geliştirme alanında tecrübe kazanıyorum. Yeni teknolojilere hızla adapte olabilme yeteneğimle, farklı projelerde sorumluluk üstlenmeye istekliyim. Amacım, profesyonel becerilerimi sürekli geliştirmek ve teknoloji sektöründe değerli katkılar sağlayabileceğim bir kariyer inşa etmek.",
+  "about.contact": "İletişim",
+  
+  "skills.title": "Beceriler ve <span>Yetenekler</span>",
+  "skills.technical": "Teknik Beceriler",
+  "skills.personal": "Kişisel Beceriler",
+  
+  "services.subtitle": "Uzmanlık Alanlarım",
+  "services.title": "<span>Teknik</span> Yetenekler",
+  "services.dev.title": "Yazılım Geliştirme",
+  "services.dev.description": "Python, Java, C++, C#, ve PHP dillerinde uygulama geliştirme ve web teknolojileri konusunda deneyim.",
+  "services.hackintosh.title": "Hackintosh Uzmanı",
+  "services.hackintosh.description": "Çeşitli bilgisayar sistemlerine Hackintosh kurulumu ve optimizasyonu konusunda kapsamlı deneyim.",
+  "services.hardware.title": "Bilgisayar Donanımı",
+  "services.hardware.description": "Farklı ihtiyaçlara yönelik özel masaüstü bilgisayar sistemleri toplama ve optimizasyon konusunda deneyim.",
+  "services.database.title": "Veritabanı Yönetimi",
+  "services.database.description": "MySQL ve veritabanı yönetimi konusunda tecrübe. Veritabanı tasarımı ve optimizasyonu.",
+  
+  "projects.subtitle": "Projelerim",
+  "projects.title": "<span>Son</span> Projelerim",
+  "projects.satellite.title": "Model Uydu Yarışması",
+  "projects.satellite.description": "Teknofest kapsamında yazılım lideri olarak yürüttüğüm Model Uydu projesi",
+  "projects.underwater.title": "Otonom Sualtı Aracı",
+  "projects.underwater.description": "Teknofest kapsamında yazılım lideri olarak yürüttüğüm Otonom Sualtı Aracı projesi",
+  "projects.underwater.award": "TÜBİTAK 2209A programında tam onay ve başarılı sonuç!",
+  
+  "contact.title": "İletişime <span>Geç!</span>",
+  "contact.subtitle": "Projeleriniz için benimle iletişime geçebilirsiniz",
+  "contact.description": "Benimle iletişime geçmek için aşağıdaki formu kullanabilir veya sosyal medya hesaplarımdan bana ulaşabilirsiniz.",
+  
+  "form.name": "Adınız",
+  "form.email": "E-posta Adresiniz",
+  "form.message": "Mesajınız",
+  "form.send": "Mesaj Gönder",
+  
+  "loading.text": "Yükleniyor"
+} 
