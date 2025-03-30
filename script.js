@@ -78,7 +78,7 @@ const body = document.body;
 hamburger.addEventListener('click', () => {
   hamburger.classList.toggle('active');
   navLinks.classList.toggle('active');
-  body.classList.toggle('menu-open'); // Prevent body scroll when menu is open
+  // body.classList.toggle('menu-open'); // Artık bu özelliği kullanmıyoruz
 });
 
 // Close mobile menu when clicking on a link
@@ -86,7 +86,7 @@ document.querySelectorAll('.nav__link').forEach(link => {
   link.addEventListener('click', () => {
     hamburger.classList.remove('active');
     navLinks.classList.remove('active');
-    body.classList.remove('menu-open');
+    // body.classList.remove('menu-open'); // Artık bu özelliği kullanmıyoruz
   });
 });
 
@@ -99,7 +99,7 @@ document.addEventListener('click', (e) => {
   ) {
     hamburger.classList.remove('active');
     navLinks.classList.remove('active');
-    body.classList.remove('menu-open');
+    // body.classList.remove('menu-open'); // Artık bu özelliği kullanmıyoruz
   }
 });
 
@@ -346,36 +346,8 @@ document.addEventListener('touchstart', (e) => {
 document.addEventListener('touchend', (e) => {
   touchEndX = e.changedTouches[0].screenX;
   touchEndY = e.changedTouches[0].screenY;
-  handleSwipe();
+  // Kaydırma işlemini kaldırdık - handleSwipe() fonksiyonu artık çağrılmıyor
 }, false);
-
-// Kaydırma yönünü belirle ve işle
-function handleSwipe() {
-  // Yatay kaydırma mesafesi
-  const swipeDistanceX = touchEndX - touchStartX;
-  // Dikey kaydırma mesafesi
-  const swipeDistanceY = touchEndY - touchStartY;
-  
-  // Sadece menü açıkken ve yeterince yatay kaydırma varsa işlem yap
-  // Dikey kaydırma çok fazlaysa, muhtemelen sayfa kaydırma işlemidir
-  if (
-    Math.abs(swipeDistanceX) > Math.abs(swipeDistanceY) && 
-    Math.abs(swipeDistanceX) > 50
-  ) {
-    // Eğer soldan sağa kaydırma yapıldıysa ve menü açıksa kapat
-    if (swipeDistanceX > 0 && !navLinks.classList.contains('active')) {
-      hamburger.classList.add('active');
-      navLinks.classList.add('active');
-      body.classList.add('menu-open');
-    } 
-    // Eğer sağdan sola kaydırma yapıldıysa ve menü açıksa kapat
-    else if (swipeDistanceX < 0 && navLinks.classList.contains('active')) {
-      hamburger.classList.remove('active');
-      navLinks.classList.remove('active');
-      body.classList.remove('menu-open');
-    }
-  }
-}
 
 // Lazy loading for images
 if ('loading' in HTMLImageElement.prototype) {
@@ -449,7 +421,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (navLinks.classList.contains('active')) {
         hamburger.classList.remove('active');
         navLinks.classList.remove('active');
-        body.classList.remove('menu-open');
+        // body.classList.remove('menu-open'); // Artık bu özelliği kullanmıyoruz
       }
       
       // AOS elemanlarını yeniden başlat
