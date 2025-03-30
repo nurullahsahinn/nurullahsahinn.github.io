@@ -1,3 +1,5 @@
+
+
 import js from "@eslint/js";
 import * as importPlugin from "eslint-plugin-import";
 import globals from "globals";
@@ -37,14 +39,17 @@ export default tseslint.config(
       },
     },
     rules: {
+      // Import rules - keep essential, downgrade noisy ones to warnings
       "import/no-unresolved": "error",
       "import/named": "warn",
       "import/default": "warn",
       "import/export": "error",
       "import/no-duplicates": "warn",
 
+      // TypeScript
       "@typescript-eslint/no-unused-vars": "off",
 
+      // Turn off rules that are too strict
       "@typescript-eslint/naming-convention": "off",
       "@typescript-eslint/no-explicit-any": "warn",
       "@typescript-eslint/no-unsafe-assignment": "off",

@@ -9,14 +9,644 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>Nurullah Şahin - Yazılım Mühendisliği Öğrencisi</title>
+  <style>
+    /* Minimum gerekli stiller - Yükleme Ekranı */
+    body {
+      margin: 0;
+      padding: 0;
+      background: #090c10;
+      opacity: 0;
+      transition: opacity 0.75s ease;
+      overflow-x: hidden;
+    }
+    body.loaded {
+      opacity: 1;
+    }
+    #splashScreen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #090c10;
+      z-index: 100000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      transition: opacity 0.75s ease, visibility 0.75s ease;
+      overflow: hidden;
+      perspective: 1000px;
+    }
+    .splash-3d-container {
+      transform-style: preserve-3d;
+      animation: rotate3d 20s linear infinite;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0.2;
+    }
+    .splash-3d-plane {
+      position: absolute;
+      width: 250px;
+      height: 250px;
+      border: 1px solid rgba(242, 72, 11, 0.15);
+      border-radius: 5px;
+    }
+    .splash-3d-plane:nth-child(1) {
+      transform: rotateY(0deg) translateZ(200px);
+    }
+    .splash-3d-plane:nth-child(2) {
+      transform: rotateY(60deg) translateZ(200px);
+    }
+    .splash-3d-plane:nth-child(3) {
+      transform: rotateY(120deg) translateZ(200px);
+    }
+    .splash-3d-plane:nth-child(4) {
+      transform: rotateY(180deg) translateZ(200px);
+    }
+    .splash-3d-plane:nth-child(5) {
+      transform: rotateY(240deg) translateZ(200px);
+    }
+    .splash-3d-plane:nth-child(6) {
+      transform: rotateY(300deg) translateZ(200px);
+    }
+    @keyframes rotate3d {
+      0% {
+        transform: rotateX(5deg) rotateY(0deg);
+      }
+      100% {
+        transform: rotateX(5deg) rotateY(360deg);
+      }
+    }
+    .splash-particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+    .splash-particle {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      background: #f2480b;
+      border-radius: 50%;
+      opacity: 0.3;
+      animation: particles 3s linear infinite;
+    }
+    .splash-particle:nth-child(1) {
+      top: 20%;
+      left: 20%;
+      animation-delay: 0s;
+    }
+    .splash-particle:nth-child(2) {
+      top: 80%;
+      left: 40%;
+      animation-delay: 0.3s;
+    }
+    .splash-particle:nth-child(3) {
+      top: 40%;
+      left: 60%;
+      animation-delay: 0.7s;
+    }
+    .splash-particle:nth-child(4) {
+      top: 60%;
+      left: 80%;
+      animation-delay: 1s;
+    }
+    .splash-particle:nth-child(5) {
+      top: 30%;
+      left: 70%;
+      animation-delay: 1.3s;
+    }
+    .splash-particle:nth-child(6) {
+      top: 70%;
+      left: 20%;
+      animation-delay: 1.7s;
+    }
+    .splash-particle:nth-child(7) {
+      top: 50%;
+      left: 30%;
+      animation-delay: 2s;
+    }
+    .splash-particle:nth-child(8) {
+      top: 15%;
+      left: 60%;
+      animation-delay: 2.3s;
+    }
+    @keyframes particles {
+      0% {
+        transform: scale(1);
+        opacity: 0.3;
+      }
+      50% {
+        transform: scale(2);
+        opacity: 0.6;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 0.3;
+      }
+    }
+    .splash-logo-container {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(145deg, #0c1016, #060a0f);
+      box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5),
+                 -10px -10px 20px rgba(25, 30, 40, 0.1);
+      margin-bottom: 30px;
+      animation: float 4s ease-in-out infinite, glow 3s ease-in-out infinite;
+      overflow: hidden;
+      z-index: 2;
+      transform-style: preserve-3d;
+      perspective: 500px;
+    }
+    .splash-logo-container::before {
+      content: "";
+      position: absolute;
+      width: 116px;
+      height: 116px;
+      border-radius: 50%;
+      background: #090c10;
+      z-index: 1;
+      transform: translateZ(-5px);
+    }
+    .splash-logo-container::after {
+      content: "";
+      position: absolute;
+      width: 150%;
+      height: 150%;
+      background: conic-gradient(from 90deg, transparent 50%, #f2480b 50%);
+      animation: rotateConic 2s linear infinite;
+      opacity: 0.8;
+      filter: blur(1px);
+    }
+    .splash-circle {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(242, 72, 11, 0.2);
+      animation: expandCircle 3s ease-in-out infinite;
+      opacity: 0;
+    }
+    .splash-circle:nth-child(1) {
+      width: 130px;
+      height: 130px;
+      animation-delay: 0s;
+    }
+    .splash-circle:nth-child(2) {
+      width: 150px;
+      height: 150px;
+      animation-delay: 0.5s;
+    }
+    .splash-circle:nth-child(3) {
+      width: 170px;
+      height: 170px;
+      animation-delay: 1s;
+    }
+    @keyframes expandCircle {
+      0% {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      50% {
+        opacity: 0.5;
+      }
+      100% {
+        transform: scale(1.2);
+        opacity: 0;
+      }
+    }
+    .splash-logo {
+      position: absolute;
+      color: #f2480b;
+      font-size: 30px;
+      font-weight: 900;
+      font-family: "Arial Black", Arial, sans-serif;
+      z-index: 2;
+      text-shadow: 0 0 15px rgba(242, 72, 11, 0.7);
+      letter-spacing: 1px;
+      animation: pulse 2s ease-in-out infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      transform: translateZ(10px);
+      -webkit-text-stroke: 1px rgba(242, 72, 11, 0.3);
+      text-align: center;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+    }
+    .splash-progress {
+      width: 150px;
+      height: 4px;
+      background: rgba(242, 72, 11, 0.1);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 20px;
+      position: relative;
+      z-index: 2;
+      transform-style: preserve-3d;
+      perspective: 500px;
+      transform: rotateX(5deg);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+    .splash-progress-bar {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, #f2480b, #ff692e);
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-radius: 4px;
+      box-shadow: 0 0 10px rgba(242, 72, 11, 0.5);
+      animation: progress 2.5s ease-in-out;
+      animation-fill-mode: forwards;
+    }
+    .splash-progress-percent {
+      position: absolute;
+      bottom: -24px;
+      font-size: 12px;
+      color: rgba(242, 72, 11, 0.8);
+      width: 100%;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      opacity: 0.8;
+      animation: fadeInUp 0.5s ease-out 0.5s forwards, fadeOut 0.5s ease-in 2.5s forwards;
+      opacity: 0;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    }
+    .splash-text {
+      font-size: 14px;
+      color: rgba(242, 72, 11, 0.8);
+      margin-top: 45px;
+      font-family: Arial, sans-serif;
+      letter-spacing: 2px;
+      opacity: 0;
+      animation: fadeInText 0.5s ease-out 1s forwards;
+      z-index: 2;
+      position: relative;
+      font-weight: bold;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+      width: 100%;
+      text-align: center;
+      transform: none;
+      white-space: nowrap;
+      overflow: visible;
+    }
+    .splash-text::after {
+      content: "";
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(242, 72, 11, 0.4), transparent);
+      animation: none;
+    }
+    @keyframes expandLine {
+      0% {
+        width: 0;
+        left: 50%;
+        opacity: 0;
+      }
+      50% {
+        width: 100%;
+        left: 0;
+        opacity: 1;
+      }
+      100% {
+        width: 0;
+        left: 50%;
+        opacity: 0;
+      }
+    }
+    @keyframes fadeInText {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes progress {
+      0% { width: 0; }
+      10% { width: 10%; }
+      30% { width: 40%; }
+      50% { width: 60%; }
+      70% { width: 75%; }
+      90% { width: 90%; }
+      100% { width: 100%; }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+    @keyframes rotateConic {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+      100% { transform: translateY(0px); }
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    @keyframes glow {
+      0% { box-shadow: 0 0 5px rgba(242, 72, 11, 0.3), 
+                      inset 0 0 5px rgba(242, 72, 11, 0.3); }
+      50% { box-shadow: 0 0 20px rgba(242, 72, 11, 0.7), 
+                       inset 0 0 10px rgba(242, 72, 11, 0.5); }
+      100% { box-shadow: 0 0 5px rgba(242, 72, 11, 0.3), 
+                        inset 0 0 5px rgba(242, 72, 11, 0.3); }
+    }
+    /* Mobil uyumluluk için ek stiller */
+    @media screen and (max-width: 480px) {
+      .splash-logo-container {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 25px;
+      }
+      .splash-logo-container::before {
+        width: 96px;
+        height: 96px;
+      }
+      .splash-logo {
+        font-size: 28px;
+        font-weight: 900;
+      }
+      .splash-progress {
+        width: 120px;
+        height: 3px;
+        margin-top: 15px;
+      }
+      .splash-progress-percent {
+        font-size: 10px;
+        bottom: -20px;
+      }
+      .splash-circle:nth-child(1) {
+        width: 110px;
+        height: 110px;
+      }
+      .splash-circle:nth-child(2) {
+        width: 130px;
+        height: 130px;
+      }
+      .splash-circle:nth-child(3) {
+        width: 150px;
+        height: 150px;
+      }
+      .splash-text {
+        font-size: 12px;
+        margin-top: 30px;
+        letter-spacing: 1.5px;
+      }
+      .splash-particle {
+        width: 3px;
+        height: 3px;
+      }
+      .splash-3d-plane {
+        width: 150px;
+        height: 150px;
+      }
+      .splash-3d-plane:nth-child(1) {
+        transform: rotateY(0deg) translateZ(120px);
+      }
+      .splash-3d-plane:nth-child(2) {
+        transform: rotateY(60deg) translateZ(120px);
+      }
+      .splash-3d-plane:nth-child(3) {
+        transform: rotateY(120deg) translateZ(120px);
+      }
+      .splash-3d-plane:nth-child(4) {
+        transform: rotateY(180deg) translateZ(120px);
+      }
+      .splash-3d-plane:nth-child(5) {
+        transform: rotateY(240deg) translateZ(120px);
+      }
+      .splash-3d-plane:nth-child(6) {
+        transform: rotateY(300deg) translateZ(120px);
+      }
+      /* Animasyonlar mobil için optimize edildi */
+      @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-6px); }
+        100% { transform: translateY(0px); }
+      }
+      @keyframes expandCircle {
+        0% {
+          transform: scale(0.9);
+          opacity: 0;
+        }
+        50% {
+          opacity: 0.4;
+        }
+        100% {
+          transform: scale(1.1);
+          opacity: 0;
+        }
+      }
+    }
+    
+    @media screen and (max-width: 320px) {
+      .splash-logo-container {
+        width: 90px;
+        height: 90px;
+        margin-bottom: 20px;
+      }
+      .splash-logo-container::before {
+        width: 86px;
+        height: 86px;
+      }
+      .splash-logo {
+        font-size: 24px;
+        font-weight: 900;
+      }
+      .splash-progress {
+        width: 100px;
+      }
+      .splash-text {
+        margin-top: 25px;
+        font-size: 11px;
+      }
+    }
+  </style>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <script src="script.js" defer></script>
+
+  <script>
+    // Geliştirilmiş yükleme ekranı kodu
+    document.addEventListener('DOMContentLoaded', function() {
+      // Sayfanın görünürlüğünü hazırlayalım
+      setTimeout(function() {
+        document.body.classList.add('loaded');
+      }, 300);
+      
+      // Hamburger menü doğrudan bağlantı
+      const hamburger = document.querySelector('.hamburger');
+      const body = document.body;
+      
+      if (hamburger) {
+        hamburger.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          body.classList.toggle('menu-open');
+          console.log('Hamburger tıklandı', body.classList.contains('menu-open'));
+        });
+      }
+
+      // Gerçekçi ve düzgün yükleme simülasyonu
+      const progressBar = document.querySelector('.splash-progress-bar');
+      const progressPercent = document.querySelector('.splash-progress-percent');
+      const loadingText = document.querySelector('.splash-text');
+      let percent = 0;
+      
+      // NS logosunu düzelt
+      const splashLogo = document.querySelector('.splash-logo');
+      if (splashLogo) {
+        splashLogo.style.position = "absolute";
+        splashLogo.style.top = "50%";
+        splashLogo.style.left = "50%";
+        splashLogo.style.transform = "translate(-50%, -50%)";
+        splashLogo.style.fontSize = "30px";
+        splashLogo.style.fontWeight = "900";
+        splashLogo.style.color = "#f2480b";
+        splashLogo.style.textShadow = "0 0 15px rgba(242, 72, 11, 0.7)";
+        splashLogo.style.zIndex = "2";
+        
+        // NS yazısı stili
+        const nsText = splashLogo.querySelector('span');
+        if (nsText) {
+          nsText.style.marginLeft = "4px";
+          nsText.style.fontSize = "26px";
+          nsText.style.fontWeight = "900";
+          nsText.style.color = "#f2480b";
+          nsText.style.textShadow = "0 0 15px rgba(242, 72, 11, 0.7)";
+        }
+      }
+      
+      // Yükleme yazısının konumunu sabitleme
+      if (loadingText) {
+        loadingText.innerHTML = "YÜKLENİYOR...";
+        loadingText.style.whiteSpace = "nowrap";
+        loadingText.style.overflow = "visible";
+        loadingText.style.transform = "none";
+        loadingText.style.left = "0";
+        
+        // Yükleme simülasyonu için hız kontrolü
+        const simulateLoading = () => {
+          if (percent < 100) {
+            // Gerçekçi yükleme hızı simulasyonu (başta hızlı, sonra yavaşlar)
+            let increment = 1;
+            if (percent < 20) increment = 2;
+            else if (percent > 80) increment = 0.5;
+            
+            percent = Math.min(100, percent + increment);
+            
+            // UI güncelleme
+            progressBar.style.width = percent + '%';
+            progressPercent.textContent = Math.round(percent) + '%';
+            
+            // Sonraki frame için zamanlama
+            const delay = percent < 80 ? 30 : 50; // Sona doğru yavaşlat
+            setTimeout(simulateLoading, delay);
+          } else {
+            // Yükleme tamamlandı
+            loadingText.textContent = "TAMAMLANDI!";
+          }
+        };
+        
+        // Simülasyonu başlat
+        setTimeout(simulateLoading, 500);
+      }
+    });
+    
+    window.addEventListener('load', function() {
+      // Tüm kaynaklar yüklendikten sonra yükleme ekranını kaldır
+      setTimeout(function() {
+        const splashScreen = document.getElementById('splashScreen');
+        if (splashScreen) {
+          // Yükleme ekranını yumuşak bir hareketle kaldır
+          splashScreen.style.opacity = '0';
+          splashScreen.style.visibility = 'hidden';
+          
+          // Animasyon bittikten sonra DOM'dan kaldır ve AOS'u başlat
+          setTimeout(function() {
+            splashScreen.remove();
+            
+            // AOS animasyonlarını başlat
+            if (typeof AOS !== 'undefined') {
+              AOS.init({
+                duration: 800,
+                offset: 120,
+                once: false,
+                disable: false,
+                easing: 'ease-in-out'
+              });
+            }
+          }, 800); // Geçiş süresi ile uyumlu
+        }
+      }, 3500); // Yükleme ekranı için biraz daha uzun süre
+    });
+  </script>
 </head>
 <body>
+  <div id="splashScreen">
+    <div class="splash-3d-container">
+      <div class="splash-3d-plane"></div>
+      <div class="splash-3d-plane"></div>
+      <div class="splash-3d-plane"></div>
+      <div class="splash-3d-plane"></div>
+      <div class="splash-3d-plane"></div>
+      <div class="splash-3d-plane"></div>
+    </div>
+    
+    <div class="splash-particles">
+      <div class="splash-particle"></div>
+      <div class="splash-particle"></div>
+      <div class="splash-particle"></div>
+      <div class="splash-particle"></div>
+      <div class="splash-particle"></div>
+      <div class="splash-particle"></div>
+      <div class="splash-particle"></div>
+      <div class="splash-particle"></div>
+    </div>
+    
+    <div class="splash-circle"></div>
+    <div class="splash-circle"></div>
+    <div class="splash-circle"></div>
+    
+    <div class="splash-logo-container">
+      <div class="splash-logo">
+        <div class="logo-icon">💻</div>
+        <span>NS</span>
+      </div>
+    </div>
+    
+    <div class="splash-progress">
+      <div class="splash-progress-bar"></div>
+      <span class="splash-progress-percent">0%</span>
+    </div>
+    
+    <div class="splash-text">YÜKLENİYOR...</div>
+  </div>
+
   <nav>
     <div class="nav__logo"><a href="#">Nurullah <span>Şahin</span></a></div>
     <div class="nav__links">
@@ -36,6 +666,7 @@
   <header>
     <div class="video-background">
       <video autoplay loop muted playsinline preload="auto" id="background-video">
+        <!-- Video kaynağı JavaScript ile eklenecek -->
       </video>
       <div class="overlay"></div>
     </div>
@@ -187,7 +818,7 @@
           <div class="project__content">
             <h3>Otonom Sualtı Aracı</h3>
             <p>Teknofest kapsamında yazılım lideri olarak yürüttüğüm Otonom Sualtı Aracı projesi</p>
-            <p class="project__award"><i class="fas fa-award"></i> TÜBİTAK 2209-A programında tam onay!</p>
+            <p class="project__award"><i class="fas fa-award"></i> TÜBİTAK 2209A programında tam onay ve başarılı sonuç!</p>
           </div>
         </div>
       </div>
@@ -224,13 +855,5 @@
   </div>
 
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-  <script>
-    AOS.init({
-      duration: 800,
-      offset: 120,
-      once: false,
-      startEvent: 'DOMContentLoaded'
-    });
-  </script>
 </body>
 </html>

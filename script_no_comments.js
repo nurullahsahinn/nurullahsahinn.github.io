@@ -1,6 +1,4 @@
-// Rastgele arkaplan videosu seçme
 document.addEventListener('DOMContentLoaded', function() {
-  // Mevcut tüm arkaplan videoları
   const backgroundVideos = [
     'background1.mp4',
     'background2.mp4',
@@ -10,38 +8,29 @@ document.addEventListener('DOMContentLoaded', function() {
     'background6.mp4'
   ];
   
-  // Rastgele bir video seç
   const randomVideo = backgroundVideos[Math.floor(Math.random() * backgroundVideos.length)];
   
-  // Video öğesini seç
   const videoElement = document.getElementById('background-video');
   
-  // Video kaynağını ayarla
   const source = document.createElement('source');
   source.src = randomVideo;
   source.type = 'video/mp4';
   
-  // Kaynağı video elementine ekle
   videoElement.appendChild(source);
   
-  // Video yüklenemezse hata işleme
   videoElement.addEventListener('error', function() {
     console.error('Video yüklenirken hata oluştu. Varsayılan video kullanılıyor.');
-    // Hata durumunda ilk videoyu kullan
     source.src = backgroundVideos[0];
     videoElement.load();
   });
   
-  // Videoyu yeniden yükle
   videoElement.load();
 });
 
-// Sticky Navigation
 const nav = document.querySelector('nav');
 let lastScrollY = window.scrollY;
 
 window.addEventListener('scroll', () => {
-  // Sticky nav with hide on scroll down
   const currentScrollY = window.scrollY;
   
   if (currentScrollY > 50) {
@@ -52,25 +41,12 @@ window.addEventListener('scroll', () => {
     nav.style.backgroundColor = 'rgba(9, 12, 16, 0.8)';
   }
   
-  // Mobil cihazlarda navigasyonun kaybolmasını iptal ettik
-  /*
-  // Auto-hide nav on scroll down (only on mobile)
-  if (window.innerWidth <= 768) {
-    if (currentScrollY > lastScrollY && currentScrollY > 300) {
-      nav.style.transform = 'translateY(-100%)';
-    } else {
-      nav.style.transform = 'translateY(0)';
-    }
-  }
-  */
   
-  // Her durumda navigasyon görünür olsun
   nav.style.transform = 'translateY(0)';
   
   lastScrollY = currentScrollY;
 });
 
-// Mobile Menu Toggle
 const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav__links');
 const body = document.body;
@@ -81,7 +57,6 @@ hamburger.addEventListener('click', () => {
   body.classList.toggle('menu-open'); // Prevent body scroll when menu is open
 });
 
-// Close mobile menu when clicking on a link
 document.querySelectorAll('.nav__link').forEach(link => {
   link.addEventListener('click', () => {
     hamburger.classList.remove('active');
@@ -90,7 +65,6 @@ document.querySelectorAll('.nav__link').forEach(link => {
   });
 });
 
-// Close mobile menu when clicking outside
 document.addEventListener('click', (e) => {
   if (
     navLinks.classList.contains('active') && 
@@ -103,7 +77,6 @@ document.addEventListener('click', (e) => {
   }
 });
 
-// Smooth Scrolling for Buttons and Navigation Links
 document.querySelector('.btn').addEventListener('click', () => {
   document.querySelector('footer').scrollIntoView({ behavior: 'smooth' });
 });
@@ -115,7 +88,6 @@ document.querySelectorAll('.nav__link').forEach(link => {
     const targetElement = document.querySelector(targetId);
     
     if (targetElement) {
-      // Adjust for mobile screen
       const isMobile = window.innerWidth <= 768;
       const offset = isMobile ? -60 : -80; // Different offset for mobile
       
@@ -130,18 +102,14 @@ document.querySelectorAll('.nav__link').forEach(link => {
 });
 
 document.querySelector('.video').addEventListener('click', (e) => {
-  // Allow default action to navigate to GitHub
 });
 
-// YouTube butonuna tıklama
 const youtubeBtn = document.querySelector('.youtube-btn');
 if (youtubeBtn) {
   youtubeBtn.addEventListener('click', (e) => {
-    // Allow default action to navigate to YouTube
   });
 }
 
-// Back to Top Button
 const backToTopBtn = document.querySelector('.back-to-top');
 
 window.addEventListener('scroll', () => {
@@ -159,7 +127,6 @@ backToTopBtn.addEventListener('click', () => {
   });
 });
 
-// Add Animation to Elements on Hover
 const animateElements = (elements, enterStyles, leaveStyles) => {
   elements.forEach(element => {
     element.addEventListener('mouseenter', () => {
@@ -176,7 +143,6 @@ const animateElements = (elements, enterStyles, leaveStyles) => {
   });
 };
 
-// Service Cards Animation
 const serviceCards = document.querySelectorAll('.service__card');
 animateElements(
   serviceCards, 
@@ -190,7 +156,6 @@ animateElements(
   }
 );
 
-// Project Cards Animation
 const projectCards = document.querySelectorAll('.project__card');
 animateElements(
   projectCards, 
@@ -204,9 +169,7 @@ animateElements(
   }
 );
 
-// Tüm sayfa fonksiyonlarını yönetecek ana DOMContentLoaded event listener
 document.addEventListener('DOMContentLoaded', function() {
-  // Mevcut tüm arkaplan videoları
   const backgroundVideos = [
     'background1.mp4',
     'background2.mp4',
@@ -216,70 +179,97 @@ document.addEventListener('DOMContentLoaded', function() {
     'background6.mp4'
   ];
   
-  // Rastgele bir video seç
   const randomVideo = backgroundVideos[Math.floor(Math.random() * backgroundVideos.length)];
   
-  // Video öğesini seç
   const videoElement = document.getElementById('background-video');
   
-  // Video kaynağını ayarla
   const source = document.createElement('source');
   source.src = randomVideo;
   source.type = 'video/mp4';
   
-  // Kaynağı video elementine ekle
   videoElement.appendChild(source);
   
-  // Video yüklenemezse hata işleme
   videoElement.addEventListener('error', function() {
     console.error('Video yüklenirken hata oluştu. Varsayılan video kullanılıyor.');
-    // Hata durumunda ilk videoyu kullan
     source.src = backgroundVideos[0];
     videoElement.load();
   });
   
-  // Videoyu yeniden yükle
   videoElement.load();
   
-  // Form Submission (eski DOMContentLoaded eventinden taşındı)
   const form = document.getElementById('contactForm');
   
   if (form) {
-    // Add form animations
     const formInputs = form.querySelectorAll('input, textarea');
     formInputs.forEach(input => {
       input.addEventListener('focus', () => {
-        input.style.border = '1px solid var(--primary-color)';
-        input.style.boxShadow = '0 0 0 2px rgba(242, 72, 11, 0.2)';
+        input.parentElement.classList.add('focused');
       });
       
       input.addEventListener('blur', () => {
-        input.style.border = '1px solid transparent';
-        input.style.boxShadow = 'none';
+        if (!input.value) {
+          input.parentElement.classList.remove('focused');
+        }
       });
     });
     
     form.addEventListener('submit', function(e) {
-      // Form gönderimini işle
-      console.log('Form gönderildi');
+      e.preventDefault();
+      
+      const formData = new FormData(form);
+      const name = formData.get('name');
+      const email = formData.get('email');
+      const message = formData.get('message');
+      
+      if (!name || !email || !message) {
+        showNotification('Lütfen tüm alanları doldurun.', 'error');
+        return;
+      }
+      
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = 'Gönderiliyor...';
+      submitBtn.disabled = true;
+      
+      fetch(form.action, {
+        method: form.method,
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error('Form gönderilirken bir hata oluştu.');
+      })
+      .then(data => {
+        form.reset();
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+        showNotification('Mesajınız başarıyla gönderildi!', 'success');
+      })
+      .catch(error => {
+        console.error(error);
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+        showNotification('Mesajınız gönderilemedi. Lütfen daha sonra tekrar deneyin.', 'error');
+      });
     });
   }
 });
 
-// Notification function
 function showNotification(message, type = 'info') {
-  // Remove existing notifications
   const existingNotifications = document.querySelectorAll('.notification');
   existingNotifications.forEach(notification => {
     notification.remove();
   });
   
-  // Create notification
   const notification = document.createElement('div');
   notification.className = `notification ${type}`;
   notification.textContent = message;
   
-  // Add close button
   const closeBtn = document.createElement('span');
   closeBtn.className = 'notification-close';
   closeBtn.innerHTML = '&times;';
@@ -293,12 +283,10 @@ function showNotification(message, type = 'info') {
   notification.appendChild(closeBtn);
   document.body.appendChild(notification);
   
-  // Show notification
   setTimeout(() => {
     notification.classList.add('notification-visible');
   }, 10);
   
-  // Auto-hide after 5 seconds
   setTimeout(() => {
     if (document.body.contains(notification)) {
       notification.classList.add('notification-hiding');
@@ -311,33 +299,11 @@ function showNotification(message, type = 'info') {
   }, 5000);
 }
 
-// NS logosunu düzeltme
-document.addEventListener('DOMContentLoaded', function() {
-  const splashLogo = document.querySelector('.splash-logo');
-  if (splashLogo) {
-    // Logo simgesini düzelt
-    const logoIcon = splashLogo.querySelector('.logo-icon');
-    if (logoIcon) {
-      logoIcon.style.fontSize = "30px";
-      logoIcon.style.marginRight = "5px";
-    }
-    
-    // NS yazısını düzelt
-    const nsText = splashLogo.querySelector('span');
-    if (nsText) {
-      nsText.style.marginLeft = "4px";
-      nsText.style.fontSize = "26px";
-    }
-  }
-});
-
-// Mobil dokunmatik kaydırma desteği
 let touchStartX = 0;
 let touchEndX = 0;
 let touchStartY = 0;
 let touchEndY = 0;
 
-// Dokunmatik kaydırma olaylarını ele alma
 document.addEventListener('touchstart', (e) => {
   touchStartX = e.changedTouches[0].screenX;
   touchStartY = e.changedTouches[0].screenY;
@@ -349,26 +315,19 @@ document.addEventListener('touchend', (e) => {
   handleSwipe();
 }, false);
 
-// Kaydırma yönünü belirle ve işle
 function handleSwipe() {
-  // Yatay kaydırma mesafesi
   const swipeDistanceX = touchEndX - touchStartX;
-  // Dikey kaydırma mesafesi
   const swipeDistanceY = touchEndY - touchStartY;
   
-  // Sadece menü açıkken ve yeterince yatay kaydırma varsa işlem yap
-  // Dikey kaydırma çok fazlaysa, muhtemelen sayfa kaydırma işlemidir
   if (
     Math.abs(swipeDistanceX) > Math.abs(swipeDistanceY) && 
     Math.abs(swipeDistanceX) > 50
   ) {
-    // Eğer soldan sağa kaydırma yapıldıysa ve menü açıksa kapat
     if (swipeDistanceX > 0 && !navLinks.classList.contains('active')) {
       hamburger.classList.add('active');
       navLinks.classList.add('active');
       body.classList.add('menu-open');
     } 
-    // Eğer sağdan sola kaydırma yapıldıysa ve menü açıksa kapat
     else if (swipeDistanceX < 0 && navLinks.classList.contains('active')) {
       hamburger.classList.remove('active');
       navLinks.classList.remove('active');
@@ -377,15 +336,12 @@ function handleSwipe() {
   }
 }
 
-// Lazy loading for images
 if ('loading' in HTMLImageElement.prototype) {
-  // Browser supports native lazy loading
   const images = document.querySelectorAll('img');
   images.forEach(img => {
     img.setAttribute('loading', 'lazy');
   });
 } else {
-  // Load lazy-loading polyfill
   const script = document.createElement('script');
   script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js';
   document.body.appendChild(script);
@@ -398,20 +354,15 @@ if ('loading' in HTMLImageElement.prototype) {
   });
 }
 
-// Animasyon optimizasyonu - performans için
-// Sadece görünür alanlarda animasyonları etkinleştir
 const animateOnScroll = () => {
-  // AOS kütüphanesi tarafından eklenen öğeler
   const animatedElements = document.querySelectorAll('[data-aos]');
   
   if ('IntersectionObserver' in window) {
     const animationObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          // Öğe görünür olduğunda AOS animasyonunu manuel olarak tetikle
           entry.target.classList.add('aos-animate');
         } else if (!entry.target.classList.contains('aos-once')) {
-          // one-time animasyonlar için kontrol
           entry.target.classList.remove('aos-animate');
         }
       });
@@ -426,40 +377,31 @@ const animateOnScroll = () => {
   }
 };
 
-// AOS.init çağrısından sonra özel animasyon yönetimi ekle
 document.addEventListener('DOMContentLoaded', () => {
-  // AOS başlatılınca manual optimizasyonumuzu etkinleştir
   setTimeout(() => {
     animateOnScroll();
   }, 100);
   
-  // Aktif bölümü vurgulama ve menü öğelerini güncelleme
   window.addEventListener('scroll', () => {
     highlightCurrentSection();
   });
   
-  // Sayfa yüklendikten sonra aktif bölümü kontrol et
   highlightCurrentSection();
   
-  // Cihaz yönü değiştiğinde layout'u düzelt
   window.addEventListener('orientationchange', () => {
-    // Oryantasyon değişiminden sonra layout düzeltmeleri
     setTimeout(() => {
-      // Menü açıksa kapat
       if (navLinks.classList.contains('active')) {
         hamburger.classList.remove('active');
         navLinks.classList.remove('active');
         body.classList.remove('menu-open');
       }
       
-      // AOS elemanlarını yeniden başlat
       if (typeof AOS !== 'undefined') {
         AOS.refresh();
       }
     }, 200);
   });
   
-  // Aktif bölümü vurgulama fonksiyonu
   function highlightCurrentSection() {
     const sections = document.querySelectorAll('section');
     const navItems = document.querySelectorAll('.nav__link');
