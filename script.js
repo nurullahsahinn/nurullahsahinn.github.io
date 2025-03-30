@@ -670,21 +670,22 @@ function setupMobileMenu() {
   const menuLinks = document.querySelectorAll('.nav__link');
   const menuOverlay = document.querySelector('.menu-overlay');
   
-  if (!hamburger || !menuOverlay) return;
+  if (!hamburger) return;
   
-  // Menü açma/kapama fonksiyonu
-  function toggleMenu(event) {
-    event.stopPropagation();
+  // Hamburger menü tıklama olayı - doğrudan click dinleyici
+  hamburger.onclick = function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log('Hamburger tıklandı - script.js');
     body.classList.toggle('menu-open');
-  }
-  
-  // Hamburger menü tıklama olayı
-  hamburger.addEventListener('click', toggleMenu);
+  };
   
   // Menüyü kapatmak için tıklama olayları
-  menuOverlay.addEventListener('click', function() {
-    body.classList.remove('menu-open');
-  });
+  if (menuOverlay) {
+    menuOverlay.addEventListener('click', function() {
+      body.classList.remove('menu-open');
+    });
+  }
   
   // Mobil menüde link tıklamaları menüyü kapatsın
   menuLinks.forEach(link => {
@@ -696,6 +697,15 @@ function setupMobileMenu() {
   // ESC tuşuna basıldığında menüyü kapat
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape' && body.classList.contains('menu-open')) {
+      body.classList.remove('menu-open');
+    }
+  });
+  
+  // Doküman tıklaması ile menü kapanması
+  document.addEventListener('click', function(e) {
+    if (body.classList.contains('menu-open') && 
+        !e.target.closest('.nav__links') && 
+        !hamburger.contains(e.target)) {
       body.classList.remove('menu-open');
     }
   });

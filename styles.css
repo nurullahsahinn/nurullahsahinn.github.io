@@ -374,6 +374,7 @@ nav {
 .nav__links {
   display: flex;
   gap: 2rem;
+  z-index: 9998;
 }
 
 .nav__link {
@@ -409,18 +410,43 @@ nav {
 .hamburger {
   display: none;
   flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+  width: 28px;
+  height: 20px;
   cursor: pointer;
+  z-index: 5;
 }
 
 .hamburger span {
-  display: block;
-  width: 25px;
+  width: 100%;
   height: 3px;
   background-color: var(--light-color);
-  margin: 3px 0;
-  transition: all var(--transition-fast);
+  border-radius: 5px;
+  transition: all 0.3s ease;
 }
 
+@media screen and (max-width: 768px) {
+  .hamburger {
+    display: flex;
+    z-index: 101;
+  }
+  
+  body.menu-open .hamburger span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+    background-color: var(--primary-color);
+  }
+  
+  body.menu-open .hamburger span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  body.menu-open .hamburger span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+    background-color: var(--primary-color);
+  }
+}
 
 header {
   min-height: 100vh;
@@ -1088,299 +1114,334 @@ footer::before {
 
 
 @media screen and (max-width: 768px) {
-  nav {
-    padding: 1rem;
-    background-color: rgba(9, 12, 16, 0.95);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  /* Genel Layout */
+  .section__container {
+    padding: 4rem 1.5rem;
+  }
+  
+  /* Başlık ve metinler */
+  .header__container {
+    min-height: auto;
+    padding-top: 100px;
+    text-align: left;
+  }
+  
+  .header__container h1 {
+    font-size: 3.5rem;
+    text-align: left;
+  }
+  
+  .section__title {
+    font-size: 2.2rem;
+    text-align: left;
+  }
+  
+  .section__subtitle {
+    text-align: left;
   }
 
+  p, h1, h2, h3, h4, h5, h6 {
+    text-align: left;
+  }
+
+  /* Butonlar ve etkileşimler */
+  .action__btns {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+  }
+  
+  /* Video ve arka plan */
+  .video-background video {
+    object-fit: cover;
+    object-position: center 40%;
+  }
+  
+  /* Menü ve navigasyon */
+  nav {
+    background-color: rgba(9, 12, 16, 0.95);
+    padding: 1.2rem 2rem;
+  }
+  
   .nav__links {
     position: fixed;
     top: 0;
-    right: -80%;
-    width: 75%;
+    right: -100%;
+    width: 300px;
     height: 100vh;
-    background-color: #0c0f14;
+    background-color: rgba(12, 15, 20, 0.95);
+    backdrop-filter: blur(10px);
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    padding-top: 4rem;
+    align-items: flex-start;
+    padding: 80px 2rem 2rem;
     z-index: 100;
-    transition: right 0.3s ease-in-out;
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
-    overflow-y: auto;
-    padding-bottom: 2rem;
+    transition: right 0.4s cubic-bezier(0.23, 1, 0.32, 1);
   }
-
+  
   body.menu-open .nav__links {
     right: 0;
   }
-
+  
   .nav__link {
     margin: 0.8rem 0;
-    font-size: 1.2rem;
-    width: 80%;
-    padding: 0.8rem 0;
-    text-align: center;
-    border-radius: 10px;
-    transition: all 0.3s ease;
+    font-size: 1.1rem;
+    padding: 0.6rem 0;
+    text-align: left;
+    width: 100%;
+    position: relative;
   }
   
-  .nav__link:hover {
-    background-color: rgba(242, 72, 11, 0.1);
-    transform: translateX(5px);
-  }
-
-  .hamburger {
-    display: flex;
-    position: relative;
-    z-index: 101;
-    width: 30px;
-    height: 25px;
-    flex-direction: column;
-    justify-content: space-between;
-    cursor: pointer;
-  }
-
-  .hamburger span {
+  .nav__link::after {
+    bottom: -2px;
+    left: 0;
+    width: 0;
     display: block;
+  }
+  
+  .nav__link:hover::after {
     width: 100%;
-    height: 3px;
-    background-color: var(--light-color);
-    border-radius: 3px;
-    transition: all 0.3s ease;
   }
-
-  body.menu-open .hamburger span:nth-child(1) {
-    transform: translateY(11px) rotate(45deg);
-    background-color: var(--primary-color);
-  }
-
-  body.menu-open .hamburger span:nth-child(2) {
-    opacity: 0;
-  }
-
-  body.menu-open .hamburger span:nth-child(3) {
-    transform: translateY(-11px) rotate(-45deg);
-    background-color: var(--primary-color);
-  }
-
+  
   .nav-language-selector {
-    margin: 1.5rem 0;
-    padding: 0.8rem 1rem;
-    width: 80%;
-    justify-content: center;
-    background-color: rgba(255, 255, 255, 0.05);
-    border-radius: 10px;
+    margin: 1rem 0;
+    padding: 0.8rem 0;
+    width: 100%;
+    justify-content: flex-start;
   }
   
   .nav-language-btn {
-    padding: 8px 15px;
-    border-radius: 8px;
-    margin: 0 5px;
+    font-size: 0.9rem;
+    padding: 6px 12px;
+    opacity: 0.85;
+    border-radius: 4px;
     transition: all 0.3s ease;
   }
   
   .nav-language-btn:hover {
-    background-color: rgba(242, 72, 11, 0.2);
+    opacity: 1;
+    background-color: rgba(242, 72, 11, 0.1);
   }
   
   .nav-language-btn.active {
-    background-color: rgba(242, 72, 11, 0.3);
-  }
-
-  .header__container h1 {
-    font-size: 3rem;
-  }
-  
-  .section__title {
-    font-size: 2rem;
-  }
-
-  .about__container,
-  .footer__container {
-    grid-template-columns: 1fr;
-  }
-
-  .action__btns {
-    flex-direction: column;
-    width: 100%;
-    gap: 1rem;
-  }
-
-  .btn, .video {
-    width: 100%;
-    justify-content: center;
+    opacity: 1;
+    font-weight: 600;
+    color: var(--primary-color);
+    background-color: rgba(242, 72, 11, 0.1);
   }
   
-  .btn {
-    box-shadow: 0 5px 15px rgba(242, 72, 11, 0.2);
+  /* Hamburger menü */
+  .hamburger {
+    display: flex;
+    z-index: 101;
   }
   
-  .video {
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 0.5rem;
+  body.menu-open .hamburger span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+    background-color: var(--primary-color);
   }
   
-  .project__card {
-    transform: none !important;
-    margin-bottom: 2rem;
+  body.menu-open .hamburger span:nth-child(2) {
+    opacity: 0;
   }
   
-  .project__card img {
-    border-radius: 12px 12px 0 0;
+  body.menu-open .hamburger span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+    background-color: var(--primary-color);
   }
   
-  .project__content {
-    border-radius: 0 0 12px 12px;
-  }
-
-  .about__image {
-    text-align: center;
-  }
-
-  .skills__grid,
+  /* Grid Layoutlar */
   .service__grid,
+  .skills__grid,
   .project__grid {
-    grid-template-columns: 1fr;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
   }
-
+  
+  /* Kartlar ve içerik */
+  .service__card, 
+  .project__card, 
+  .skills__card {
+    text-align: left;
+    padding: 1.5rem;
+    height: 100%;
+    transform: none !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .service__card:hover, 
+  .project__card:hover, 
+  .skills__card:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Servis ikonları */
+  .service__icon {
+    margin: 0 0 1rem;
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    background-color: rgba(242, 72, 11, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+  }
+  
+  .service__card:hover .service__icon {
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    transform: rotateY(360deg);
+  }
+  
+  /* Metinler ve başlıklar kartlarda */
+  .service__card h4, 
+  .project__content h3, 
+  .skills__card h3 {
+    text-align: left;
+  }
+  
+  .service__card p, 
+  .project__content p {
+    text-align: left;
+  }
+  
+  /* Görüntüler */
   .project__card img {
     height: 220px;
-  }
-
-  .skills__card,
-  .service__card {
-    margin-bottom: 1.5rem;
-  }
-
-  .section__container {
-    padding: 4rem 1rem;
-  }
-
-  .nav__logo {
-    font-size: 1.2rem;
-  }
-
-  .back-to-top {
-    right: 15px;
-    bottom: 15px;
-    width: 40px;
-    height: 40px;
-  }
-
-  .header__container {
-    min-height: calc(100vh - 70px);
-    padding-top: 70px;
-    justify-content: center;
-  }
-  
-  .video-background video {
     object-fit: cover;
-    object-position: center 25%;
-    top: 35%;
   }
   
-  .service__grid {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+  .about__image img {
+    max-width: 100%;
+    border-radius: 8px;
   }
   
-  .skills__grid {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  
-  .project__grid {
+  /* Hakkımda bölümü */
+  .about__container {
+    text-align: left;
     display: grid;
     grid-template-columns: 1fr;
     gap: 2rem;
   }
   
-  .about__details {
-    text-align: justify;
-    font-size: 0.95rem;
-    padding: 0 0.5rem;
+  .about__image {
+    order: 1;
+    margin-bottom: 2rem;
   }
   
-  .service__card {
-    margin-bottom: 0;
+  .about__content {
+    order: 2;
   }
   
-  .footer__form {
-    width: 100%;
-    padding: 0 0.5rem;
+  /* Footer bölümü */
+  .footer__container {
+    padding: 5rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: flex-start;
   }
   
   .footer__content {
-    padding: 0 0.5rem;
+    text-align: left;
+  }
+  
+  .footer__details p {
+    text-align: left;
+  }
+  
+  .social__icons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    justify-content: flex-start;
+  }
+  
+  .social__icons a {
+    color: var(--light-color);
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+  }
+  
+  .social__icons a:hover {
+    color: var(--primary-color);
+    transform: translateY(-3px);
+  }
+  
+  /* Yukarı çık butonu */
+  .back-to-top {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    color: var(--light-color);
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(242, 72, 11, 0.3);
+    transition: all 0.3s ease;
+    z-index: 99;
+  }
+  
+  /* Animasyonlar */
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+  
+  /* AOS animasyonları masaüstü ile aynı */
+  [data-aos] {
+    transition-duration: 0.8s !important;
+    transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1) !important;
+  }
+  
+  /* Splash ekranı */
+  #splashScreen {
+    backdrop-filter: blur(5px);
   }
 }
 
-@media screen and (max-width: 468px) {
-  html {
-    font-size: 14px;
-  }
-
+/* Küçük mobil cihazlar için */
+@media screen and (max-width: 480px) {
   .header__container h1 {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
   }
-
+  
   .section__title {
-    font-size: 1.7rem;
-  }
-
-  .about__image img {
-    max-width: 85%;
-    border-radius: 10px;
-  }
-
-  .skills__card,
-  .service__card {
-    padding: 1.5rem;
-    margin-bottom: 1.2rem;
-  }
-
-  .project__card img {
-    height: 180px;
-  }
-
-  .footer__form input,
-  .footer__form textarea {
-    padding: 0.8rem;
-  }
-
-  .icon {
-    margin-right: 0.5rem;
-    width: 38px;
-    height: 38px;
-  }
-
-  .video__icon {
-    width: 38px;
-    height: 38px;
-  }
-
-  .btn {
-    padding: 0.7rem 1.5rem;
-    font-size: 0.9rem;
-    border-radius: 30px;
-    width: 100%;
-    text-align: center;
-  }
-
-  .section__container {
-    padding: 3rem 1rem;
+    font-size: 2rem;
   }
   
-  .footer__form {
+  .action__btns {
+    flex-direction: column;
     width: 100%;
   }
   
-  .nav__links {
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+  .footer__container {
+    grid-template-columns: 1fr;
+  }
+  
+  .service__grid,
+  .skills__grid,
+  .project__grid {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -1539,15 +1600,14 @@ body.menu-open {
   overflow: hidden;
 }
 
+body.menu-open .nav__links {
+  right: 0;
+}
 
 .service__card, 
 .skills__card, 
 .project__card {
-  will-change: transform;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  transform: translateZ(0);
-  -webkit-font-smoothing: subpixel-antialiased;
+  height: 100%;
 }
 
 
@@ -1810,7 +1870,7 @@ body.menu-open {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.1);
-  z-index: 1000;
+  z-index: 9997;
   pointer-events: none;
   animation: fadeInOut 0.6s ease;
 }
@@ -1980,11 +2040,11 @@ header [data-i18n] {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(3px);
+  backdrop-filter: blur(5px);
   z-index: 99;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3s ease;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 body.menu-open .menu-overlay {
