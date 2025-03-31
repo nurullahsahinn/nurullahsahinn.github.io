@@ -630,31 +630,23 @@
     });
     
     window.addEventListener('load', function() {
-      // Tüm kaynaklar yüklendikten sonra yükleme ekranını kaldır
       setTimeout(function() {
         const splashScreen = document.getElementById('splashScreen');
         if (splashScreen) {
-          // Yükleme ekranını yumuşak bir hareketle kaldır
           splashScreen.style.opacity = '0';
           splashScreen.style.visibility = 'hidden';
           
-          // Animasyon bittikten sonra DOM'dan kaldır ve AOS'u başlat
           setTimeout(function() {
             splashScreen.remove();
+            document.body.classList.add('loaded');
             
-            // AOS animasyonlarını başlat
+            // AOS'u yeniden başlat
             if (typeof AOS !== 'undefined') {
-              AOS.init({
-                duration: 800,
-                offset: 120,
-                once: false,
-                disable: false,
-                easing: 'ease-in-out'
-              });
+              AOS.refresh();
             }
-          }, 800); // Geçiş süresi ile uyumlu
+          }, 800);
         }
-      }, 3500); // Yükleme ekranı için biraz daha uzun süre
+      }, 3500);
     });
 
     // Tarayıcı ortamını kontrol etme ve uygun yükleme modunu kullanma
@@ -937,5 +929,16 @@
   </div>
 
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      AOS.init({
+        duration: 800,
+        offset: 120,
+        once: false,
+        disable: false,
+        easing: 'ease-in-out'
+      });
+    });
+  </script>
 </body>
 </html>
