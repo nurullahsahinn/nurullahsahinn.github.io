@@ -3236,3 +3236,20 @@ header [data-i18n] {
     top: 35px;
   }
 }
+
+/* Kenar çizgisini kaldırmak için özel sınıf */
+.no-side-line::before,
+.no-side-line::after {
+  display: none !important;
+  content: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: none !important;
+  opacity: 0 !important;
+  border: none !important;
+  visibility: hidden !important;
+}
+
+.no-side-line {
+  border-left: none !important;
+}
