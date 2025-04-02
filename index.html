@@ -8,6 +8,11 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta name="format-detection" content="telephone=no">
   <title>Nurullah Şahin - Yazılım Mühendisliği Öğrencisi</title>
   
   <!-- YENİ DEBUG KODU - inline olarak dil değiştirme fonksiyonu -->
@@ -1488,12 +1493,16 @@
           }
         };
         
-        // Dokunma dalgası efekti
+        // Dokunma dalgası efekti - YENİ VE GELİŞTİRİLMİŞ
         const addTouchRippleEffect = () => {
           const touchableElements = document.querySelectorAll('a, button, .btn, .nav__link, .service__card, .project__card, .skills__card, .video, .icon');
           
           touchableElements.forEach(element => {
             element.addEventListener('touchstart', function(e) {
+              // Mevcut dokunma dalgaları varsa temizle
+              const existingRipples = element.querySelectorAll('.touch-ripple');
+              existingRipples.forEach(ripple => ripple.remove());
+              
               // Dokunma noktasını al
               const touch = e.touches[0];
               const rect = this.getBoundingClientRect();
@@ -1513,6 +1522,8 @@
                 this.style.position = 'relative';
               }
               
+              this.style.overflow = 'hidden'; // Taşmayı engelle
+              
               // Dalgayı elementin içine ekle
               this.appendChild(ripple);
               
@@ -1524,7 +1535,24 @@
                 ripple.remove();
                 this.classList.remove('active');
               }, 800);
-            });
+              
+              // Su baloncuğu efektini mobilde oluştur
+              const bubble = document.createElement('div');
+              bubble.className = 'water-bubble';
+              
+              const size = Math.random() * 40 + 10;
+              
+              bubble.style.width = size + 'px';
+              bubble.style.height = size + 'px';
+              bubble.style.left = touch.clientX + 'px';
+              bubble.style.top = touch.clientY + 'px';
+              
+              document.body.appendChild(bubble);
+              
+              setTimeout(() => {
+                bubble.remove();
+              }, 2000);
+            }, { passive: true }); // Pasif listener performans için
             
             // Dokunma vurgulaması
             const highlight = document.createElement('div');
@@ -1538,15 +1566,15 @@
             
             element.addEventListener('touchstart', () => {
               highlight.style.opacity = '1';
-            });
+            }, { passive: true });
             
             element.addEventListener('touchend', () => {
               highlight.style.opacity = '0';
-            });
+            }, { passive: true });
             
             element.addEventListener('touchcancel', () => {
               highlight.style.opacity = '0';
-            });
+            }, { passive: true });
           });
         };
         
@@ -1712,7 +1740,7 @@
         
         // Uygula
         setupMobileLoading();
-        addTouchRippleEffect();
+        addTouchRippleEffect(); // Dokunma dalgası efektini aktif et
         setupMobileAnimations();
         setupEnergyBars();
         setupParallaxEffect();

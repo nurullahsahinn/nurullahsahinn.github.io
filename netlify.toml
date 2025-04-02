@@ -1,11 +1,33 @@
 [images]
-  remote_images = ["https://source.unsplash.com/.*", "https://images.unsplash.com/.*", "https://ext.same-assets.com/.*", "https://ugc.same-assets.com/.*"]
+  remote_images = ["*"]
 
 [build]
-  command = "bun run build"
-  publish = "dist"
+  command = "echo 'Build completed'"
+  publish = "/"
+
+[[headers]]
+  for = "*.jpeg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[build.processing]
+  skip_processing = false
+
+[build.processing.images]
+  compress = true
 
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+  from = "http://*"
+  to = "https://:splat"
+  status = 301
+  force = true
