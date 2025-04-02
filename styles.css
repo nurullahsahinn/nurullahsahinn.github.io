@@ -249,6 +249,46 @@ a:active::after, button:active::after, .btn:active::after, .nav__link:active::af
     position: relative !important;
     z-index: auto !important;
   }
+  
+  /* Yeni parmak takip efektleri */
+  .touch-follower {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    will-change: transform, left, top, opacity;
+    box-shadow: 0 0 12px rgba(242, 72, 11, 0.5), 
+                inset 0 0 8px rgba(255, 150, 100, 0.3);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+  }
+  
+  .touch-ripple-small {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    will-change: transform, opacity;
+    filter: drop-shadow(0 0 5px rgba(242, 72, 11, 0.3));
+  }
+  
+  .touch-particle {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9997;
+    will-change: transform, opacity;
+    filter: blur(1px);
+  }
+  
+  .touch-ripple-end {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9996;
+    will-change: transform, opacity;
+    filter: drop-shadow(0 0 8px rgba(242, 72, 11, 0.5));
+  }
 }
 
 /* Mobil cihazlarda daha yumuşak geçişler */

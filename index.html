@@ -1213,131 +1213,31 @@
       
       document.addEventListener('click', createBubble);
 
-      // Mobil cihazlarda gereksiz efektleri devre dışı bırak
-      function checkMobile() {
-        if (window.innerWidth <= 768) {
-          cursorFollower.style.display = 'none';
-        } else {
-          cursorFollower.style.display = 'block';
-        }
-      }
-
-      window.addEventListener('resize', checkMobile);
-      checkMobile(); // Sayfa yüklendiğinde kontrol et
-
-      // Parçacık efekti oluşturma
-      const particlesContainer = document.querySelector('.particles-container');
-      const particleCount = window.innerWidth > 768 ? 30 : 15;
-      
-      for (let i = 0; i < particleCount; i++) {
-        createParticle();
-      }
-      
-      function createParticle() {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        
-        // Rastgele özellikler
-        const size = Math.random() * 4 + 1;
-        const posX = Math.random() * window.innerWidth;
-        const posY = Math.random() * window.innerHeight;
-        const speedX = Math.random() * 0.5 - 0.25;
-        const speedY = Math.random() * 0.5 - 0.25;
-        const opacity = Math.random() * 0.5 + 0.1;
-        
-        // Parçacığı özelleştir
-        particle.style.width = size + 'px';
-        particle.style.height = size + 'px';
-        particle.style.left = posX + 'px';
-        particle.style.top = posY + 'px';
-        particle.style.opacity = opacity;
-        
-        // Veri özniteliklerini kaydet
-        particle.dataset.speedX = speedX;
-        particle.dataset.speedY = speedY;
-        
-        // Sayfaya ekle
-        particlesContainer.appendChild(particle);
-        
-        // Parçacığı hareket ettir
-        animateParticle(particle);
-      }
-      
-      function animateParticle(particle) {
-        const animate = () => {
-          // Mevcut konumu al
-          let posX = parseFloat(particle.style.left);
-          let posY = parseFloat(particle.style.top);
-          
-          // Hızı al
-          const speedX = parseFloat(particle.dataset.speedX);
-          const speedY = parseFloat(particle.dataset.speedY);
-          
-          // Konumu güncelle
-          posX += speedX;
-          posY += speedY;
-          
-          // Ekran sınırlarını kontrol et
-          if (posX < 0) posX = window.innerWidth;
-          if (posX > window.innerWidth) posX = 0;
-          if (posY < 0) posY = window.innerHeight;
-          if (posY > window.innerHeight) posY = 0;
-          
-          // Yeni konumu ayarla
-          particle.style.left = posX + 'px';
-          particle.style.top = posY + 'px';
-          
-          // Animasyonu tekrar et
-          requestAnimationFrame(animate);
-        };
-        
-        animate();
-      }
-
-      // Parçacık ve fare etkileşimi
-      document.addEventListener('mousemove', function(e) {
-        // Fare pozisyonunun yakınındaki parçacıkları seç
-        const particles = document.querySelectorAll('.particle');
-        const mouseX = e.clientX;
-        const mouseY = e.clientY;
-        
-        particles.forEach(particle => {
-          // Parçacık pozisyonunu al
-          const posX = parseFloat(particle.style.left);
-          const posY = parseFloat(particle.style.top);
-          
-          // Fare ile parçacık arasındaki mesafeyi hesapla
-          const dx = mouseX - posX;
-          const dy = mouseY - posY;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          
-          // Etki alanı içindeyse (200px)
-          if (distance < 200) {
-            // Etki gücünü hesapla (uzaklığa bağlı olarak)
-            const force = (200 - distance) / 200;
-            
-            // Geçici hız ekle (normal hızla ters yönde)
-            const tempSpeedX = parseFloat(particle.dataset.tempSpeedX || 0) - (dx / distance) * force * 2;
-            const tempSpeedY = parseFloat(particle.dataset.tempSpeedY || 0) - (dy / distance) * force * 2;
-            
-            // Geçici hızı kaydet
-            particle.dataset.tempSpeedX = tempSpeedX;
-            particle.dataset.tempSpeedY = tempSpeedY;
-          }
-        });
-      });
-
       // Mobil cihaz kontrolü
       const isMobile = window.innerWidth <= 768;
       
       if (isMobile) {
         // Sayfa genelinde dokunma dalga efektlerini etkinleştir
         let touchFollower = null;
+        let touchRipples = [];
+        let touchAnimationFrame = null;
         
         document.body.addEventListener('touchstart', function(e) {
-          // Varsa eski takip elemanını kaldır
-          if (touchFollower) {
-            touchFollower.remove();
+          // Takipçiyi oluştur
+          if (!touchFollower) {
+            touchFollower = document.createElement('div');
+            touchFollower.className = 'touch-follower';
+            touchFollower.style.position = 'fixed';
+            touchFollower.style.width = '30px';
+            touchFollower.style.height = '30px';
+            touchFollower.style.borderRadius = '50%';
+            touchFollower.style.background = 'radial-gradient(circle, rgba(242, 72, 11, 0.7) 0%, rgba(242, 72, 11, 0.3) 70%)';
+            touchFollower.style.boxShadow = '0 0 10px rgba(242, 72, 11, 0.5)';
+            touchFollower.style.pointerEvents = 'none';
+            touchFollower.style.zIndex = '9999';
+            touchFollower.style.transform = 'translate(-50%, -50%)';
+            touchFollower.style.transition = 'transform 0.05s linear, width 0.2s ease, height 0.2s ease';
+            document.body.appendChild(touchFollower);
           }
           
           // Dokunma noktasını al
@@ -1345,51 +1245,157 @@
           const x = touch.clientX;
           const y = touch.clientY;
           
-          // Yeni takipçi elementi oluştur
-          touchFollower = document.createElement('div');
-          touchFollower.className = 'touch-ripple';
-          touchFollower.style.width = '40px';
-          touchFollower.style.height = '40px';
-          touchFollower.style.position = 'fixed';
+          // Takipçiyi güncelle
           touchFollower.style.left = x + 'px';
           touchFollower.style.top = y + 'px';
-          touchFollower.style.zIndex = '9999';
-          touchFollower.style.transform = 'translate(-50%, -50%)';
-          touchFollower.style.opacity = '0.6';
-          touchFollower.style.borderRadius = '50%';
-          touchFollower.style.background = 'radial-gradient(circle, rgba(242, 72, 11, 0.6) 0%, rgba(242, 72, 11, 0) 70%)';
-          touchFollower.style.pointerEvents = 'none';
+          touchFollower.style.opacity = '1';
           
-          // Sayfaya ekle
-          document.body.appendChild(touchFollower);
+          // Dokunulan noktada küçük bir ripple oluştur
+          const ripple = document.createElement('div');
+          ripple.className = 'touch-ripple-small';
+          ripple.style.position = 'fixed';
+          ripple.style.left = x + 'px';
+          ripple.style.top = y + 'px';
+          ripple.style.width = '10px';
+          ripple.style.height = '10px';
+          ripple.style.borderRadius = '50%';
+          ripple.style.background = 'rgba(242, 72, 11, 0.8)';
+          ripple.style.transform = 'translate(-50%, -50%) scale(1)';
+          ripple.style.opacity = '0.8';
+          ripple.style.pointerEvents = 'none';
+          ripple.style.zIndex = '9998';
+          document.body.appendChild(ripple);
+          
+          // Ripple animasyonu
+          touchRipples.push({
+            element: ripple,
+            createdAt: Date.now(),
+            duration: 600
+          });
+          
+          // Animasyon fonksiyonu başlat
+          if (!touchAnimationFrame) {
+            animateTouchRipples();
+          }
         }, {passive: true});
         
-        // Parmak hareketi takibi
+        // Parmak hareketi takibi - çok daha hızlı
         document.body.addEventListener('touchmove', function(e) {
           if (touchFollower) {
             const touch = e.touches[0];
             const x = touch.clientX;
             const y = touch.clientY;
             
-            // Takipçiyi güncelle
+            // Doğrudan konum güncelleme (transition olmadan)
             touchFollower.style.left = x + 'px';
             touchFollower.style.top = y + 'px';
+            
+            // Her harekette küçük parçacıklar bırak
+            if (Math.random() < 0.3) { // Her 3 hareketten birinde
+              const particle = document.createElement('div');
+              particle.className = 'touch-particle';
+              particle.style.position = 'fixed';
+              particle.style.left = (x + (Math.random() * 20 - 10)) + 'px';
+              particle.style.top = (y + (Math.random() * 20 - 10)) + 'px';
+              particle.style.width = Math.random() * 8 + 2 + 'px';
+              particle.style.height = particle.style.width;
+              particle.style.borderRadius = '50%';
+              particle.style.background = 'rgba(242, 72, 11, ' + (Math.random() * 0.5 + 0.2) + ')';
+              particle.style.transform = 'translate(-50%, -50%)';
+              particle.style.pointerEvents = 'none';
+              particle.style.zIndex = '9997';
+              document.body.appendChild(particle);
+              
+              // Parçacık animasyonu
+              touchRipples.push({
+                element: particle,
+                createdAt: Date.now(),
+                duration: 400
+              });
+            }
           }
         }, {passive: true});
         
-        // Dokunma bitince kaldır
+        // Dokunma bitince
         document.body.addEventListener('touchend', function() {
           if (touchFollower) {
-            // Yavaşça kaybolsun
-            touchFollower.style.opacity = '0';
+            // Son konum effekti
+            const finalRipple = document.createElement('div');
+            finalRipple.className = 'touch-ripple-end';
+            finalRipple.style.position = 'fixed';
+            finalRipple.style.left = touchFollower.style.left;
+            finalRipple.style.top = touchFollower.style.top;
+            finalRipple.style.width = '40px';
+            finalRipple.style.height = '40px';
+            finalRipple.style.borderRadius = '50%';
+            finalRipple.style.background = 'radial-gradient(circle, rgba(242, 72, 11, 0.6) 0%, rgba(242, 72, 11, 0) 70%)';
+            finalRipple.style.transform = 'translate(-50%, -50%) scale(0)';
+            finalRipple.style.pointerEvents = 'none';
+            finalRipple.style.zIndex = '9996';
+            document.body.appendChild(finalRipple);
+            
+            // Final ripple animasyonu
+            touchRipples.push({
+              element: finalRipple,
+              createdAt: Date.now(),
+              duration: 500,
+              endAnimation: true
+            });
+            
+            // Takipçiyi kaldır
             setTimeout(() => {
               if (touchFollower) {
-                touchFollower.remove();
-                touchFollower = null;
+                touchFollower.style.opacity = '0';
+                setTimeout(() => {
+                  if (touchFollower) {
+                    touchFollower.remove();
+                    touchFollower = null;
+                  }
+                }, 200);
               }
-            }, 300);
+            }, 100);
           }
         }, {passive: true});
+        
+        // Ripple ve parçacık animasyonlarını yönet
+        function animateTouchRipples() {
+          const now = Date.now();
+          let hasActiveRipples = false;
+          
+          touchRipples.forEach((ripple, index) => {
+            const elapsed = now - ripple.createdAt;
+            const progress = Math.min(elapsed / ripple.duration, 1);
+            
+            if (progress < 1) {
+              hasActiveRipples = true;
+              
+              if (ripple.element.className === 'touch-ripple-small') {
+                // Küçük ripple büyüme animasyonu
+                ripple.element.style.transform = `translate(-50%, -50%) scale(${1 + progress * 2})`;
+                ripple.element.style.opacity = (0.8 * (1 - progress)).toString();
+              } else if (ripple.element.className === 'touch-particle') {
+                // Parçacık hareket ve solma animasyonu
+                ripple.element.style.transform = `translate(-50%, -50%) translate(${progress * 20}px, ${progress * 20 - 10}px)`;
+                ripple.element.style.opacity = (0.7 * (1 - progress)).toString();
+              } else if (ripple.element.className === 'touch-ripple-end') {
+                // Son ripple büyüme animasyonu
+                ripple.element.style.transform = `translate(-50%, -50%) scale(${progress * 3})`;
+                ripple.element.style.opacity = (0.6 * (1 - progress)).toString();
+              }
+            } else {
+              // Animasyon tamamlandı, elementi kaldır
+              ripple.element.remove();
+              touchRipples.splice(index, 1);
+            }
+          });
+          
+          // Hala aktif ripple'lar varsa animasyona devam et
+          if (hasActiveRipples) {
+            touchAnimationFrame = requestAnimationFrame(animateTouchRipples);
+          } else {
+            touchAnimationFrame = null;
+          }
+        }
         
         // Mobil için giriş animasyonları
         const setupMobileAnimations = () => {
