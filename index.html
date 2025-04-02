@@ -591,6 +591,36 @@
         opacity: 0;
       }
     }
+
+    /* Servis kartlarındaki kırmızı çizgiyi kaldırma */
+    .service__card::before,
+    .service__card::after {
+      display: none !important;
+      content: none !important;
+      width: 0 !important;
+      height: 0 !important;
+      background: none !important;
+      border: none !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+    }
+    
+    .service__card {
+      border-left: none !important;
+    }
+    
+    .service__grid > .service__card {
+      border-left: none !important;
+    }
+    
+    /* Mobil görünümde dokunmatik takip efektini optimize etme */
+    .touch-ripple {
+      width: 40px !important;
+      height: 40px !important;
+      transform: translate(-50%, -50%) !important;
+      animation: none !important;
+      opacity: 0.6 !important;
+    }
   </style>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -991,7 +1021,7 @@
         <!-- İskenderun Teknik Üniversitesi -->
         <div class="education-item" data-aos="fade-up" data-aos-delay="200" style="flex: 1; min-width: 250px; max-width: 300px; margin-bottom: 20px;">
           <div class="education-logo" style="width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 20px auto; border: 3px solid #f2480b; overflow: hidden;">
-            <img src="./iskenderun_teknik_uni_logo.jpeg" alt="İskenderun Teknik Üniversitesi" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" crossorigin="anonymous">
+            <img src="./iskenderun_teknik_uni_logo.jpeg" alt="İskenderun Teknik Üniversitesi" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" crossorigin>
           </div>
           <div class="education-content" style="background: rgba(20, 25, 30, 0.6); padding: 1.5rem; border-radius: 15px; text-align: center; border-top: 3px solid #f2480b;">
             <h4 data-i18n="education.iste.name" style="color: #f2480b; font-size: 1.1rem; font-weight: 600; margin-bottom: 10px;">İskenderun Teknik Üniversitesi (İSTE)</h4>
@@ -1300,129 +1330,95 @@
         const particles = document.querySelectorAll('.particle');
         const mouseX = e.clientX;
         const mouseY = e.clientY;
-        const interactionDistance = 100; // Etkileşim mesafesi (piksel)
         
         particles.forEach(particle => {
-          const particleX = parseFloat(particle.style.left);
-          const particleY = parseFloat(particle.style.top);
+          // Parçacık pozisyonunu al
+          const posX = parseFloat(particle.style.left);
+          const posY = parseFloat(particle.style.top);
           
           // Fare ile parçacık arasındaki mesafeyi hesapla
-          const dx = mouseX - particleX;
-          const dy = mouseY - particleY;
+          const dx = mouseX - posX;
+          const dy = mouseY - posY;
           const distance = Math.sqrt(dx * dx + dy * dy);
           
-          // Eğer fare parçacığa yeterince yakınsa, parçacığı hafifçe itele
-          if (distance < interactionDistance) {
-            // İteleme miktarını hesapla (mesafe azaldıkça etki artar)
-            const force = (interactionDistance - distance) / interactionDistance;
+          // Etki alanı içindeyse (200px)
+          if (distance < 200) {
+            // Etki gücünü hesapla (uzaklığa bağlı olarak)
+            const force = (200 - distance) / 200;
             
-            // Yeni hız hesapla (farenin tersi yönünde)
-            const moveX = (dx / distance) * force * -2;
-            const moveY = (dy / distance) * force * -2;
+            // Geçici hız ekle (normal hızla ters yönde)
+            const tempSpeedX = parseFloat(particle.dataset.tempSpeedX || 0) - (dx / distance) * force * 2;
+            const tempSpeedY = parseFloat(particle.dataset.tempSpeedY || 0) - (dy / distance) * force * 2;
             
-            // Geçici olarak parçacığın hızını güncelle
-            particle.dataset.tempSpeedX = moveX;
-            particle.dataset.tempSpeedY = moveY;
-            
-            // Parçacığı büyüt ve parlatma efekti ekle
-            particle.style.transform = `scale(${1 + force})`;
-            particle.style.boxShadow = `0 0 ${5 + force * 10}px var(--primary-light)`;
-            particle.style.opacity = parseFloat(particle.style.opacity) + force * 0.5;
-          } else {
-            // Parçacığı normal boyuta ve parlaklığa geri döndür
-            particle.dataset.tempSpeedX = 0;
-            particle.dataset.tempSpeedY = 0;
-            particle.style.transform = '';
-            particle.style.boxShadow = '';
-            
-            // Opaklığı yavaşça normal değerine döndür
-            const currentOpacity = parseFloat(particle.style.opacity);
-            const originalOpacity = parseFloat(particle.dataset.originalOpacity || 0.5);
-            if (currentOpacity > originalOpacity) {
-              particle.style.opacity = Math.max(originalOpacity, currentOpacity - 0.01);
-            }
+            // Geçici hızı kaydet
+            particle.dataset.tempSpeedX = tempSpeedX;
+            particle.dataset.tempSpeedY = tempSpeedY;
           }
         });
       });
-      
-      // Parçacık animasyon fonksiyonunu güncelle
-      function animateParticle(particle) {
-        // Parçacığın orijinal opaklığını kaydet
-        if (!particle.dataset.originalOpacity) {
-          particle.dataset.originalOpacity = particle.style.opacity;
-        }
-        
-        const animate = () => {
-          // Mevcut konumu al
-          let posX = parseFloat(particle.style.left);
-          let posY = parseFloat(particle.style.top);
-          
-          // Hızı al (temel hız + fare etkileşimi)
-          const baseSpeedX = parseFloat(particle.dataset.speedX);
-          const baseSpeedY = parseFloat(particle.dataset.speedY);
-          const tempSpeedX = parseFloat(particle.dataset.tempSpeedX || 0);
-          const tempSpeedY = parseFloat(particle.dataset.tempSpeedY || 0);
-          
-          const speedX = baseSpeedX + tempSpeedX;
-          const speedY = baseSpeedY + tempSpeedY;
-          
-          // Konumu güncelle
-          posX += speedX;
-          posY += speedY;
-          
-          // Ekran sınırlarını kontrol et
-          if (posX < 0) posX = window.innerWidth;
-          if (posX > window.innerWidth) posX = 0;
-          if (posY < 0) posY = window.innerHeight;
-          if (posY > window.innerHeight) posY = 0;
-          
-          // Yeni konumu ayarla
-          particle.style.left = posX + 'px';
-          particle.style.top = posY + 'px';
-          
-          // Geçici hızı azalt (her kare için %10)
-          if (tempSpeedX !== 0) {
-            particle.dataset.tempSpeedX = tempSpeedX * 0.9;
-          }
-          if (tempSpeedY !== 0) {
-            particle.dataset.tempSpeedY = tempSpeedY * 0.9;
-          }
-          
-          // Animasyonu tekrar et
-          requestAnimationFrame(animate);
-        };
-        
-        animate();
-      }
 
       // Mobil cihaz kontrolü
       const isMobile = window.innerWidth <= 768;
       
       if (isMobile) {
         // Sayfa genelinde dokunma dalga efektlerini etkinleştir
+        let touchFollower = null;
+        
         document.body.addEventListener('touchstart', function(e) {
+          // Varsa eski takip elemanını kaldır
+          if (touchFollower) {
+            touchFollower.remove();
+          }
+          
           // Dokunma noktasını al
           const touch = e.touches[0];
           const x = touch.clientX;
           const y = touch.clientY;
           
-          // Dalga efekti elementi oluştur
-          const ripple = document.createElement('div');
-          ripple.className = 'touch-ripple';
-          ripple.style.width = '200px';
-          ripple.style.height = '200px';
-          ripple.style.position = 'fixed';
-          ripple.style.left = x + 'px';
-          ripple.style.top = y + 'px';
-          ripple.style.zIndex = '9999';
+          // Yeni takipçi elementi oluştur
+          touchFollower = document.createElement('div');
+          touchFollower.className = 'touch-ripple';
+          touchFollower.style.width = '40px';
+          touchFollower.style.height = '40px';
+          touchFollower.style.position = 'fixed';
+          touchFollower.style.left = x + 'px';
+          touchFollower.style.top = y + 'px';
+          touchFollower.style.zIndex = '9999';
+          touchFollower.style.transform = 'translate(-50%, -50%)';
+          touchFollower.style.opacity = '0.6';
+          touchFollower.style.borderRadius = '50%';
+          touchFollower.style.background = 'radial-gradient(circle, rgba(242, 72, 11, 0.6) 0%, rgba(242, 72, 11, 0) 70%)';
+          touchFollower.style.pointerEvents = 'none';
           
           // Sayfaya ekle
-          document.body.appendChild(ripple);
-          
-          // Belirli bir süre sonra kaldır
-          setTimeout(() => {
-            ripple.remove();
-          }, 800);
+          document.body.appendChild(touchFollower);
+        }, {passive: true});
+        
+        // Parmak hareketi takibi
+        document.body.addEventListener('touchmove', function(e) {
+          if (touchFollower) {
+            const touch = e.touches[0];
+            const x = touch.clientX;
+            const y = touch.clientY;
+            
+            // Takipçiyi güncelle
+            touchFollower.style.left = x + 'px';
+            touchFollower.style.top = y + 'px';
+          }
+        }, {passive: true});
+        
+        // Dokunma bitince kaldır
+        document.body.addEventListener('touchend', function() {
+          if (touchFollower) {
+            // Yavaşça kaybolsun
+            touchFollower.style.opacity = '0';
+            setTimeout(() => {
+              if (touchFollower) {
+                touchFollower.remove();
+                touchFollower = null;
+              }
+            }, 300);
+          }
         }, {passive: true});
         
         // Mobil için giriş animasyonları
@@ -1535,11 +1531,6 @@
             });
           });
         };
-        
-        function addGlobalTouchRippleEffect() {
-          // Dokunmatik özellikleri zaten yukarıda ekledik
-          console.log("Dokunmatik dalga efektleri etkinleştirildi");
-        }
         
         // Mobil animasyonları başlat
         setupMobileAnimations();
