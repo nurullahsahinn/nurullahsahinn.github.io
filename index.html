@@ -1189,33 +1189,42 @@
         }
       });
 
-      // Su baloncuğu efekti
+      // Mobil cihaz kontrolü
+      const isMobile = window.innerWidth <= 768;
+      
+      // Tıklama dalga efekti
       function createBubble(e) {
-        // Sadece mobil olmayan cihazlarda göster
-        if (window.innerWidth > 768) {
-          const bubble = document.createElement('div');
-          bubble.className = 'water-bubble';
-          
-          const size = Math.random() * 40 + 10;
-          
-          bubble.style.width = size + 'px';
-          bubble.style.height = size + 'px';
-          bubble.style.left = e.clientX + 'px';
-          bubble.style.top = e.clientY + 'px';
-          
-          document.body.appendChild(bubble);
-          
-          setTimeout(() => {
-            bubble.remove();
-          }, 2000);
+        // Video arkaplanına tıklandığında dalga efektini oluşturma
+        // Böylece parti modunu engellemez
+        if (e.target.closest('.video-background') || 
+            e.target.closest('.video-particles-container')) {
+          // Video arkaplanına tıklandığında dalga oluşturma
+          console.log('Video arkaplanına tıklandı, dalga oluşturulmadı');
+          return;
         }
+        
+        // Diğer alanlara tıklandığında dalga efekti oluştur
+        const bubble = document.createElement('div');
+        bubble.className = 'water-bubble';
+        
+        // Rastgele boyut (20-40px)
+        const size = Math.random() * 20 + 20;
+        
+        bubble.style.width = size + 'px';
+        bubble.style.height = size + 'px';
+        bubble.style.left = e.clientX + 'px';
+        bubble.style.top = e.clientY + 'px';
+        
+        document.body.appendChild(bubble);
+        
+        setTimeout(() => {
+          bubble.remove();
+        }, 2000);
       }
       
       document.addEventListener('click', createBubble);
 
-      // Mobil cihaz kontrolü
-      const isMobile = window.innerWidth <= 768;
-      
+      // Mobil cihazlar için özel işlemler
       if (isMobile) {
         // Sayfa genelinde dokunma dalga efektlerini etkinleştir
         let touchFollower = null;
@@ -1223,6 +1232,13 @@
         let touchAnimationFrame = null;
         
         document.body.addEventListener('touchstart', function(e) {
+          // Video arkaplanına dokunulduğunda dalga efektini oluşturma
+          if (e.target.closest('.video-background') || 
+              e.target.closest('.video-particles-container')) {
+            console.log('Video arkaplanına dokunuldu, takip efekti oluşturulmadı');
+            return;
+          }
+          
           // Takipçiyi oluştur
           if (!touchFollower) {
             touchFollower = document.createElement('div');
@@ -1281,6 +1297,12 @@
         
         // Parmak hareketi takibi - çok daha hızlı
         document.body.addEventListener('touchmove', function(e) {
+          // Video arkaplanına dokunulduğunda efekti geçersiz kıl
+          if (e.target.closest('.video-background') || 
+              e.target.closest('.video-particles-container')) {
+            return;
+          }
+          
           if (touchFollower) {
             const touch = e.touches[0];
             const x = touch.clientX;
@@ -1317,7 +1339,13 @@
         }, {passive: true});
         
         // Dokunma bitince
-        document.body.addEventListener('touchend', function() {
+        document.body.addEventListener('touchend', function(e) {
+          // Video arkaplanına dokunulduğunda efekti geçersiz kıl
+          if (e.target && (e.target.closest('.video-background') || 
+              e.target.closest('.video-particles-container'))) {
+            return;
+          }
+          
           if (touchFollower) {
             // Son konum effekti
             const finalRipple = document.createElement('div');

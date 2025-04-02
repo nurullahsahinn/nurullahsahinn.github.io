@@ -1,8 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
   const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
   
+  // Mobil cihaz tespiti
+  if (isMobile) {
+    document.body.classList.add('touch-device');
+  }
+  
   window.addEventListener('load', function() {
     loadBackgroundVideo();
+    createVideoParticles(); // Video parçacıklarını oluştur
     
     setupLanguageSwitcher();
     
@@ -1081,4 +1087,321 @@ function setupContactForm() {
       input.parentElement.classList.remove('focused');
     });
   });
+}
+
+// Video üzerine kırmızı parçacıklar ekleyen fonksiyon
+function createVideoParticles() {
+  const videoBackground = document.querySelector('.video-background');
+  if (!videoBackground) {
+    console.error('Video arka planı bulunamadı');
+    return;
+  }
+  
+  console.log('Video parçacıkları oluşturuluyor...');
+  
+  // Parçacıklar için bir konteyner oluştur
+  const particlesContainer = document.createElement('div');
+  particlesContainer.className = 'video-particles-container';
+  particlesContainer.style.position = 'absolute';
+  particlesContainer.style.top = '0';
+  particlesContainer.style.left = '0';
+  particlesContainer.style.width = '100%';
+  particlesContainer.style.height = '100%';
+  particlesContainer.style.overflow = 'hidden';
+  particlesContainer.style.pointerEvents = 'none';
+  particlesContainer.style.zIndex = '2';
+  
+  // Cihaz türüne göre parçacık sayısını ayarla
+  const isMobile = window.innerWidth <= 768;
+  const particleCount = isMobile ? 25 : 40;
+  
+  // Parçacıkları sakla
+  const particles = [];
+  
+  // Parçacıklar için değişkenler
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+  let mouseSpeedX = 0;
+  let mouseSpeedY = 0;
+  let lastMouseX = mouseX;
+  let lastMouseY = mouseY;
+  let partyMode = false;
+  let partyTimeout;
+  let touchActive = false;
+  
+  // Video parçacıkları için etkileşimleri ayarla
+  // Fare takibi
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+  
+  // Dokunma takibi
+  document.addEventListener('touchmove', (e) => {
+    if (e.touches[0]) {
+      mouseX = e.touches[0].clientX;
+      mouseY = e.touches[0].clientY;
+      touchActive = true;
+      
+      // Dokunma bitiminde touchActive'i sıfırla
+      clearTimeout(touchTimeout);
+      const touchTimeout = setTimeout(() => {
+        touchActive = false;
+      }, 100);
+    }
+  }, { passive: true });
+  
+  document.addEventListener('touchend', () => {
+    touchActive = false;
+  }, { passive: true });
+  
+  // Parti modunda olduğunu göster
+  const showPartyModeActive = () => {
+    console.log('Parti modu aktif!');
+    // Video konteynırına parti modu sınıfı ekle
+    particlesContainer.classList.add('party-mode');
+    
+    // Parçacıkları renklendir
+    const particleElements = document.querySelectorAll('.video-particle');
+    particleElements.forEach(particle => {
+      // Renkli parti modu görünümünü uygula
+      const randomHue = Math.floor(Math.random() * 360);
+      particle.style.backgroundColor = `hsla(${randomHue}, 90%, 60%, ${Math.random() * 0.7 + 0.3})`;
+      particle.style.boxShadow = `0 0 ${Math.floor(Math.random() * 15 + 10)}px hsla(${randomHue}, 90%, 70%, 0.8)`;
+    });
+    
+    // 8 saniye sonra parti modunu kapat
+    partyTimeout = setTimeout(() => {
+      partyMode = false;
+      particlesContainer.classList.remove('party-mode');
+      console.log('Parti modu kapandı.');
+    }, 8000);
+  };
+  
+  // Çift tıklama ile parti modu
+  videoBackground.addEventListener('dblclick', (e) => {
+    // Video arka planına çift tıklandığında parti modunu etkinleştir
+    partyMode = !partyMode;
+    
+    // Parti modunu belirli bir süre sonra kapat
+    clearTimeout(partyTimeout);
+    
+    if (partyMode) {
+      console.log('Parti modu açıldı!');
+      showPartyModeActive();
+    } else {
+      particlesContainer.classList.remove('party-mode');
+      console.log('Parti modu kapandı.');
+    }
+    
+    // Parti modunda sayfadaki tıklama dalgasını engellemek için bubbling'i engelle
+    e.stopPropagation();
+  });
+  
+  // Mobil için çift dokunma parti modu
+  let lastTap = 0;
+  videoBackground.addEventListener('touchend', (e) => {
+    const currentTime = new Date().getTime();
+    const tapLength = currentTime - lastTap;
+    if (tapLength < 300 && tapLength > 0) {
+      partyMode = !partyMode;
+      
+      // Parti modunu belirli bir süre sonra kapat
+      clearTimeout(partyTimeout);
+      
+      if (partyMode) {
+        console.log('Mobil parti modu açıldı!');
+        showPartyModeActive();
+      } else {
+        particlesContainer.classList.remove('party-mode');
+        console.log('Mobil parti modu kapandı.');
+      }
+      
+      // Parti modunda tıklama dalgasını engellemek için bubbling'i engelle
+      e.stopPropagation();
+    }
+    lastTap = currentTime;
+  });
+  
+  // Her kareyi işle
+  setInterval(() => {
+    // Fare hızını hesapla
+    mouseSpeedX = mouseX - lastMouseX;
+    mouseSpeedY = mouseY - lastMouseY;
+    lastMouseX = mouseX;
+    lastMouseY = mouseY;
+  }, 50);
+  
+  // Parçacık sınıfı
+  class Particle {
+    constructor() {
+      this.element = document.createElement('div');
+      this.element.className = 'video-particle';
+      
+      // Rastgele renk tonu
+      this.hue = Math.floor(Math.random() * 60) + 10; // Kırmızı-turuncu arası
+      
+      // Parçacık stili
+      this.element.style.position = 'absolute';
+      this.size = Math.random() * 6 + 3; // Biraz daha büyük parçacıklar
+      this.element.style.width = this.size + 'px';
+      this.element.style.height = this.size + 'px';
+      this.element.style.backgroundColor = `hsla(${this.hue}, 80%, 50%, ${Math.random() * 0.5 + 0.3})`;
+      this.element.style.borderRadius = '50%';
+      this.element.style.boxShadow = `0 0 ${Math.floor(Math.random() * 10 + 5)}px hsla(${this.hue}, 80%, 50%, 0.7)`;
+      this.element.style.zIndex = '3';
+      this.element.style.transition = 'background-color 0.5s ease, box-shadow 0.5s ease';
+      
+      // Pozisyon
+      this.x = Math.random() * window.innerWidth;
+      this.y = Math.random() * window.innerHeight;
+      
+      // Hız
+      this.vx = Math.random() * 1 - 0.5;
+      this.vy = Math.random() * 1 - 0.5;
+      
+      // Takip etme parametreleri
+      this.followSpeed = Math.random() * 0.03 + 0.01; // Takip hızı
+      this.distanceFromMouse = Math.random() * 100 + 50; // Fareden uzaklık
+      this.angle = Math.random() * Math.PI * 2; // Başlangıç açısı
+      this.rotationSpeed = (Math.random() * 0.02 + 0.01) * (Math.random() > 0.5 ? 1 : -1); // Dönüş hızı
+      
+      // Hedef nokta (doğal hareket için)
+      this.targetX = this.x;
+      this.targetY = this.y;
+      this.newTargetCountdown = 0;
+      
+      // Başlangıç pozisyonu
+      this.element.style.transform = `translate(${this.x}px, ${this.y}px)`;
+      
+      // Konteyner'a ekle
+      particlesContainer.appendChild(this.element);
+    }
+    
+    update() {
+      // Fare/dokunmatik pozisyonu ile mesafeyi hesapla
+      const dx = mouseX - this.x;
+      const dy = mouseY - this.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      
+      if (partyMode) {
+        // Parti modu - fare etrafında dönerek hareket
+        this.angle += this.rotationSpeed;
+        const targetX = mouseX + Math.cos(this.angle) * this.distanceFromMouse;
+        const targetY = mouseY + Math.sin(this.angle) * this.distanceFromMouse;
+        
+        // Hedef noktaya doğru hareket et
+        this.vx = (targetX - this.x) * this.followSpeed * 2;
+        this.vy = (targetY - this.y) * this.followSpeed * 2;
+      } else {
+        // Yeni hedef noktası belirleme (daha doğal hareket için)
+        if (this.newTargetCountdown <= 0) {
+          if (Math.random() < 0.3) { // %30 olasılıkla fareyi takip et
+            this.targetX = mouseX + (Math.random() * 100 - 50);
+            this.targetY = mouseY + (Math.random() * 100 - 50);
+          } else {
+            this.targetX = Math.random() * window.innerWidth;
+            this.targetY = Math.random() * window.innerHeight;
+          }
+          this.newTargetCountdown = Math.random() * 150 + 30;
+        } else {
+          this.newTargetCountdown--;
+        }
+        
+        // Doğal hareket bileşeni
+        const naturalDx = this.targetX - this.x;
+        const naturalDy = this.targetY - this.y;
+        const naturalInfluence = 0.003; // Hedef noktaya gidiş gücü
+        
+        this.vx += naturalDx * naturalInfluence;
+        this.vy += naturalDy * naturalInfluence;
+        
+        // Fare hızı ile sürüklenme etkisi
+        if (Math.abs(mouseSpeedX) > 5 || Math.abs(mouseSpeedY) > 5) {
+          this.vx += mouseSpeedX * 0.02;
+          this.vy += mouseSpeedY * 0.02;
+        }
+        
+        // Fare yakınsa çekici kuvvet uygula
+        if (distance < 150 && !touchActive) {
+          const attraction = (150 - distance) / 150 * 0.05;
+          this.vx += dx * attraction;
+          this.vy += dy * attraction;
+          
+          // Fare yakınındaki parçacıkların rengini değiştir
+          this.element.style.backgroundColor = `hsla(${this.hue + 30}, 80%, 60%, ${Math.random() * 0.4 + 0.6})`;
+          this.element.style.boxShadow = `0 0 ${Math.floor(Math.random() * 15 + 8)}px hsla(${this.hue + 30}, 80%, 60%, 0.8)`;
+        } else {
+          // Normal renk (yavaşça değişen)
+          if (Math.random() < 0.02) { // Renk değişimi için düşük olasılık
+            this.element.style.backgroundColor = `hsla(${this.hue}, 80%, 50%, ${Math.random() * 0.5 + 0.3})`;
+            this.element.style.boxShadow = `0 0 ${Math.floor(Math.random() * 10 + 5)}px hsla(${this.hue}, 80%, 50%, 0.7)`;
+          }
+        }
+      }
+      
+      // Hız sınırlama
+      const maxSpeed = isMobile ? 4 : 3; // Mobilde daha hızlı hareket
+      this.vx = Math.max(Math.min(this.vx, maxSpeed), -maxSpeed);
+      this.vy = Math.max(Math.min(this.vy, maxSpeed), -maxSpeed);
+      
+      // Sürtünme
+      this.vx *= 0.98;
+      this.vy *= 0.98;
+      
+      // Pozisyon güncelleme
+      this.x += this.vx;
+      this.y += this.vy;
+      
+      // Ekran sınırları kontrolü - ekranın dışına çıkan parçacıkları içeri geri getir
+      if (this.x < 0) {
+        this.x = 0;
+        this.vx *= -1;
+      } else if (this.x > window.innerWidth) {
+        this.x = window.innerWidth;
+        this.vx *= -1;
+      }
+      
+      if (this.y < 0) {
+        this.y = 0;
+        this.vy *= -1;
+      } else if (this.y > window.innerHeight) {
+        this.y = window.innerHeight;
+        this.vy *= -1;
+      }
+      
+      // DOM elementini güncelle - CSS transform ile pozisyonu değiştir
+      this.element.style.transform = `translate(${this.x}px, ${this.y}px)`;
+    }
+  }
+  
+  // Parçacıkları oluştur
+  for (let i = 0; i < particleCount; i++) {
+    particles.push(new Particle());
+  }
+  
+  // Pencere yeniden boyutlandırıldığında parçacıkları güncelle
+  window.addEventListener('resize', () => {
+    particles.forEach(particle => {
+      // Ekran dışındaki parçacıkları ekran içine al
+      if (particle.x > window.innerWidth) particle.x = window.innerWidth;
+      if (particle.y > window.innerHeight) particle.y = window.innerHeight;
+    });
+  });
+  
+  // Animasyon fonksiyonu
+  function animate() {
+    particles.forEach(particle => {
+      particle.update();
+    });
+    
+    requestAnimationFrame(animate);
+  }
+  
+  // Animasyonu başlat
+  animate();
+  
+  // Video arka planına ekle
+  videoBackground.appendChild(particlesContainer);
+  console.log('Video parçacıkları oluşturuldu ve eklendi.');
 }
