@@ -785,7 +785,7 @@
     <div class="nav__links">
       <a href="#about" class="nav__link" data-i18n="nav.about">Hakkımda</a>
       <a href="#skills" class="nav__link" data-i18n="nav.skills">Beceriler</a>
-      <a href="#services" class="nav__link" data-i18n="nav.services">Yeterlilikler</a>
+      <a href="#services" class="nav__link" data-i18n="nav.services">Hizmetler</a>
       <a href="#projects" class="nav__link" data-i18n="nav.projects">Projeler</a>
       <a href="#education" class="nav__link">Eğitim</a>
       <a href="#contact" class="nav__link" data-i18n="nav.contact">İletişim</a>
@@ -856,7 +856,59 @@
             </ul>
           </div>
           
-          <!-- Eğitim Bilgileri kaldırıldı -->
+          <!-- Eğitim Bilgileri -->
+          <div class="education-section">
+            <h3>Eğitim</h3>
+            <div class="education-timeline">
+              <!-- Atatürk Üniversitesi -->
+              <div class="education-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="education-logo">
+                  <img src="atauni1957_logo.jpeg" alt="Atatürk Üniversitesi" loading="lazy">
+                </div>
+                <div class="education-content">
+                  <h4>Atatürk Üniversitesi</h4>
+                  <p class="education-degree">Lisans Derecesi · Software Engineer</p>
+                  <p class="education-year">2023 - Halen</p>
+                </div>
+              </div>
+              
+              <!-- İskenderun Teknik Üniversitesi -->
+              <div class="education-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="education-logo">
+                  <img src="iskenderun teknik üni logo.jpeg" alt="İskenderun Teknik Üniversitesi" loading="lazy">
+                </div>
+                <div class="education-content">
+                  <h4>İskenderun Teknik Üniversitesi (İSTE)</h4>
+                  <p class="education-degree">Lisans Derecesi · Computer Engineering</p>
+                  <p class="education-year">2022 - 2023</p>
+                </div>
+              </div>
+              
+              <!-- Mersin Üniversitesi -->
+              <div class="education-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="education-logo">
+                  <img src="mersin_university_logo.jpeg" alt="Mersin Üniversitesi" loading="lazy">
+                </div>
+                <div class="education-content">
+                  <h4>Mersin Üniversitesi</h4>
+                  <p class="education-degree">Licentiate degree · Computer technology and information systems</p>
+                  <p class="education-year">2021 - 2022</p>
+                </div>
+              </div>
+              
+              <!-- Azərbaycan Texniki Universiteti -->
+              <div class="education-item" data-aos="fade-up" data-aos-delay="400">
+                <div class="education-logo">
+                  <img src="aztu.jpeg" alt="Azərbaycan Texniki Universiteti" loading="lazy">
+                </div>
+                <div class="education-content">
+                  <h4>Azərbaycan Texniki Universiteti</h4>
+                  <p class="education-degree">Lisans Derecesi · Computer Engineering</p>
+                  <p class="education-year">2019 - 2020</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -959,7 +1011,7 @@
           <div class="project__content">
             <h3 data-i18n="projects.underwater.title">Otonom Sualtı Aracı</h3>
             <p data-i18n="projects.underwater.description">Teknofest kapsamında yazılım lideri olarak yürüttüğüm Otonom Sualtı Aracı projesi</p>
-            <p class="project__award" data-i18n="projects.underwater.award"><i class="fas fa-award"></i> TÜBİTAK 2209-A programında tam onay!</p>
+            <p class="project__award" data-i18n="projects.underwater.award"><i class="fas fa-award"></i> TÜBİTAK 2209A programında tam onay ve başarılı sonuç!</p>
           </div>
         </div>
       </div>
@@ -968,59 +1020,55 @@
 
   <!-- Eğitim Bölümü -->
   <section class="education" id="education">
-    <!-- Arkaplan şekilleri -->
-    <div class="education-bg-shape"></div>
-    <div class="education-bg-shape"></div>
-    
     <div class="section__container education__container" data-aos="fade-up">
-      <p class="section__subtitle" data-i18n="education.subtitle">Akademik Geçmişim</p>
-      <h2 class="section__title" data-i18n="education.title">Eğitim <span>Bilgilerim</span></h2>
+      <p class="section__subtitle">Akademik Geçmişim</p>
+      <h2 class="section__title"><span>Eğitim</span> Bilgilerim</h2>
       <div class="education-timeline">
         <!-- Atatürk Üniversitesi -->
-        <div class="education-item" data-aos="fade-up" data-aos-delay="100">
+        <div class="education-item" data-aos="fade-right" data-aos-delay="100">
           <div class="education-logo">
             <img src="atauni1957_logo.jpeg" alt="Atatürk Üniversitesi" loading="lazy">
           </div>
           <div class="education-content">
-            <h4 data-i18n="education.atauni.name">Atatürk Üniversitesi</h4>
-            <p class="education-degree" data-i18n="education.atauni.degree">Lisans Derecesi · Yazılım Mühendisliği</p>
-            <p class="education-year" data-i18n="education.atauni.year">2023 - Halen</p>
+            <h4>Atatürk Üniversitesi</h4>
+            <p class="education-degree">Lisans Derecesi · Software Engineer</p>
+            <p class="education-year">2023 - Halen</p>
           </div>
         </div>
         
         <!-- İskenderun Teknik Üniversitesi -->
-        <div class="education-item" data-aos="fade-up" data-aos-delay="200">
+        <div class="education-item" data-aos="fade-right" data-aos-delay="200">
           <div class="education-logo">
             <img src="iskenderun teknik üni logo.jpeg" alt="İskenderun Teknik Üniversitesi" loading="lazy">
           </div>
           <div class="education-content">
-            <h4 data-i18n="education.iste.name">İskenderun Teknik Üniversitesi (İSTE)</h4>
-            <p class="education-degree" data-i18n="education.iste.degree">Lisans Derecesi · Bilgisayar Mühendisliği</p>
-            <p class="education-year" data-i18n="education.iste.year">2022 - 2023</p>
+            <h4>İskenderun Teknik Üniversitesi (İSTE)</h4>
+            <p class="education-degree">Lisans Derecesi · Computer Engineering</p>
+            <p class="education-year">2022 - 2023</p>
           </div>
         </div>
         
         <!-- Mersin Üniversitesi -->
-        <div class="education-item" data-aos="fade-up" data-aos-delay="300">
+        <div class="education-item" data-aos="fade-left" data-aos-delay="300">
           <div class="education-logo">
             <img src="mersin_university_logo.jpeg" alt="Mersin Üniversitesi" loading="lazy">
           </div>
           <div class="education-content">
-            <h4 data-i18n="education.mersin.name">Mersin Üniversitesi</h4>
-            <p class="education-degree" data-i18n="education.mersin.degree">Ön Lisans · Bilgisayar Teknolojileri ve Bilişim Sistemleri</p>
-            <p class="education-year" data-i18n="education.mersin.year">2021 - 2022</p>
+            <h4>Mersin Üniversitesi</h4>
+            <p class="education-degree">Licentiate degree · Computer technology and information systems</p>
+            <p class="education-year">2021 - 2022</p>
           </div>
         </div>
         
         <!-- Azərbaycan Texniki Universiteti -->
-        <div class="education-item" data-aos="fade-up" data-aos-delay="400">
+        <div class="education-item" data-aos="fade-left" data-aos-delay="400">
           <div class="education-logo">
             <img src="aztu.jpeg" alt="Azərbaycan Texniki Universiteti" loading="lazy">
           </div>
           <div class="education-content">
-            <h4 data-i18n="education.aztu.name">Azərbaycan Texniki Universiteti</h4>
-            <p class="education-degree" data-i18n="education.aztu.degree">Lisans Derecesi · Bilgisayar Mühendisliği</p>
-            <p class="education-year" data-i18n="education.aztu.year">2019 - 2020</p>
+            <h4>Azərbaycan Texniki Universiteti</h4>
+            <p class="education-degree">Lisans Derecesi · Computer Engineering</p>
+            <p class="education-year">2019 - 2020</p>
           </div>
         </div>
       </div>

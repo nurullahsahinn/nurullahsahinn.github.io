@@ -1,17 +1,11 @@
-// Rastgele arkaplan videosu seçme
 document.addEventListener('DOMContentLoaded', function() {
-  // Tarayıcıyı ve mobil kontrolü
   const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
   
-  // Sayfa tamamen yüklendiğinde
   window.addEventListener('load', function() {
-    // Arkaplan videosunu yükle
     loadBackgroundVideo();
     
-    // Dil ayarlarını yükle
     setupLanguageSwitcher();
     
-    // AOS ve paralax efektlerini başlat
     setTimeout(() => {
       if (typeof AOS !== 'undefined') {
         AOS.refresh();
@@ -24,11 +18,9 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener('scroll', highlightCurrentSection);
   window.addEventListener('orientationchange', handleOrientationChange);
   
-  // Mobil düzenleri ayarla
   setupMobileMenu();
   setupBackToTop();
   
-  // Mevcut tüm arkaplan videoları
   const backgroundVideos = [
     'background1.mp4',
     'background2.mp4',
@@ -38,7 +30,6 @@ document.addEventListener('DOMContentLoaded', function() {
     'background6.mp4'
   ];
   
-  // Rastgele bir video seç
   const randomVideo = backgroundVideos[Math.floor(Math.random() * backgroundVideos.length)];
   
   // Video öğesini seç
@@ -649,8 +640,9 @@ function changeLanguage(lang) {
         // Türkçe çeviriler
         "nav.about": "Hakkımda",
         "nav.skills": "Beceriler",
-        "nav.services": "Uzmanlık",
+        "nav.services": "Yeterlilikler",
         "nav.projects": "Projeler",
+        "nav.education": "Eğitim",
         "nav.contact": "İletişim",
         "header.greeting": "Merhaba",
         "header.im": "Ben",
@@ -694,7 +686,21 @@ function changeLanguage(lang) {
         "projects.satellite.description": "Teknofest kapsamında yazılım lideri olarak yürüttüğüm Model Uydu projesi",
         "projects.underwater.title": "Otonom Sualtı Aracı",
         "projects.underwater.description": "Teknofest kapsamında yazılım lideri olarak yürüttüğüm Otonom Sualtı Aracı projesi",
-        "projects.underwater.award": "<i class=\"fas fa-award\"></i> TÜBİTAK 2209-A programında tam onay !",
+        "projects.underwater.award": "<i class=\"fas fa-award\"></i> TÜBİTAK 2209-A programında tam onay!",
+        "education.subtitle": "Akademik Geçmişim",
+        "education.title": "Eğitim <span>Bilgilerim</span>",
+        "education.atauni.name": "Atatürk Üniversitesi",
+        "education.atauni.degree": "Lisans Derecesi · Yazılım Mühendisliği",
+        "education.atauni.year": "2023 - Halen",
+        "education.iste.name": "İskenderun Teknik Üniversitesi (İSTE)",
+        "education.iste.degree": "Lisans Derecesi · Bilgisayar Mühendisliği",
+        "education.iste.year": "2022 - 2023",
+        "education.mersin.name": "Mersin Üniversitesi",
+        "education.mersin.degree": "Ön Lisans · Bilgisayar Teknolojileri ve Bilişim Sistemleri",
+        "education.mersin.year": "2021 - 2022",
+        "education.aztu.name": "Azərbaycan Texniki Universiteti",
+        "education.aztu.degree": "Lisans Derecesi · Bilgisayar Mühendisliği", 
+        "education.aztu.year": "2019 - 2020",
         "contact.title": "İletişime <span>Geç!</span>",
         "contact.subtitle": "Projeleriniz için benimle iletişime geçebilirsiniz",
         "contact.description": "Benimle iletişime geçmek için aşağıdaki formu kullanabilir veya sosyal medya hesaplarımdan bana ulaşabilirsiniz.",
@@ -708,8 +714,9 @@ function changeLanguage(lang) {
         // İngilizce çeviriler
         "nav.about": "About",
         "nav.skills": "Skills",
-        "nav.services": "Services",
+        "nav.services": "Qualifications",
         "nav.projects": "Projects",
+        "nav.education": "Education",
         "nav.contact": "Contact",
         "header.greeting": "Hello",
         "header.im": "I'm",
@@ -753,7 +760,21 @@ function changeLanguage(lang) {
         "projects.satellite.description": "Model Satellite project I led as a software leader within the scope of Teknofest",
         "projects.underwater.title": "Autonomous Underwater Vehicle",
         "projects.underwater.description": "Autonomous Underwater Vehicle project I led as a software leader within the scope of Teknofest",
-        "projects.underwater.award": "<i class=\"fas fa-award\"></i> Full approval in TÜBİTAK 2209-A program !",
+        "projects.underwater.award": "<i class=\"fas fa-award\"></i> Full approval in TÜBİTAK 2209-A program!",
+        "education.subtitle": "My Academic Background",
+        "education.title": "Education <span>History</span>",
+        "education.atauni.name": "Atatürk University",
+        "education.atauni.degree": "Bachelor's Degree · Software Engineering",
+        "education.atauni.year": "2023 - Present",
+        "education.iste.name": "İskenderun Technical University (İSTE)",
+        "education.iste.degree": "Bachelor's Degree · Computer Engineering",
+        "education.iste.year": "2022 - 2023",
+        "education.mersin.name": "Mersin University",
+        "education.mersin.degree": "Associate Degree · Computer Technology and Information Systems",
+        "education.mersin.year": "2021 - 2022",
+        "education.aztu.name": "Azerbaijan Technical University",
+        "education.aztu.degree": "Bachelor's Degree · Computer Engineering",
+        "education.aztu.year": "2019 - 2020",
         "contact.title": "Contact <span>Me!</span>",
         "contact.subtitle": "You can contact me for your projects",
         "contact.description": "You can use the form below to contact me or reach me through my social media accounts.",
