@@ -991,7 +991,7 @@
         <!-- İskenderun Teknik Üniversitesi -->
         <div class="education-item" data-aos="fade-up" data-aos-delay="200" style="flex: 1; min-width: 250px; max-width: 300px; margin-bottom: 20px;">
           <div class="education-logo" style="width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 20px auto; border: 3px solid #f2480b; overflow: hidden;">
-            <img src="./iskenderun_teknik_uni_logo.jpeg" alt="İskenderun Teknik Üniversitesi" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;">
+            <img src="./iskenderun_teknik_uni_logo.jpeg" alt="İskenderun Teknik Üniversitesi" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" crossorigin="anonymous">
           </div>
           <div class="education-content" style="background: rgba(20, 25, 30, 0.6); padding: 1.5rem; border-radius: 15px; text-align: center; border-top: 3px solid #f2480b;">
             <h4 data-i18n="education.iste.name" style="color: #f2480b; font-size: 1.1rem; font-weight: 600; margin-bottom: 10px;">İskenderun Teknik Üniversitesi (İSTE)</h4>
@@ -1398,172 +1398,32 @@
       // Mobil cihaz kontrolü
       const isMobile = window.innerWidth <= 768;
       
-      // Mobil cihazlar için dokunmatik özellikleri
       if (isMobile) {
-        // Mobil yükleme ekranı
-        const setupMobileLoading = () => {
-          const mobileLoading = document.createElement('div');
-          mobileLoading.className = 'mobile-loading';
+        // Sayfa genelinde dokunma dalga efektlerini etkinleştir
+        document.body.addEventListener('touchstart', function(e) {
+          // Dokunma noktasını al
+          const touch = e.touches[0];
+          const x = touch.clientX;
+          const y = touch.clientY;
           
-          const spinner = document.createElement('div');
-          spinner.className = 'mobile-loading-spinner';
-          mobileLoading.appendChild(spinner);
+          // Dalga efekti elementi oluştur
+          const ripple = document.createElement('div');
+          ripple.className = 'touch-ripple';
+          ripple.style.width = '200px';
+          ripple.style.height = '200px';
+          ripple.style.position = 'fixed';
+          ripple.style.left = x + 'px';
+          ripple.style.top = y + 'px';
+          ripple.style.zIndex = '9999';
           
-          const loadingText = document.createElement('div');
-          loadingText.className = 'mobile-loading-text';
-          loadingText.textContent = 'Hoş Geldiniz...';
-          mobileLoading.appendChild(loadingText);
+          // Sayfaya ekle
+          document.body.appendChild(ripple);
           
-          document.body.appendChild(mobileLoading);
-          
-          // Orijinal yükleme ekranı kaldırıldıktan sonra mobil yükleme ekranını kaldır
+          // Belirli bir süre sonra kaldır
           setTimeout(() => {
-            mobileLoading.classList.add('hidden');
-            setTimeout(() => {
-              mobileLoading.remove();
-              showSwipeIndicator();
-            }, 500);
-          }, 3500);
-        };
-        
-        // Yukarı kaydır göstergesi, ana ekranda baş parmak ile kaydırma
-        const showSwipeIndicator = () => {
-          const swipeIndicator = document.createElement('div');
-          swipeIndicator.className = 'mobile-swipe-indicator';
-          document.body.appendChild(swipeIndicator);
-          
-          setTimeout(() => {
-            swipeIndicator.classList.add('visible');
-            
-            // 5 saniye sonra göstergeyi kaldır
-            setTimeout(() => {
-              swipeIndicator.classList.remove('visible');
-              setTimeout(() => swipeIndicator.remove(), 500);
-            }, 5000);
-          }, 1000);
-          
-          // Kaydırma sonrası bölüm için geçiş sağla
-          let touchStartY = 0;
-          let touchEndY = 0;
-          
-          document.addEventListener('touchstart', function(e) {
-            touchStartY = e.touches[0].clientY;
-          }, false);
-          
-          document.addEventListener('touchend', function(e) {
-            touchEndY = e.changedTouches[0].clientY;
-            handleSwipe();
-          }, false);
-          
-          function handleSwipe() {
-            if (touchStartY - touchEndY > 100) {
-              // Aşağı kaydırma - ana sayfadaysak ilk bölüme git
-              const header = document.querySelector('header');
-              const aboutSection = document.querySelector('#about');
-              const headerRect = header?.getBoundingClientRect();
-              
-              if (headerRect && headerRect.bottom > 0 && aboutSection) {
-                // Ana sayfada aşağı kaydırıldı
-                const transitionEl = document.createElement('div');
-                transitionEl.className = 'mobile-page-transition';
-                document.body.appendChild(transitionEl);
-                
-                setTimeout(() => {
-                  transitionEl.classList.add('active');
-                  
-                  setTimeout(() => {
-                    window.scrollTo({
-                      top: aboutSection.offsetTop - 70,
-                      behavior: 'instant'
-                    });
-                    
-                    setTimeout(() => {
-                      transitionEl.classList.remove('active');
-                      setTimeout(() => transitionEl.remove(), 600);
-                    }, 200);
-                  }, 300);
-                }, 50);
-              }
-            }
-          }
-        };
-        
-        // Dokunma dalgası efekti
-        const addTouchRippleEffect = () => {
-          const touchableElements = document.querySelectorAll('a, button, .btn, .nav__link, .service__card, .project__card, .skills__card, .video, .icon');
-          
-          touchableElements.forEach(element => {
-            element.addEventListener('touchstart', function(e) {
-              // Dalga efektini daha belirgin yapalım
-              e.preventDefault(); // Dokunma olayını engelle
-              
-              // Dokunma noktasını al
-              const touch = e.touches[0];
-              const rect = this.getBoundingClientRect();
-              const x = touch.clientX - rect.left;
-              const y = touch.clientY - rect.top;
-              
-              // Dalga efekti elementi oluştur
-              const ripple = document.createElement('div');
-              ripple.className = 'touch-ripple';
-              ripple.style.width = '150px'; // Daha büyük dalga
-              ripple.style.height = '150px';
-              ripple.style.left = x + 'px';
-              ripple.style.top = y + 'px';
-              ripple.style.zIndex = '99999'; // z-index değerini artıralım
-              
-              // Pozisyon için elemente relative class ekle
-              if (getComputedStyle(this).position === 'static') {
-                this.style.position = 'relative';
-              }
-              
-              // Elementin overflow özelliğini kontrol et
-              const overflow = getComputedStyle(this).overflow;
-              if (overflow === 'hidden') {
-                this.style.overflow = 'visible';
-                setTimeout(() => {
-                  this.style.overflow = 'hidden';
-                }, 800);
-              }
-              
-              // Dalgayı elementin içine ekle
-              this.appendChild(ripple);
-              
-              // Vurguyu göster
-              this.classList.add('active');
-              
-              // Dalga ve vurgu sınıfını kaldır
-              setTimeout(() => {
-                ripple.remove();
-                this.classList.remove('active');
-              }, 800);
-              
-              return false;
-            }, {passive: false}); // passive: false, preventDefault'in çalışmasını sağlar
-            
-            // Dokunma vurgulaması
-            const highlight = document.createElement('div');
-            highlight.className = 'mobile-touch-highlight';
-            
-            if (getComputedStyle(element).position === 'static') {
-              element.style.position = 'relative';
-            }
-            
-            element.appendChild(highlight);
-            
-            element.addEventListener('touchstart', () => {
-              highlight.style.opacity = '1';
-            }, {passive: false});
-            
-            element.addEventListener('touchend', () => {
-              highlight.style.opacity = '0';
-            });
-            
-            element.addEventListener('touchcancel', () => {
-              highlight.style.opacity = '0';
-            });
-          });
-        };
+            ripple.remove();
+          }, 800);
+        }, {passive: true});
         
         // Mobil için giriş animasyonları
         const setupMobileAnimations = () => {
@@ -1676,9 +1536,12 @@
           });
         };
         
-        // Uygula
-        setupMobileLoading();
-        addTouchRippleEffect();
+        function addGlobalTouchRippleEffect() {
+          // Dokunmatik özellikleri zaten yukarıda ekledik
+          console.log("Dokunmatik dalga efektleri etkinleştirildi");
+        }
+        
+        // Mobil animasyonları başlat
         setupMobileAnimations();
         setupParallaxEffect();
         setupPageTransitions();
