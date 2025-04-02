@@ -804,27 +804,34 @@
 
   <header>
     <div class="video-background">
-      <video autoplay loop muted playsinline preload="auto" id="background-video">
-        <!-- Video kaynağı JavaScript ile eklenecek -->
+      <video autoplay muted loop id="background-video">
+        <!-- Video kaynağı JavaScript içinde ekleniyor -->
       </video>
-      <div class="overlay"></div>
+      <div class="video-overlay" style="background: linear-gradient(to bottom, rgba(9, 12, 16, 0.7), rgba(9, 12, 16, 0.65)); opacity: 0.85;"></div>
     </div>
-    <div class="section__container header__container" data-aos="fade-up">
-      <p><span data-i18n="header.greeting" style="color: #f2480b;">Merhaba</span> <span data-i18n="header.im" style="color: #ffffff;">Ben</span></p>
-      <h1>Nurullah Şahin</h1>
-      <h2 class="section__title" data-i18n="header.title">Yazılım Mühendisliği <span>Öğrencisi</span></h2>
-      <p data-i18n="header.description">
-        Teknoloji tutkunu, sürekli öğrenmeye ve gelişime açık bir yazılım mühendisliği öğrencisiyim.
-        Yapay zeka, robotik ve mobil programlama alanlarında kendimi geliştirmeye odaklanıyorum.
-      </p>
-      <div class="action__btns">
-        <button class="btn" data-i18n="header.contact">İletişime Geç</button>
-        <a href="https://github.com/nurullahsahinn" class="video" target="_blank" rel="noopener">
-          <div class="video__icon">
-            <i class="fab fa-github"></i>
-          </div>
-          <span data-i18n="header.github">GitHub Profilim</span>
-        </a>
+    <div class="section__container header__container">
+      <div class="header__content" data-aos="fade-right">
+        <h1>
+          <span data-i18n="header.greeting" style="color: #fff;">Merhaba</span>
+          <span data-i18n="header.im" style="color: #f2480b;">Ben</span>
+          <span>Nurullah</span>
+        </h1>
+        <h2 class="section__title" data-i18n="header.title">
+          Yazılım Mühendisliği <span>Öğrencisi</span>
+        </h2>
+        <p data-i18n="header.description">
+          Teknoloji tutkunu, sürekli öğrenmeye ve gelişime açık bir yazılım mühendisliği öğrencisiyim.
+          Yapay zeka, robotik ve mobil programlama alanlarında kendimi geliştirmeye odaklanıyorum.
+        </p>
+        <div class="action__btns">
+          <button class="btn" data-i18n="header.contact">İletişime Geç</button>
+          <a href="https://github.com/nurullahsahinn" class="video" target="_blank" rel="noopener">
+            <div class="video__icon">
+              <i class="fab fa-github"></i>
+            </div>
+            <span data-i18n="header.github">GitHub Profilim</span>
+          </a>
+        </div>
       </div>
     </div>
   </header>

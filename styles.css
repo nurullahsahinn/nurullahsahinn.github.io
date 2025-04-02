@@ -959,27 +959,25 @@ header {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  z-index: -1;
+  z-index: 1;
+  filter: brightness(1.05); /* Parlaklığı azalt */
 }
 
 .video-background video {
-  min-width: 100%;
-  min-height: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
-.video-background .overlay {
+.video-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(9, 12, 16, 0.85), rgba(9, 12, 16, 0.95));
-  z-index: 1;
+  background: linear-gradient(to bottom, rgba(9, 12, 16, 0.7), rgba(9, 12, 16, 0.6));
+  z-index: 2;
+  opacity: 0.85; /* Overlay opaklığını artır */
 }
 
 /* Video Parçacık Efektleri */
