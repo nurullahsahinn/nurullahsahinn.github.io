@@ -49,14 +49,12 @@ html {
 }
 
 body {
+  font-family: "Poppins", sans-serif;
   background-color: var(--dark-color);
   color: var(--light-color);
   line-height: 1.6;
   overflow-x: hidden;
-  margin: 0;
-  padding: 0;
   position: relative;
-  min-height: 100vh;
 }
 
 /* Su Baloncuğu Efekti */
@@ -151,9 +149,105 @@ a:active::after, button:active::after, .btn:active::after, .nav__link:active::af
     display: none !important;
   }
   
+  /* Mobil cihazlar için bölüm ve sayfa düzeltmeleri */
+  body, html {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    height: auto !important;
+    position: relative !important;
+    scroll-behavior: auto !important;
+  }
+  
+  body {
+    display: block !important;
+  }
+  
+  section {
+    overflow: visible !important;
+    position: relative !important;
+    z-index: auto !important;
+    height: auto !important;
+    min-height: auto !important;
+    transform: none !important;
+    scroll-snap-align: none !important;
+    scroll-snap-stop: normal !important;
+  }
+  
+  /* Scroll snap özelliklerini kaldır */
+  html, body {
+    scroll-snap-type: none !important;
+  }
+  
+  /* Servis bölümü düzeltmeleri */
+  .service, 
+  .service__container, 
+  .service__grid,
+  .service__card {
+    position: relative !important;
+    overflow: visible !important;
+    z-index: auto !important;
+    transform: none !important;
+    height: auto !important;
+  }
+  
+  .service__card::before {
+    display: none !important;
+  }
+  
+  /* Bölüm içeriği düzeltmeleri */
+  .section__container {
+    overflow: visible !important;
+    position: relative !important;
+    z-index: auto !important;
+    height: auto !important;
+  }
+  
   a::after, button::after, .btn::after, .service__card::after, 
   .project__card::after, .skills__card::after, .video::after, .icon::after {
     display: none !important;
+  }
+  
+  /* Mobil cihazlar için service sınıfı düzeltmeleri */
+  .service {
+    position: relative;
+    overflow: visible !important;
+    z-index: auto !important;
+    transform: none !important;
+  }
+  
+  .service__card {
+    position: relative;
+    overflow: visible !important;
+    z-index: auto !important;
+    transform: none !important;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  .service__card::before {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+  
+  .service__card:hover::before {
+    height: 0 !important;
+  }
+  
+  .section__container {
+    overflow: visible !important;
+    position: relative !important;
+  }
+  
+  .service__grid {
+    overflow: visible !important;
+    position: relative !important;
+    z-index: auto !important;
+  }
+  
+  section {
+    overflow: visible !important;
+    position: relative !important;
+    z-index: auto !important;
   }
 }
 
@@ -1018,20 +1112,21 @@ header {
 }
 
 .skills__card::before {
-  display: none !important;
-  content: none !important;
-  width: 0 !important;
-  height: 0 !important;
-  background: none !important;
-  border: none !important;
-  opacity: 0 !important;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0; /* 4px'ten 0'a değiştirildi */
+  height: 0;
+  background-color: transparent; /* Kırmızı renk yerine saydam */
+  transition: none; /* Geçiş efektini kaldır */
+  z-index: -1;
+  display: none; /* Tamamen gizle */
 }
 
 .skills__card:hover::before {
-  display: none !important;
-  background: none !important;
-  border: none !important;
-  opacity: 0 !important;
+  height: 0; /* Hover durumunda da görünmemesini sağla */
+  display: none;
 }
 
 .skills__card:hover {
@@ -1117,6 +1212,8 @@ header {
 .service {
   background-color: var(--dark-color);
   position: relative;
+  overflow: visible;
+  z-index: auto;
 }
 
 .service__container {
@@ -1141,23 +1238,29 @@ header {
   position: relative;
   overflow: hidden;
   z-index: 1;
-  border-left: none !important; /* Sol kenarda çizgi olmamasını sağla */
 }
 
-.service__card::before, 
-.service__card::after {
-  display: none !important;
-  content: none !important;
-  width: 0 !important;
-  height: 0 !important;
-  opacity: 0 !important;
-  visibility: hidden !important;
+.service__card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0; /* 4px'ten 0'a değiştirildi */
+  height: 0;
+  background-color: transparent; /* Kırmızı renk yerine saydam */
+  transition: none; /* Geçiş efektini kaldır */
+  z-index: -1;
+  display: none; /* Tamamen gizle */
+}
+
+.service__card:hover::before {
+  height: 0; /* Hover durumunda da görünmemesini sağla */
+  display: none;
 }
 
 .service__card:hover {
   transform: translateY(-10px);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-  border-left: none !important;
 }
 
 .service__icon {
@@ -2050,7 +2153,7 @@ body.menu-open {
   }
   100% { 
     transform: translateY(0) scale(1); 
-    opacity: 1; 
+    opacity: 1;
     filter: blur(0);
   }
 }
@@ -2369,7 +2472,7 @@ header [data-i18n] {
     transform: translateZ(0);
   }
 
-  .nav__link::before, .btn::before, 
+  .nav__link::before, .btn::before, .service__card::before, 
   .skills__card::before, .project__card::before {
     content: '';
     position: absolute;
@@ -3235,21 +3338,4 @@ header [data-i18n] {
     height: 16px;
     top: 35px;
   }
-}
-
-/* Kenar çizgisini kaldırmak için özel sınıf */
-.no-side-line::before,
-.no-side-line::after {
-  display: none !important;
-  content: none !important;
-  width: 0 !important;
-  height: 0 !important;
-  background: none !important;
-  opacity: 0 !important;
-  border: none !important;
-  visibility: hidden !important;
-}
-
-.no-side-line {
-  border-left: none !important;
 }
