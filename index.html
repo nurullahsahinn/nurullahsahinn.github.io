@@ -991,7 +991,7 @@
         <!-- İskenderun Teknik Üniversitesi -->
         <div class="education-item" data-aos="fade-up" data-aos-delay="200" style="flex: 1; min-width: 250px; max-width: 300px; margin-bottom: 20px;">
           <div class="education-logo" style="width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 20px auto; border: 3px solid #f2480b; overflow: hidden;">
-            <img src="./iskenderun_teknik_uni_logo.jpeg" alt="İskenderun Teknik Üniversitesi" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" crossorigin="anonymous">
+            <img src="./iskenderun_teknik_uni_logo_copy.jpeg" alt="İskenderun Teknik Üniversitesi" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" crossorigin="anonymous">
           </div>
           <div class="education-content" style="background: rgba(20, 25, 30, 0.6); padding: 1.5rem; border-radius: 15px; text-align: center; border-top: 3px solid #f2480b;">
             <h4 data-i18n="education.iste.name" style="color: #f2480b; font-size: 1.1rem; font-weight: 600; margin-bottom: 10px;">İskenderun Teknik Üniversitesi (İSTE)</h4>
@@ -1164,6 +1164,80 @@
       }
       
       animateCursor();
+
+      // Gelişmiş dokunma ve tıklama dalga efekti - hem masaüstü hem mobil için
+      document.addEventListener('pointerdown', function(e) {
+        // Dokunma noktasını al
+        const x = e.clientX;
+        const y = e.clientY;
+        
+        // Dalga efekti elementi oluştur
+        const ripple = document.createElement('div');
+        ripple.className = 'touch-ripple';
+        
+        // Cihaza göre boyutu ayarla
+        const isMobile = window.innerWidth <= 768;
+        const size = isMobile ? 250 : 350;
+        
+        ripple.style.width = size + 'px';
+        ripple.style.height = size + 'px';
+        ripple.style.position = 'fixed';
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+        ripple.style.zIndex = '9999';
+        ripple.style.background = 'radial-gradient(circle, rgba(242, 72, 11, 0.7) 0%, rgba(242, 72, 11, 0.3) 40%, rgba(242, 72, 11, 0) 70%)';
+        ripple.style.transform = 'translate(-50%, -50%) scale(0)';
+        ripple.style.borderRadius = '50%';
+        ripple.style.pointerEvents = 'none';
+        ripple.style.animation = 'touchRipple 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards';
+        ripple.style.boxShadow = '0 0 25px rgba(242, 72, 11, 0.7)';
+        ripple.style.willChange = 'transform, opacity';
+        
+        // Sayfaya ekle
+        document.body.appendChild(ripple);
+        
+        // İkinci küçük dalga efekti ekle
+        if (isMobile) {
+          const smallRipple = document.createElement('div');
+          smallRipple.className = 'touch-ripple';
+          smallRipple.style.width = '120px';
+          smallRipple.style.height = '120px';
+          smallRipple.style.position = 'fixed';
+          smallRipple.style.left = x + 'px';
+          smallRipple.style.top = y + 'px';
+          smallRipple.style.zIndex = '9998';
+          smallRipple.style.background = 'radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.2) 40%, rgba(255, 255, 255, 0) 70%)';
+          smallRipple.style.transform = 'translate(-50%, -50%) scale(0)';
+          smallRipple.style.borderRadius = '50%';
+          smallRipple.style.pointerEvents = 'none';
+          smallRipple.style.animation = 'touchRipple 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards';
+          
+          // Sayfaya ekle
+          document.body.appendChild(smallRipple);
+          
+          // Belirli bir süre sonra kaldır
+          setTimeout(() => {
+            if (smallRipple && smallRipple.parentNode) {
+              smallRipple.parentNode.removeChild(smallRipple);
+            }
+          }, 500);
+        }
+        
+        // Belirli bir süre sonra kaldır
+        setTimeout(() => {
+          if (ripple && ripple.parentNode) {
+            ripple.parentNode.removeChild(ripple);
+          }
+        }, 800);
+      });
+
+      // Logo hatası giderme
+      const logos = document.querySelectorAll('img[src*="logo"]');
+      logos.forEach(logo => {
+        if (!logo.hasAttribute('crossorigin')) {
+          logo.setAttribute('crossorigin', 'anonymous');
+        }
+      });
 
       // Tıklama Splash Efekti
       document.addEventListener('click', function(e) {
