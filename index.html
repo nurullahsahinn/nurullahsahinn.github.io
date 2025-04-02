@@ -8,11 +8,6 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-  <meta name="msapplication-tap-highlight" content="no">
-  <meta name="format-detection" content="telephone=no">
   <title>Nurullah Şahin - Yazılım Mühendisliği Öğrencisi</title>
   
   <!-- YENİ DEBUG KODU - inline olarak dil değiştirme fonksiyonu -->
@@ -1493,15 +1488,14 @@
           }
         };
         
-        // Dokunma dalgası efekti - YENİ VE GELİŞTİRİLMİŞ
+        // Dokunma dalgası efekti
         const addTouchRippleEffect = () => {
           const touchableElements = document.querySelectorAll('a, button, .btn, .nav__link, .service__card, .project__card, .skills__card, .video, .icon');
           
           touchableElements.forEach(element => {
             element.addEventListener('touchstart', function(e) {
-              // Mevcut dokunma dalgaları varsa temizle
-              const existingRipples = element.querySelectorAll('.touch-ripple');
-              existingRipples.forEach(ripple => ripple.remove());
+              // Dalga efektini daha belirgin yapalım
+              e.preventDefault(); // Dokunma olayını engelle
               
               // Dokunma noktasını al
               const touch = e.touches[0];
@@ -1512,17 +1506,25 @@
               // Dalga efekti elementi oluştur
               const ripple = document.createElement('div');
               ripple.className = 'touch-ripple';
-              ripple.style.width = '100px';
-              ripple.style.height = '100px';
+              ripple.style.width = '150px'; // Daha büyük dalga
+              ripple.style.height = '150px';
               ripple.style.left = x + 'px';
               ripple.style.top = y + 'px';
+              ripple.style.zIndex = '99999'; // z-index değerini artıralım
               
               // Pozisyon için elemente relative class ekle
               if (getComputedStyle(this).position === 'static') {
                 this.style.position = 'relative';
               }
               
-              this.style.overflow = 'hidden'; // Taşmayı engelle
+              // Elementin overflow özelliğini kontrol et
+              const overflow = getComputedStyle(this).overflow;
+              if (overflow === 'hidden') {
+                this.style.overflow = 'visible';
+                setTimeout(() => {
+                  this.style.overflow = 'hidden';
+                }, 800);
+              }
               
               // Dalgayı elementin içine ekle
               this.appendChild(ripple);
@@ -1536,23 +1538,8 @@
                 this.classList.remove('active');
               }, 800);
               
-              // Su baloncuğu efektini mobilde oluştur
-              const bubble = document.createElement('div');
-              bubble.className = 'water-bubble';
-              
-              const size = Math.random() * 40 + 10;
-              
-              bubble.style.width = size + 'px';
-              bubble.style.height = size + 'px';
-              bubble.style.left = touch.clientX + 'px';
-              bubble.style.top = touch.clientY + 'px';
-              
-              document.body.appendChild(bubble);
-              
-              setTimeout(() => {
-                bubble.remove();
-              }, 2000);
-            }, { passive: true }); // Pasif listener performans için
+              return false;
+            }, {passive: false}); // passive: false, preventDefault'in çalışmasını sağlar
             
             // Dokunma vurgulaması
             const highlight = document.createElement('div');
@@ -1566,15 +1553,15 @@
             
             element.addEventListener('touchstart', () => {
               highlight.style.opacity = '1';
-            }, { passive: true });
+            }, {passive: false});
             
             element.addEventListener('touchend', () => {
               highlight.style.opacity = '0';
-            }, { passive: true });
+            });
             
             element.addEventListener('touchcancel', () => {
               highlight.style.opacity = '0';
-            }, { passive: true });
+            });
           });
         };
         
@@ -1597,55 +1584,6 @@
           // Bölümleri gözlemle
           sections.forEach(section => {
             observer.observe(section);
-          });
-        };
-        
-        // Enerji seviyesi göstergeleri
-        const setupEnergyBars = () => {
-          const skillItems = document.querySelectorAll('#skills .skills__card ul li');
-          
-          skillItems.forEach(item => {
-            // Yetenek metnini al
-            const skillText = item.textContent;
-            
-            // Enerji çubuğu oluştur
-            const energyBar = document.createElement('div');
-            energyBar.className = 'mobile-energy-bar';
-            
-            const energyLevel = document.createElement('div');
-            energyLevel.className = 'mobile-energy-level';
-            energyBar.appendChild(energyLevel);
-            
-            // Elementi güncelle
-            item.innerHTML = skillText;
-            item.appendChild(energyBar);
-            
-            // Enerji seviyesini belirle (rastgele değer, gerçek projelerde özelleştirilebilir)
-            let energyValue;
-            if (skillText.toLowerCase().includes('python')) energyValue = 95;
-            else if (skillText.toLowerCase().includes('java')) energyValue = 85;
-            else if (skillText.toLowerCase().includes('c#')) energyValue = 90;
-            else if (skillText.toLowerCase().includes('html')) energyValue = 95;
-            else if (skillText.toLowerCase().includes('mysql')) energyValue = 80;
-            else if (skillText.toLowerCase().includes('linux')) energyValue = 75;
-            else if (skillText.toLowerCase().includes('git')) energyValue = 85;
-            else if (skillText.toLowerCase().includes('hackintosh')) energyValue = 90;
-            else if (skillText.toLowerCase().includes('donanım')) energyValue = 95;
-            else energyValue = Math.floor(Math.random() * 30) + 70; // 70-100 arası rastgele değer
-            
-            // Enerji seviyesi göstermek için IntersectionObserver
-            const observer = new IntersectionObserver((entries) => {
-              entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                  setTimeout(() => {
-                    energyLevel.style.width = energyValue + '%';
-                  }, 300);
-                  observer.unobserve(entry.target);
-                }
-              });
-            }, { threshold: 0.2 });
-            
-            observer.observe(item);
           });
         };
         
@@ -1740,9 +1678,8 @@
         
         // Uygula
         setupMobileLoading();
-        addTouchRippleEffect(); // Dokunma dalgası efektini aktif et
+        addTouchRippleEffect();
         setupMobileAnimations();
-        setupEnergyBars();
         setupParallaxEffect();
         setupPageTransitions();
       } else {
