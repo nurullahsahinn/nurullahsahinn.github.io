@@ -960,7 +960,7 @@ header {
   height: 100%;
   overflow: hidden;
   z-index: 1;
-  filter: brightness(1.05); /* Parlaklığı azalt */
+  filter: brightness(1.4); /* Parlaklığı daha da artır */
 }
 
 .video-background video {
@@ -975,9 +975,9 @@ header {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, rgba(9, 12, 16, 0.7), rgba(9, 12, 16, 0.6));
+  background: linear-gradient(to bottom, rgba(9, 12, 16, 0.45), rgba(9, 12, 16, 0.35));
   z-index: 2;
-  opacity: 0.85; /* Overlay opaklığını artır */
+  opacity: 0.6; /* Overlay opaklığını daha da azalt */
 }
 
 /* Video Parçacık Efektleri */
@@ -1113,13 +1113,21 @@ header {
 }
 
 .header__container {
+  min-height: 100vh;
+  padding-top: 1rem;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
-  align-items: center;
   position: relative;
-  z-index: 1;
-  margin-top: 3rem;
+  z-index: 10;
+}
+
+.header__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
 }
 
 .header__container p span {
@@ -3505,5 +3513,38 @@ header [data-i18n] {
     width: 16px;
     height: 16px;
     top: 35px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header__container {
+    grid-template-columns: repeat(1, 1fr);
+    padding: 0 1rem;
+    position: relative;
+    z-index: 100;
+  }
+
+  .header__content {
+    padding: 0 1rem;
+    position: relative;
+    z-index: 100;
+    margin-top: 5rem;
+    background-color: rgba(9, 12, 16, 0.3);
+    padding: 1.5rem;
+    border-radius: 10px;
+  }
+  
+  .video-particles-container {
+    z-index: 5;
+  }
+  
+  .video-background, .video-overlay {
+    z-index: 1;
+  }
+  
+  .video-particle {
+    opacity: 1 !important;
+    box-shadow: 0 0 20px rgba(242, 72, 11, 0.9), 0 0 40px rgba(242, 72, 11, 0.6) !important;
+    filter: brightness(2) !important;
   }
 }
