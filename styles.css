@@ -18,12 +18,6 @@
   --transition-fast: 0.3s;
   --transition-medium: 0.5s;
   --transition-slow: 0.8s;
-  /* Cross-platform görünüm iyileştirmeleri */
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
 }
 
 /* Özel Scrollbar Tasarımı */
@@ -52,12 +46,6 @@ html {
   scroll-padding-top: 80px; /* Accounts for fixed navbar */
   scrollbar-width: thin; /* Firefox için */
   scrollbar-color: var(--primary-color) var(--dark-secondary); /* Firefox için */
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  line-height: 1.15;
-  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -67,7 +55,6 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   position: relative;
-  margin: 0;
 }
 
 /* Su Baloncuğu Efekti */
@@ -233,9 +220,7 @@ a:active::after, button:active::after, .btn:active::after, .nav__link:active::af
     overflow: visible !important;
     z-index: auto !important;
     transform: none !important;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15), 0 3px 8px rgba(0, 0, 0, 0.2);
-    -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15), 0 3px 8px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15), 0 3px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1) !important;
   }
   
   .service__card::before {
@@ -1253,11 +1238,9 @@ header {
   border-radius: 8px;
   display: block;
   margin: 0 auto;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 5px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   transition: transform var(--transition-medium);
-  filter: brightness(1.02) contrast(1.05);
-  -webkit-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 5px 15px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 5px 15px rgba(0, 0, 0, 0.3);
+  filter: brightness(0.95);
 }
 
 .about__image img:hover {
@@ -1289,9 +1272,7 @@ header {
   padding: 2rem;
   border-radius: 8px;
   transition: all var(--transition-medium);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15), 0 3px 8px rgba(0, 0, 0, 0.2);
-  -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15), 0 3px 8px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15), 0 3px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   height: 100%;
   position: relative;
   z-index: 1;
@@ -1318,9 +1299,7 @@ header {
 
 .skills__card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25), 0 5px 15px rgba(0, 0, 0, 0.15);
-  -webkit-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25), 0 5px 15px rgba(0, 0, 0, 0.15);
-  -moz-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25), 0 5px 15px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
 .skills__card h3 {
@@ -1422,9 +1401,7 @@ header {
   border-radius: 8px;
   text-align: left;
   transition: all var(--transition-medium);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15), 0 3px 8px rgba(0, 0, 0, 0.2);
-  -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15), 0 3px 8px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15), 0 3px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   height: 100%;
   position: relative;
   overflow: hidden;
@@ -1451,9 +1428,7 @@ header {
 
 .service__card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25), 0 5px 15px rgba(0, 0, 0, 0.15);
-  -webkit-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25), 0 5px 15px rgba(0, 0, 0, 0.15);
-  -moz-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25), 0 5px 15px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
 .service__icon {
@@ -3550,61 +3525,4 @@ header [data-i18n] {
     height: 16px;
     top: 35px;
   }
-}
-
-/* Web Fontları */
-@font-face {
-  font-family: 'Poppins';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/poppins/v20/pxiEyp8kv8JHgFVrJJfecg.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: 'Poppins';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgFVrLGT9Z1xlFQ.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: 'Poppins';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgFVrLEj6Z1xlFQ.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: 'Poppins';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgFVrLCz7Z1xlFQ.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-/* Temel Font Ailesi Tanımlaması */
-body {
-  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-}
-
-/* Düğme Geliştirmeleri */
-.btn {
-  border-radius: 30px;
-  box-shadow: 0 4px 15px rgba(242, 72, 11, 0.25), 0 2px 8px rgba(242, 72, 11, 0.15);
-  -webkit-box-shadow: 0 4px 15px rgba(242, 72, 11, 0.25), 0 2px 8px rgba(242, 72, 11, 0.15);
-  -moz-box-shadow: 0 4px 15px rgba(242, 72, 11, 0.25), 0 2px 8px rgba(242, 72, 11, 0.15);
-}
-
-/* Profil Resmi İyileştirmeleri */
-.about__image img {
-  border-radius: 10px;
-  transform: perspective(1000px) rotateY(1deg) rotateX(1deg);
-}
-
-.about__image img:hover {
-  transform: perspective(1000px) rotateY(-1deg) rotateX(-1deg) scale(1.03);
 }
