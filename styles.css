@@ -1229,12 +1229,12 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  max-width: 400px;
+  max-width: 450px;
   margin: 0 auto;
 }
 
 .about__image img {
-  max-width: 80%;
+  max-width: 100%;
   border-radius: 8px;
   display: block;
   margin: 0 auto;
