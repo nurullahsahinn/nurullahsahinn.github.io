@@ -3526,3 +3526,18 @@ header [data-i18n] {
     top: 35px;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .about__image {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 2rem;
+  }
+}
+
+@media screen and (max-width: 468px) {
+  .about__image {
+    width: 180px;
+    height: 180px;
+  }
+}
