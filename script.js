@@ -399,34 +399,8 @@ function setupContactForm() {
     });
   });
   
-  // Form gönderimi
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Form verilerini al
-    const formData = new FormData(form);
-    const name = formData.get('name');
-    const email = formData.get('email');
-    const message = formData.get('message');
-    
-    // Form validasyonu
-    if (!name || !email || !message) {
-      alert('Lütfen tüm alanları doldurun');
-      return;
-    }
-    
-    // Form gönderim işlemi burada olacak
-    console.log('Form gönderildi:', { name, email, message });
-    
-    // Başarı mesajı - bildirim yerine alert kullanılıyor
-    alert('Mesajınız gönderildi. Teşekkür ederiz!');
-    
-    // Formu temizle
-    form.reset();
-    formInputs.forEach(input => {
-      input.parentElement.classList.remove('focused');
-    });
-  });
+  // Form gönderimi için özel kod kaldırıldı
+  // FormSubmit.co servisi otomatik olarak formu işleyecek
 }
 
 // setupBackToTop fonksiyonu - Sayfa başına dönüş butonunu yönetir
@@ -1035,56 +1009,6 @@ function setupBackToTop() {
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
-    });
-  });
-}
-
-// İletişim formu ayarları
-function setupContactForm() {
-  const form = document.getElementById('contactForm');
-  
-  if (!form) return;
-  
-  // Form input animasyonları
-  const formInputs = form.querySelectorAll('input, textarea');
-  formInputs.forEach(input => {
-    input.addEventListener('focus', () => {
-      input.parentElement.classList.add('focused');
-    });
-    
-    input.addEventListener('blur', () => {
-      if (input.value === '') {
-        input.parentElement.classList.remove('focused');
-      }
-    });
-  });
-  
-  // Form gönderimi
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Form verilerini al
-    const formData = new FormData(form);
-    const name = formData.get('name');
-    const email = formData.get('email');
-    const message = formData.get('message');
-    
-    // Form validasyonu
-    if (!name || !email || !message) {
-      alert('Lütfen tüm alanları doldurun');
-      return;
-    }
-    
-    // Form gönderim işlemi burada olacak
-    console.log('Form gönderildi:', { name, email, message });
-    
-    // Başarı mesajı - bildirim yerine alert kullanılıyor
-    alert('Mesajınız gönderildi. Teşekkür ederiz!');
-    
-    // Formu temizle
-    form.reset();
-    formInputs.forEach(input => {
-      input.parentElement.classList.remove('focused');
     });
   });
 }
