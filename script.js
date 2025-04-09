@@ -39,7 +39,6 @@ document.addEventListener('DOMContentLoaded', function() {
     'background9.mp4',
     'background10.mp4',
     'background11.mp4',
-    'background12.mp4',
     'background14.mp4',
     'background15.mp4'
   ];
@@ -923,7 +922,6 @@ function loadBackgroundVideo() {
     'background9.mp4',
     'background10.mp4',
     'background11.mp4',
-    'background12.mp4',
     'background14.mp4',
     'background15.mp4'
   ];
