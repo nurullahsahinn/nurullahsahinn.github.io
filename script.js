@@ -33,7 +33,17 @@ document.addEventListener('DOMContentLoaded', function() {
     'background3.mp4',
     'background4.mp4',
     'background5.mp4',
-    'background6.mp4'
+    'background6.mp4',
+    'background7.mp4',
+    'background8.mp4',
+    'background9.mp4',
+    'background10.mp4',
+    'background11.mp4',
+    'background12.mp4',
+    'background13.mp4',
+    'background14.mp4',
+    'background15.mp4',
+    'background16.mp4'
   ];
   
   const randomVideo = backgroundVideos[Math.floor(Math.random() * backgroundVideos.length)];
@@ -909,7 +919,17 @@ function loadBackgroundVideo() {
     'background3.mp4',
     'background4.mp4',
     'background5.mp4',
-    'background6.mp4'
+    'background6.mp4',
+    'background7.mp4',
+    'background8.mp4',
+    'background9.mp4',
+    'background10.mp4',
+    'background11.mp4',
+    'background12.mp4',
+    'background13.mp4',
+    'background14.mp4',
+    'background15.mp4',
+    'background16.mp4'
   ];
 
   // Videoda zaten bir kaynak varsa yenisini ekleme
