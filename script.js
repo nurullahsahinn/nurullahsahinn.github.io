@@ -40,10 +40,8 @@ document.addEventListener('DOMContentLoaded', function() {
     'background10.mp4',
     'background11.mp4',
     'background12.mp4',
-    'background13.mp4',
     'background14.mp4',
-    'background15.mp4',
-    'background16.mp4'
+    'background15.mp4'
   ];
   
   const randomVideo = backgroundVideos[Math.floor(Math.random() * backgroundVideos.length)];
@@ -926,10 +924,8 @@ function loadBackgroundVideo() {
     'background10.mp4',
     'background11.mp4',
     'background12.mp4',
-    'background13.mp4',
     'background14.mp4',
-    'background15.mp4',
-    'background16.mp4'
+    'background15.mp4'
   ];
 
   // Videoda zaten bir kaynak varsa yenisini ekleme
