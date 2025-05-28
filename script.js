@@ -12,6 +12,52 @@ document.addEventListener('DOMContentLoaded', function() {
     
     setupLanguageSwitcher();
     
+    // Gelişmiş Başlık Kelime Animasyonu
+    const heroTitle = document.querySelector('.header__container h1');
+    if (heroTitle) {
+      let delay = 0;
+      const processedNodes = [];
+
+      function processNodeForAnimation(node) {
+        if (node.nodeType === Node.TEXT_NODE) {
+          const words = node.textContent.split(/\s+/).filter(word => word.length > 0);
+          const fragment = document.createDocumentFragment();
+          words.forEach((word, index) => {
+            const wordSpan = document.createElement('span');
+            wordSpan.textContent = word;
+            wordSpan.classList.add('hero-title-word');
+            fragment.appendChild(wordSpan);
+            if (index < words.length - 1) {
+              fragment.appendChild(document.createTextNode(' ')); // Kelimeler arasına boşluk ekle
+            }
+            
+            setTimeout(() => {
+              wordSpan.classList.add('visible');
+            }, delay * 300); // Gecikme artırıldı (100ms -> 300ms)
+            delay++;
+          });
+          return fragment;
+        } else if (node.nodeType === Node.ELEMENT_NODE) {
+          // data-i18n içeren span gibi elementleri ve içeriklerini koru
+          // Ancak bu elementlerin altındaki metinleri de işleyebiliriz.
+          const newNode = node.cloneNode(false); // Elementi kopyala, çocukları değil
+          Array.from(node.childNodes).forEach(childNode => {
+            newNode.appendChild(processNodeForAnimation(childNode));
+          });
+          return newNode;
+        }
+        return node.cloneNode(true); // Diğer düğüm türlerini olduğu gibi kopyala
+      }
+
+      // Orijinal çocukları bir diziye kopyala çünkü DOM canlı koleksiyonu değişecek
+      const childNodesCopy = Array.from(heroTitle.childNodes);
+      heroTitle.innerHTML = ''; // Başlığı temizle
+      
+      childNodesCopy.forEach(child => {
+        heroTitle.appendChild(processNodeForAnimation(child));
+      });
+    }
+    
     setTimeout(() => {
       if (typeof AOS !== 'undefined') {
         AOS.refresh();
@@ -1343,3 +1389,13 @@ function createVideoParticles() {
   videoBackground.appendChild(particlesContainer);
   console.log('Video parçacıkları oluşturuldu ve eklendi.');
 }
+
+// Yeni eklenecek kod: Navigasyon çubuğunu kaydırmaya duyarlı yap
+window.addEventListener('scroll', function() {
+  const nav = document.querySelector('nav');
+  if (window.scrollY > 50) { // 50 piksel kaydırıldıktan sonra
+    nav.classList.add('scrolled');
+  } else {
+    nav.classList.remove('scrolled');
+  }
+});
