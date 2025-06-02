@@ -955,20 +955,36 @@
       <p class="section__subtitle" data-i18n="projects.subtitle">Projelerim</p>
       <h2 class="section__title" data-i18n="projects.title"><span>Son</span> Projelerim</h2>
       <div class="project__grid">
-        <div class="project__card" data-aos="flip-left" data-aos-delay="100">
-          <img src="./modeluydu.jpg" alt="Model Uydu Projesi" loading="lazy" width="400" height="220">
+        <div class="project__card" data-aos="flip-left" data-aos-delay="100" data-modal-target="modalModelUydu">
+          <img src="./modeluydu.jpg" alt="Non Gravity - Model Uydu" loading="lazy" width="400" height="220">
           <div class="project__content">
-            <h3 data-i18n="projects.satellite.title">Model Uydu Yarışması</h3>
-            <p data-i18n="projects.satellite.description">Teknofest kapsamında yazılım lideri olarak yürüttüğüm Model Uydu projesi</p>
-            <p class="project__award" data-i18n="projects.underwater.award"><i class="fas fa-award"></i> TÜBİTAK 2209-A programında tam onay!</p>
+            <h3 data-i18n="projects.nonGravitySatellite.title">Non Gravity Model Uydu</h3>
+            <p data-i18n="projects.satellite.description_detailed">
+              Teknofest kapsamında yazılım lideri olarak yürüttüğüm model uydu yarışması. TÜRKSAT Model Uydu Yarışması için geliştirilen bu proje, taşıyıcı ve görev yükü modüllerinden oluşur. Kontrollü iniş, veri toplama, görüntü kaydı/iletimi ve multi-spektral filtreleme yeteneklerine sahiptir. Yer istasyonu ile anlık haberleşme kurabilir. 
+            </p>
+            <p class="project_technologies">
+              <strong data-i18n="projects.nonGravitySatellite.technologiesLabel">Ana Teknolojiler:</strong> <span data-i18n="projects.nonGravitySatellite.technologiesList">Arduino Nano, Raspberry Pi Zero 2 W, C# (Yer İstasyonu), XBee Haberleşme, GPS, IMU (ADXL345, ITG3200, HMC5883L), BMP280, Raspberry Pi Kamera.</span>
+            </p>
+            <p class="project__award" data-i18n="projects.satellite.award"><i class="fas fa-award"></i> TÜBİTAK 2209-A programında tam onay!</p>
+            <button class="btn btn--primary" data-i18n="projects.satellite.button">Detaylar</button>
+            <!-- Linkler için örnek:
+            <div class="project__links" style="margin-top: 10px;">
+              <a href="[GitHub Proje Linki]" target="_blank" class="btn btn-sm">GitHub'da Gör</a>
+              <a href="[Rapor Linki]" target="_blank" class="btn btn-sm">Raporu İncele</a>
+            </div>
+            -->
           </div>
         </div>
-        <div class="project__card" data-aos="flip-right" data-aos-delay="200">
-          <img src="./sualtı.jpg" alt="Otonom Sualtı Aracı" loading="lazy" width="400" height="220">
+        
+        <div class="project__card" data-aos="flip-left" data-aos-delay="200" data-modal-target="modalSualtiAraci">
+          <img src="./sualtı.jpg" alt="Otonom Sualtı Aracı Projesi" loading="lazy" width="400" height="220">
           <div class="project__content">
-            <h3 data-i18n="projects.underwater.title">Otonom Sualtı Aracı</h3>
-            <p data-i18n="projects.underwater.description">Teknofest kapsamında yazılım lideri olarak yürüttüğüm Otonom Sualtı Aracı projesi</p>
+            <h3 data-i18n="projects.sualti.title">Otonom Sualtı Aracı - AXOLOTL</h3>
+            <p data-i18n="projects.sualti.description">
+              Teknofest kapsamında yazılım lideri olarak yürüttüğüm otonom sualtı yarışması. TEKNOFEST 2025 İnsansız Su Altı Sistemleri Yarışması için geliştirilen AXOLOTL, otonom görevler gerçekleştirebilen bir sualtı aracıdır. 
+            </p>
             <p class="project__award" data-i18n="projects.underwater.award"><i class="fas fa-award"></i> TÜBİTAK 2209-A programında tam onay!</p>
+            <button class="btn btn--primary" data-i18n="projects.sualti.button">Detaylar</button>
           </div>
         </div>
       </div>
@@ -1558,5 +1574,76 @@
     });
   </script>
   <script  src="Reptile Interactive Cursor/script.js"></script>
+
+  <!-- Model Uydu Projesi Modal -->
+  <div id="modalModelUydu" class="modal">
+    <div class="modal-content">
+      <span class="modal-close-button">&times;</span>
+      <img src="./modeluydu.jpg" alt="Non Gravity Model Uydu" class="modal-img">
+      <h2 data-i18n="projects.nonGravitySatellite.title">Non Gravity Model Uydu</h2>
+      
+      <h4 data-i18n="projects.nonGravitySatellite.summaryTitle">Proje Özeti</h4>
+      <p data-i18n="projects.nonGravitySatellite.summaryContent">
+        TÜRKSAT Model Uydu Yarışması kapsamında geliştirilen bu model uydu sistemi, yarışma şartnamesinde belirtilen gereksinimleri karşılamak üzere tasarlanmış olup, ana modül (taşıyıcı) ve görev yükü birimlerinden oluşmaktadır. Model uydu sistemi, atmosfere bırakıldıktan sonra taşıyıcı ve görev yükü modüllerini 400 metre irtifada ayırarak, her iki modülün de belirlenen hızlarda (taşıyıcı 12-14 m/s, görev yükü 6-8 m/s) kontrollü inişini sağlar. Sistem, iniş sırasında çeşitli sensörlerden veri toplama, kamera görüntüsü kaydetme ve iletme, multi-spektral filtreleme yapma ve yer istasyonuyla haberleşme yeteneklerine sahiptir.
+      </p>
+      
+      <h4 data-i18n="projects.nonGravitySatellite.architectureTitle">Sistem Mimarisi</h4>
+      <p data-i18n="projects.nonGravitySatellite.carrierModule"><strong>Taşıyıcı Modül:</strong> Arduino Nano tabanlıdır. Sensör verilerini toplama, ayrılma mekanizmasını kontrol etme ve temel telemetri verilerini iletme görevlerini üstlenir.</p>
+      <p data-i18n="projects.nonGravitySatellite.payloadModule"><strong>Görev Yükü Modülü:</strong> Raspberry Pi Zero 2 W tabanlıdır. Kamera görüntüsü aktarma, konum bilgisi iletme ve multi-spektral filtreleme sistemini kontrol etme görevlerini yerine getirir.</p>
+      <p data-i18n="projects.nonGravitySatellite.groundStation"><strong>Yer İstasyonu:</strong> C# tabanlı bir masaüstü uygulamasıdır. Telemetri verilerini görselleştirme, komut gönderme, kamera görüntüsünü izleme ve kaydetme işlevlerini sağlar.</p>
+      
+      <h4 data-i18n="projects.nonGravitySatellite.hardwareTitle">Kullanılan Ana Donanımlar</h4>
+      <ul>
+        <li data-i18n="projects.nonGravitySatellite.hardware.processors"><strong>İşlemciler:</strong> Arduino Nano, Raspberry Pi Zero 2 W</li>
+        <li data-i18n="projects.nonGravitySatellite.hardware.sensors"><strong>Sensörler:</strong> 10-DOF IMU (ADXL345, ITG3200, HMC5883L), BMP280 Basınç Sensörü, Ublox GY-GPSV3 NEO-8M M8N GPS Modülü, DS3231 RTC</li>
+        <li data-i18n="projects.nonGravitySatellite.hardware.communication"><strong>Haberleşme:</strong> XBee 3 Pro Modül, Dahili Wi-Fi (Raspberry Pi Zero 2 W)</li>
+        <li data-i18n="projects.nonGravitySatellite.hardware.camera"><strong>Kamera:</strong> Raspberry Pi Kamera Modül 3</li>
+        <li data-i18n="projects.nonGravitySatellite.hardware.power"><strong>Güç Yönetimi:</strong> NCR18650B Li-Ion Pil (Görev Yükü), Beston 9V USB Type-C Şarjlı Pil (Taşıyıcı), LM2577 + LM2596 Gerilim Çevirici</li>
+        <li data-i18n="projects.nonGravitySatellite.hardware.mechanical"><strong>Mekanik Bileşenler:</strong> SG90 RC Mini Servo Motorlar (Ayrılma ve Filtreleme için)</li>
+      </ul>
+
+      <h4 data-i18n="projects.nonGravitySatellite.softwareTitle">Yazılım Mimarisi</h4>
+      <ul>
+        <li data-i18n="projects.nonGravitySatellite.software.groundStation"><strong>Yer İstasyonu (YerAltiIstasyonu):</strong> C# dili ve .NET Framework kullanılarak geliştirilmiştir.</li>
+        <li data-i18n="projects.nonGravitySatellite.software.carrierSystem"><strong>Taşıyıcı Modül Yazılımı (YerAltiSistem):</strong> Arduino (C/C++) dili ile programlanmıştır.</li>
+        <li data-i18n="projects.nonGravitySatellite.software.payloadSystem"><strong>Görev Yükü Modülü Yazılımı:</strong> Raspberry Pi üzerinde Python dili ile geliştirilmiştir.</li>
+      </ul>
+      
+      <!-- Linkler buraya eklenebilir -->
+      <!--
+      <div class="project__links" style="margin-top: 20px;">
+        <a href="#" target="_blank" class="btn btn-sm">GitHub'da Gör</a>
+        <a href="#" target="_blank" class="btn btn-sm">Detaylı Rapor</a>
+      </div>
+      -->
+    </div>
+  </div>
+
+  <!-- Otonom Sualtı Aracı Projesi Modal -->
+  <div id="modalSualtiAraci" class="modal">
+    <div class="modal-content">
+      <span class="modal-close-button">&times;</span>
+      <img src="./sualtı.jpg" alt="Otonom Sualtı Aracı Projesi" class="modal-img">
+      <h2 data-i18n="projects.sualti.title">Otonom Sualtı Aracı - AXOLOTL</h2>
+      <p data-i18n="projects.sualti.modal.description1">
+        AXOLOTL projesi, TEKNOFEST 2025 İnsansız Su Altı Sistemleri Yarışması için geliştirilmiş olup, su altı koşullarında otonom görevler gerçekleştirebilen bir su altı aracıdır. Proje, TÜBİTAK 2209-A Üniversite Öğrencileri Araştırma Projeleri Destekleme Programı'ndan destek almış ve Atatürk Üniversitesi Mühendislik Fakültesi akademisyenlerinin danışmanlığında yürütülmüştür.
+      </p>
+      <h4 data-i18n="projects.sualti.modal.featuresTitle">Temel Özellikler:</h4>
+      <ul>
+        <li data-i18n="projects.sualti.modal.feature1">Özgün ve yerli tasarım: Tüm teknik çizimler, tasarımlar, mühendislik analizleri ve yazılımlar takım üyeleri tarafından geliştirilmiştir.</li>
+        <li data-i18n="projects.sualti.modal.feature2">Gelişmiş Donanım: Jetson Xavier NX (yapay zeka ve görüntü işleme), Pixhawk PX4 (görev yönetimi ve motor kontrolü).</li>
+        <li data-i18n="projects.sualti.modal.feature3">Motorlar: 6 adet fırçasız motor.</li>
+        <li data-i18n="projects.sualti.modal.feature4">Sensörler: Derinlik, basınç, IMU/pusula, ultrasonik sensörler, su kaçak sensörleri.</li>
+        <li data-i18n="projects.sualti.modal.feature5">Mekanik Tasarım: Axolotl formunda hidrodinamik tasarım, PETG malzeme, modüler ve sızdırmaz gövde.</li>
+        <li data-i18n="projects.sualti.modal.feature6">Yazılım: Python tabanlı görüntü işleme (OpenCV, NumPy), görev yürütme ve motor kontrol algoritmaları.</li>
+        <li data-i18n="projects.sualti.modal.feature7">Güvenlik: Su sızıntı sensörleri, acil yüzey çıkış sistemi, enerji kesme sistemi.</li>
+      </ul>
+      <p data-i18n="projects.sualti.modal.description2">
+        Proje, Jetson Nano'dan Jetson Xavier NX'e geçiş ve Lidar yerine Arducam MINI M12 kamera sistemi kullanımı gibi önemli donanım güncellemeleriyle performansı artırmayı hedeflemektedir. Mekanik tasarımda sızdırmazlık ve hidrodinamik verimlilik ön planda tutulmuştur.
+      </p>
+      
+    </div>
+  </div>
+
 </body>
 </html>
