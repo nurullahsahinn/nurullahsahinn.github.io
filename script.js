@@ -6,36 +6,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.classList.add('touch-device');
   }
   
-  // Aktif bölümü vurgulama fonksiyonu (BURAYA TAŞINDI)
-  function highlightCurrentSection() {
-    const sections = document.querySelectorAll('section');
-    const navItems = document.querySelectorAll('.nav__link');
-    
-    let currentSection = '';
-    // Navigasyon yüksekliğini veya belirli bir ofseti hesaba katmak daha iyi sonuç verebilir.
-    // Şimdilik basit bir ofset kullanıyoruz.
-    const scrollPosition = window.scrollY + (window.innerHeight / 3); 
-    
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.offsetHeight;
-      const sectionId = section.getAttribute('id');
-      
-      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-        currentSection = sectionId;
-      }
-    });
-    
-    navItems.forEach(item => {
-      item.classList.remove('active');
-      const href = item.getAttribute('href');
-      
-      if (href && href === `#${currentSection}` && currentSection !== '') {
-        item.classList.add('active');
-      }
-    });
-  }
-  
   window.addEventListener('load', function() {
     loadBackgroundVideo();
     createVideoParticles(); // Video parçacıklarını oluştur
@@ -430,6 +400,34 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }, 200);
   });
+  
+  // Aktif bölümü vurgulama fonksiyonu
+  function highlightCurrentSection() {
+    const sections = document.querySelectorAll('section');
+    const navItems = document.querySelectorAll('.nav__link');
+    
+    let currentSection = '';
+    const scrollPosition = window.scrollY + 100;
+    
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.offsetHeight;
+      const sectionId = section.getAttribute('id');
+      
+      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+        currentSection = sectionId;
+      }
+    });
+    
+    navItems.forEach(item => {
+      item.classList.remove('active');
+      const href = item.getAttribute('href');
+      
+      if (href && href.includes(currentSection) && currentSection !== '') {
+        item.classList.add('active');
+      }
+    });
+  }
 });
 
 // setupContactForm fonksiyonu - Form işlemlerini yönetir
@@ -1436,29 +1434,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function openModal(modal) {
     if (modal == null) return;
-
-    // Mevcut dili al (HTML lang özniteliğinden, localStorage'dan veya varsayılan olarak)
-    const currentLang = document.documentElement.getAttribute('lang') || localStorage.getItem('preferredLanguage') || 'tr';
-    console.log(`Modal açılıyor (${modal.id}), mevcut dil: ${currentLang}. Çeviriler güncelleniyor.`);
-
-    fetch(`languages/${currentLang}.json`)
-      .then(response => {
-        if (!response.ok) {
-          // Eğer dosya bulunamazsa veya başka bir ağ hatası olursa, hata fırlat.
-          // Kullanıcıya bir geri bildirim göstermek yerine konsola hata basmak şimdilik yeterli.
-          throw new Error(`Dil dosyası yüklenemedi (${currentLang}.json): ${response.status} ${response.statusText}`);
-        }
-        return response.json();
-      })
-      .then(translations => {
-        updatePageContent(translations); // Sayfadaki tüm data-i18n elementlerini güncelle
-        console.log(`Modal içeriği (${modal.id}) ${currentLang} diline göre güncellendi.`);
-      })
-      .catch(error => {
-        // Fetch veya JSON parse hatası durumunda konsola hata bas.
-        console.error(`Modal açılırken (${modal.id}) dil güncelleme hatası (${currentLang}.json):`, error);
-      });
-
     modal.classList.add('open');
     body.style.overflow = 'hidden'; // Arka planın kaymasını engelle
     // ESC tuşu ile kapatma olayını ekle
