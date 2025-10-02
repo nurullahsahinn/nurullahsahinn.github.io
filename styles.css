@@ -18,6 +18,12 @@
   --transition-fast: 0.3s;
   --transition-medium: 0.5s;
   --transition-slow: 0.8s;
+  
+  /* Liquid Glass Teması */
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --glass-blur: blur(10px);
 }
 
 /* Özel Scrollbar Tasarımı */
@@ -818,19 +824,22 @@ a:active::after, button:active::after, .btn:active::after, .nav__link:active::af
 }
 
 .btn {
-  background-color: var(--primary-color);
+  background: linear-gradient(135deg, rgba(242, 72, 11, 0.8), rgba(242, 72, 11, 0.6)); /* Gradient glass efekti */
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(242, 72, 11, 0.5);
   color: var(--light-color);
-  padding: 0.65rem 1.7rem; /* Biraz daha ayarlandı */
-  border: none;
+  padding: 0.65rem 1.7rem;
   outline: none;
-  font-size: 0.9rem; /* 0.95rem'den 0.9rem'e küçültüldü */
+  font-size: 0.9rem;
   font-weight: 500;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 10px; /* Daha yumuşak köşeler */
   transition: all var(--transition-fast);
   position: relative;
   overflow: hidden;
   z-index: 1;
+  box-shadow: 0 4px 15px rgba(242, 72, 11, 0.3);
 }
 
 .btn i {
@@ -855,9 +864,10 @@ a:active::after, button:active::after, .btn:active::after, .nav__link:active::af
 }
 
 .btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(242, 72, 11, 0.3);
-  background-color: var(--primary-light); /* Hover'da arka plan rengini aç */
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(242, 72, 11, 0.5);
+  background: linear-gradient(135deg, rgba(242, 72, 11, 1), rgba(255, 102, 51, 0.9)); /* Hover'da daha canlı */
+  border-color: var(--primary-color);
 }
 
 .btn:hover i {
@@ -881,12 +891,15 @@ nav {
   width: 100%;
   padding: 1.5rem 2rem; /* Varsayılan padding biraz artırıldı */
   z-index: 100;
-  background-color: rgba(9, 12, 16, 0.5); /* Başlangıçta daha şeffaf */
-  backdrop-filter: blur(5px); /* Başlangıçta daha az bulanık */
+  background: var(--glass-bg); /* Liquid Glass efekti */
+  backdrop-filter: var(--glass-blur); /* Liquid Glass blur */
+  -webkit-backdrop-filter: var(--glass-blur); /* Safari desteği */
+  border-bottom: 1px solid var(--glass-border); /* Cam kenarlık */
+  box-shadow: var(--glass-shadow); /* Hafif gölge */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: background-color var(--transition-medium), backdrop-filter var(--transition-medium), padding var(--transition-medium);
+  transition: all var(--transition-medium);
 }
 
 /* Kaydırıldığında navigasyon çubuğuna eklenecek stil */
@@ -1289,7 +1302,9 @@ header {
 
 .about__image img {
   max-width: 100%;
-  border-radius: 8px;
+  border-radius: 16px; /* Daha yumuşak köşeler */
+  border: 2px solid var(--glass-border); /* Cam kenarlık */
+  box-shadow: var(--glass-shadow); /* Hafif gölge */
   display: block;
   margin: 0 auto;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -1329,11 +1344,14 @@ header {
 }
 
 .skills__card {
-  background-color: #0c0f14;
+  background: var(--glass-bg); /* Liquid Glass arka plan */
+  backdrop-filter: var(--glass-blur); /* Cam efekti */
+  -webkit-backdrop-filter: var(--glass-blur); /* Safari desteği */
+  border: 1px solid var(--glass-border); /* Cam kenarlık */
   padding: 2rem;
-  border-radius: 8px;
+  border-radius: 16px; /* Daha yumuşak köşeler */
   transition: all var(--transition-medium);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--glass-shadow);
   height: 100%;
   position: relative;
   z-index: 1;
@@ -1360,7 +1378,9 @@ header {
 
 .skills__card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 12px 40px 0 rgba(242, 72, 11, 0.15); /* Kırmızı tonunda gölge */
+  border-color: rgba(242, 72, 11, 0.3); /* Hover'da kenarlık rengi */
+  background: rgba(255, 255, 255, 0.08); /* Hover'da biraz daha parlak */
 }
 
 .skills__card h3 {
@@ -1457,12 +1477,15 @@ header {
 }
 
 .service__card {
-  background-color: #0c0f14;
+  background: var(--glass-bg); /* Liquid Glass arka plan */
+  backdrop-filter: var(--glass-blur); /* Cam efekti */
+  -webkit-backdrop-filter: var(--glass-blur); /* Safari desteği */
+  border: 1px solid var(--glass-border); /* Cam kenarlık */
   padding: 2rem;
-  border-radius: 8px;
+  border-radius: 16px; /* Daha yumuşak köşeler */
   text-align: left;
   transition: all var(--transition-medium);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--glass-shadow);
   height: 100%;
   position: relative;
   overflow: hidden;
@@ -1556,17 +1579,22 @@ header {
 }
 
 .project__card {
-  background-color: var(--dark-color);
-  border-radius: 8px;
+  background: var(--glass-bg); /* Liquid Glass arka plan */
+  backdrop-filter: var(--glass-blur); /* Cam efekti */
+  -webkit-backdrop-filter: var(--glass-blur); /* Safari desteği */
+  border: 1px solid var(--glass-border); /* Cam kenarlık */
+  border-radius: 16px; /* Daha yumuşak köşeler */
   overflow: hidden;
   position: relative;
   transition: all var(--transition-medium);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--glass-shadow);
 }
 
 .project__card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 50px 0 rgba(242, 72, 11, 0.2); /* Kırmızı tonunda gölge */
+  border-color: rgba(242, 72, 11, 0.4); /* Hover'da kenarlık rengi */
+  background: rgba(255, 255, 255, 0.1); /* Hover'da daha parlak */
 }
 
 .project__card img {
@@ -1704,8 +1732,10 @@ footer::before {
 
 .footer__form input,
 .footer__form textarea {
-  background-color: #151b25;
-  border: none;
+  background: var(--glass-bg); /* Liquid Glass arka plan */
+  backdrop-filter: blur(5px); /* Hafif blur */
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid var(--glass-border); /* Cam kenarlık */
   outline: none;
   padding: 1rem;
   border-radius: 5px;
@@ -1728,8 +1758,11 @@ footer::before {
   right: 30px;
   width: 50px;
   height: 50px;
-  background-color: var(--primary-color);
-  color: var(--light-color);
+  background: var(--glass-bg); /* Liquid Glass arka plan */
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  color: var(--primary-color);
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -1738,6 +1771,7 @@ footer::before {
   opacity: 0;
   visibility: hidden;
   transition: all var(--transition-fast);
+  box-shadow: var(--glass-shadow);
   z-index: 99;
   box-shadow: 0 5px 15px rgba(242, 72, 11, 0.3);
 }
@@ -1761,9 +1795,11 @@ footer::before {
 }
 
 .back-to-top:hover {
-  background-color: var(--primary-dark);
-  transform: translateY(-5px);
+  background: rgba(242, 72, 11, 0.2); /* Kırmızımsı glass efekti */
+  border-color: var(--primary-color);
+  transform: translateY(-5px) scale(1.1);
   animation: none;
+  box-shadow: 0 10px 30px rgba(242, 72, 11, 0.4);
 }
 
 /* RESPONSIVE DESIGN */
@@ -3627,20 +3663,22 @@ header [data-i18n] {
 }
 
 .modal-content {
-  background-color: #1a1e25; /* Koyu tema için uygun bir arkaplan */
+  background: var(--glass-bg); /* Liquid Glass arka plan */
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
   margin: auto;
   padding: 30px;
-  border: 1px solid #f2480b; /* Ana renk ile uyumlu border */
-  border-radius: 10px;
+  border: 2px solid var(--glass-border); /* Cam kenarlık */
+  border-radius: 20px; /* Daha yumuşak köşeler */
   width: 80%;
-  max-width: 700px; /* Maksimum genişlik */
-  color: #f0f0f0; /* Açık renk yazı */
-  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+  max-width: 700px;
+  color: #f0f0f0;
+  box-shadow: var(--glass-shadow);
   position: relative;
   transform: scale(0.95);
   transition: transform 0.3s ease-in-out;
-  max-height: 85vh; /* Maksimum yükseklik, scroll edilebilir */
-  overflow-y: auto; /* İçerik taşarsa scroll bar çıksın */
+  max-height: 85vh;
+  overflow-y: auto;
 }
 
 .modal.open .modal-content {

@@ -886,6 +886,9 @@
             <li data-i18n="skills.technical.git">GİT / GITHUB</li>
             <li data-i18n="skills.technical.hackintosh">Hackintosh Kurulumu ve Optimizasyonu</li>
             <li data-i18n="skills.technical.hardware">Bilgisayar Donanımı ve Sistem Toplama</li>
+            <li data-i18n="skills.technical.unity">Unity - Oyun ve XR (AR/VR) Geliştirme</li>
+            <li data-i18n="skills.technical.ai">AI/LLM - Langchain, Langgraph, RAG, Chatbot</li>
+            <li data-i18n="skills.technical.automation">n8n - Otomasyon ve Workflow</li>
           </ul>
         </div>
         <div class="skills__card" data-aos="zoom-in" data-aos-delay="200">
@@ -946,6 +949,27 @@
             Veritabanı tasarımı ve optimizasyonu.
           </p>
         </div>
+        <div class="service__card" data-aos="fade-up" data-aos-delay="500">
+          <div class="service__icon">
+            <i class="fas fa-vr-cardboard"></i>
+          </div>
+          <h4 data-i18n="services.unity.title">Unity & XR Geliştirme</h4>
+          <p data-i18n="services.unity.description">
+            Unity ile oyun geliştirme, sanal gerçeklik (VR) ve artırılmış 
+            gerçeklik (AR) uygulamaları tasarlama konusunda deneyim.
+          </p>
+        </div>
+        <div class="service__card" data-aos="fade-up" data-aos-delay="600">
+          <div class="service__icon">
+            <i class="fas fa-brain"></i>
+          </div>
+          <h4 data-i18n="services.ai.title">AI & LLM Çözümleri</h4>
+          <p data-i18n="services.ai.description">
+            Langchain, Langgraph, RAG ve React Agent kullanarak chatbot ve 
+            LLM tabanlı akıllı sistemler geliştirme. n8n ile AI otomasyon 
+            workflow'ları oluşturma.
+          </p>
+        </div>
       </div>
     </div>
   </section>
@@ -960,10 +984,10 @@
           <div class="project__content">
             <h3 data-i18n="projects.nonGravitySatellite.title">Non Gravity Model Uydu</h3>
             <p data-i18n="projects.satellite.description_detailed">
-              Teknofest kapsamında yazılım lideri olarak yürüttüğüm model uydu yarışması. TÜRKSAT Model Uydu Yarışması için geliştirilen bu proje, taşıyıcı ve görev yükü modüllerinden oluşur. Kontrollü iniş, veri toplama, görüntü kaydı/iletimi ve multi-spektral filtreleme yeteneklerine sahiptir. Yer istasyonu ile anlık haberleşme kurabilir. 
+              TÜRKSAT Model Uydu Yarışması 2025 için yazılım lideri olarak geliştirdiğim uçtan uca model uydu yazılım sistemi. Sıfırdan tasarlanmış, tam otomatik telemetri (1 Hz), gerçek zamanlı video akışı (240x180@2fps), SD karta yüksek kaliteli video kaydı (640x480@15fps), IoT S2S bonus görevi ve SAHA protokolü ile taşıyıcı-görev yükü haberleşmesi içerir.
             </p>
             <p class="project_technologies">
-              <strong>Ana Teknolojiler:</strong> Arduino Nano, Raspberry Pi Zero 2 W, C# (Yer İstasyonu), XBee Haberleşme, GPS, IMU (ADXL345, ITG3200, HMC5883L), BMP280, Raspberry Pi Kamera.
+              <strong>Ana Teknolojiler:</strong> Raspberry Pi Zero 2W, Arduino Nano/Mega, Python 3.11, C# (.NET), C++, XBee 3 Pro (API Mode), BMP280, 10-DOF IMU, GPS, ADS1115, Picamera2, H.264/MJPEG, SAHA Protokolü, ARAS Alarm Sistemi.
             </p>
             <p class="project__award" data-i18n="projects.satellite.award"><i class="fas fa-award"></i> TÜBİTAK 2209-A programında tam onay!</p>
             <button class="btn btn--primary" data-i18n="projects.satellite.button">Detaylar</button>
@@ -1580,33 +1604,34 @@
     <div class="modal-content">
       <span class="modal-close-button">&times;</span>
       <img src="./modeluydu.jpg" alt="Non Gravity Model Uydu" class="modal-img">
-      <h2>Non Gravity Model Uydu</h2>
+      <h2 data-i18n="projects.nonGravitySatellite.title">Non Gravity Model Uydu</h2>
       
-      <h4>Proje Özeti</h4>
-      <p>
-        TÜRKSAT Model Uydu Yarışması kapsamında geliştirilen bu model uydu sistemi, yarışma şartnamesinde belirtilen gereksinimleri karşılamak üzere tasarlanmış olup, ana modül (taşıyıcı) ve görev yükü birimlerinden oluşmaktadır. Model uydu sistemi, atmosfere bırakıldıktan sonra taşıyıcı ve görev yükü modüllerini 400 metre irtifada ayırarak, her iki modülün de belirlenen hızlarda (taşıyıcı 12-14 m/s, görev yükü 6-8 m/s) kontrollü inişini sağlar. Sistem, iniş sırasında çeşitli sensörlerden veri toplama, kamera görüntüsü kaydetme ve iletme, multi-spektral filtreleme yapma ve yer istasyonuyla haberleşme yeteneklerine sahiptir.
+      <h4 data-i18n="projects.nonGravitySatellite.summary_title">Proje Özeti</h4>
+      <p data-i18n="projects.nonGravitySatellite.summary_text">
+        TÜRKSAT Model Uydu Yarışması 2025 için NONGRAVITY Takımı (286570) tarafından geliştirilen tam otomatik görev yükü sistemi. Roket ile fırlatılan model uydudan 400m'de ayrılarak kendi paraşütüyle inerken kesintisiz telemetri (1 Hz, 30 alan), XBee üzerinden gerçek zamanlı video akışı ve SD karta H.264/MP4 kayıt yapar. İniş hızları: Taşıyıcı 12-14 m/s, Görev Yükü 6-8 m/s. IoT S2S bonus görevi kapsamında görev boyunca 412-707m mesafede 2 yer istasyonundan sürekli sıcaklık verisi alır. SAHA protokolü ile taşıyıcı-görev yükü haberleşmesi ve ARAS alarm sistemi içerir. Tüm yazılım bileşenleri (Python, C#, Arduino) sıfırdan geliştirilmiştir.
       </p>
       
-      <h4>Sistem Mimarisi</h4>
-      <p><strong>Taşıyıcı Modül:</strong> Arduino Nano tabanlıdır. Sensör verilerini toplama, ayrılma mekanizmasını kontrol etme ve temel telemetri verilerini iletme görevlerini üstlenir.</p>
-      <p><strong>Görev Yükü Modülü:</strong> Raspberry Pi Zero 2 W tabanlıdır. Kamera görüntüsü aktarma, konum bilgisi iletme ve multi-spektral filtreleme sistemini kontrol etme görevlerini yerine getirir.</p>
-      <p><strong>Yer İstasyonu:</strong> C# tabanlı bir masaüstü uygulamasıdır. Telemetri verilerini görselleştirme, komut gönderme, kamera görüntüsünü izleme ve kaydetme işlevlerini sağlar.</p>
+      <h4 data-i18n="projects.nonGravitySatellite.architecture_title">Sistem Mimarisi</h4>
+      <p data-i18n="projects.nonGravitySatellite.architecture_carrier_module"><strong>Taşıyıcı Modül:</strong> Arduino Nano tabanlıdır. Sensör verilerini toplama, ayrılma mekanizmasını kontrol etme ve temel telemetri verilerini iletme görevlerini üstlenir.</p>
+      <p data-i18n="projects.nonGravitySatellite.architecture_payload_module"><strong>Görev Yükü Modülü:</strong> Raspberry Pi Zero 2 W tabanlıdır. Kamera görüntüsü aktarma, konum bilgisi iletme ve multi-spektral filtreleme sistemini kontrol etme görevlerini yerine getirir.</p>
+      <p data-i18n="projects.nonGravitySatellite.architecture_ground_station"><strong>Yer İstasyonu:</strong> C# tabanlı bir masaüstü uygulamasıdır. Telemetri verilerini görselleştirme, komut gönderme, kamera görüntüsünü izleme ve kaydetme işlevlerini sağlar.</p>
       
-      <h4>Kullanılan Ana Donanımlar</h4>
+      <h4 data-i18n="projects.nonGravitySatellite.hardware_title">Kullanılan Ana Donanımlar</h4>
       <ul>
-        <li><strong>İşlemciler:</strong> Arduino Nano, Raspberry Pi Zero 2 W</li>
-        <li><strong>Sensörler:</strong> 10-DOF IMU (ADXL345, ITG3200, HMC5883L), BMP280 Basınç Sensörü, Ublox GY-GPSV3 NEO-8M M8N GPS Modülü, DS3231 RTC</li>
-        <li><strong>Haberleşme:</strong> XBee 3 Pro Modül, Dahili Wi-Fi (Raspberry Pi Zero 2 W)</li>
-        <li><strong>Kamera:</strong> Raspberry Pi Kamera Modül 3</li>
-        <li><strong>Güç Yönetimi:</strong> NCR18650B Li-Ion Pil (Görev Yükü), Beston 9V USB Type-C Şarjlı Pil (Taşıyıcı), LM2577 + LM2596 Gerilim Çevirici</li>
-        <li><strong>Mekanik Bileşenler:</strong> SG90 RC Mini Servo Motorlar (Ayrılma ve Filtreleme için)</li>
+        <li data-i18n="projects.nonGravitySatellite.hardware_processors"><strong>İşlemciler:</strong> Raspberry Pi Zero 2W (Görev Yükü), Arduino Nano (Taşıyıcı), Arduino Nano + Mega 2560 (IoT İstasyonları)</li>
+        <li data-i18n="projects.nonGravitySatellite.hardware_sensors"><strong>Sensörler:</strong> BMP280 Basınç (I2C 0x76/0x77), 10-DOF IMU (ADXL345, ITG3200, HMC5883L), UbloxNeo-8M GPS (UART), ADS1115 16-bit ADC (Pil izleme), DS3231 RTC</li>
+        <li data-i18n="projects.nonGravitySatellite.hardware_communication"><strong>Haberleşme:</strong> XBee 3 Pro Modül (63mW, 250 Kbps), API Mode 1, PAN ID 0x6570, Mesh Network (Kanal 12, 13, 14)</li>
+        <li data-i18n="projects.nonGravitySatellite.hardware_camera"><strong>Kamera:</strong> Raspberry Pi Camera Module 3 (11.9MP) - İkili Sistem: SD Kayıt (640x480@15fps H.264) + XBee Stream (240x180@2fps MJPEG)</li>
+        <li data-i18n="projects.nonGravitySatellite.hardware_power"><strong>Güç:</strong> NCR18650B Li-Ion 3400mAh x2 (Görev Yükü), Beston 9V USB-C (Taşıyıcı), LM2596 Step-Down + LM2577 Step-Up Regülatörler</li>
+        <li data-i18n="projects.nonGravitySatellite.hardware_mechanical"><strong>Aktuatörler:</strong> 2x SG90 Servo (Multi-spektral filtre + Ayrılma), Passive Buzzer (Kurtarma sinyali)</li>
       </ul>
 
-      <h4>Yazılım Mimarisi</h4>
+      <h4 data-i18n="projects.nonGravitySatellite.software_title">Yazılım Mimarisi</h4>
       <ul>
-        <li><strong>Yer İstasyonu (YerAltiIstasyonu):</strong> C# dili ve .NET Framework kullanılarak geliştirilmiştir.</li>
-        <li><strong>Taşıyıcı Modül Yazılımı (YerAltiSistem):</strong> Arduino (C/C++) dili ile programlanmıştır.</li>
-        <li><strong>Görev Yükü Modülü Yazılımı:</strong> Raspberry Pi üzerinde Python dili ile geliştirilmiştir.</li>
+        <li data-i18n="projects.nonGravitySatellite.software_ground_station"><strong>Yer İstasyonu:</strong> C# Windows Forms (.NET Framework) - Gerçek zamanlı telemetri grafikleri, 3D uydu görselleştirmesi (OpenGL), harita (GMap.NET), canlı video, ARAS alarm sistemi, CSV export.</li>
+        <li data-i18n="projects.nonGravitySatellite.software_carrier_module"><strong>Taşıyıcı Sistem:</strong> Arduino Nano (C++) - BMP280 basınç, otomatik ayrılma @400m, SAHA protokolü (XBee), buzzer kurtarma.</li>
+        <li data-i18n="projects.nonGravitySatellite.software_payload_module"><strong>Görev Yükü:</strong> Python 3.11 (Raspberry Pi) - Çok iş parçacıklı mimari, 1 Hz telemetri, ikili video sistemi, sensör füzyonu, SD kayıt, XBee haberleşme, IoT veri alma, systemd servisi.</li>
+        <li data-i18n="projects.nonGravitySatellite.software_iot"><strong>IoT İstasyonları:</strong> Arduino Nano + Mega 2560 (C++) - BMP280 sıcaklık, XBee 3 Pro (Kanal 12/13), 412-707m mesafe iletişimi.</li>
       </ul>
       
       <!-- Linkler buraya eklenebilir -->
@@ -1624,21 +1649,21 @@
     <div class="modal-content">
       <span class="modal-close-button">&times;</span>
       <img src="./sualtı.jpg" alt="Otonom Sualtı Aracı Projesi" class="modal-img">
-      <h2>Otonom Sualtı Aracı - AXOLOTL</h2>
-      <p>
+      <h2 data-i18n="projects.sualti.title">Otonom Sualtı Aracı - AXOLOTL</h2>
+      <p data-i18n="projects.axolotl.summary_text">
         AXOLOTL projesi, TEKNOFEST 2025 İnsansız Su Altı Sistemleri Yarışması için geliştirilmiş olup, su altı koşullarında otonom görevler gerçekleştirebilen bir su altı aracıdır. Proje, TÜBİTAK 2209-A Üniversite Öğrencileri Araştırma Projeleri Destekleme Programı'ndan destek almıştır.
       </p>
-      <h4>Temel Özellikler:</h4>
+      <h4 data-i18n="projects.axolotl.features_title">Temel Özellikler:</h4>
       <ul>
-        <li>Özgün ve yerli tasarım: Tüm teknik çizimler, tasarımlar, mühendislik analizleri ve yazılımlar takım üyeleri tarafından geliştirilmiştir.</li>
-        <li>Gelişmiş Donanım: Jetson Xavier NX (yapay zeka ve görüntü işleme), Pixhawk PX4 (görev yönetimi ve motor kontrolü).</li>
-        <li>Motorlar: 6 adet fırçasız motor.</li>
-        <li>Sensörler: Derinlik, basınç, IMU/pusula, ultrasonik sensörler, su kaçak sensörleri.</li>
-        <li>Mekanik Tasarım: Axolotl formunda hidrodinamik tasarım, PETG malzeme, modüler ve sızdırmaz gövde.</li>
-        <li>Yazılım: Python tabanlı görüntü işleme (OpenCV, NumPy), görev yürütme ve motor kontrol algoritmaları.</li>
-        <li>Güvenlik: Su sızıntı sensörleri, acil yüzey çıkış sistemi, enerji kesme sistemi.</li>
+        <li data-i18n="projects.axolotl.feature_design">Özgün ve yerli tasarım: Tüm teknik çizimler, tasarımlar, mühendislik analizleri ve yazılımlar takım üyeleri tarafından geliştirilmiştir.</li>
+        <li data-i18n="projects.axolotl.feature_hardware">Gelişmiş Donanım: Jetson Xavier NX (yapay zeka ve görüntü işleme), Pixhawk PX4 (görev yönetimi ve motor kontrolü).</li>
+        <li data-i18n="projects.axolotl.feature_motors">Motorlar: 6 adet fırçasız motor.</li>
+        <li data-i18n="projects.axolotl.feature_sensors">Sensörler: Derinlik, basınç, IMU/pusula, ultrasonik sensörler, su kaçak sensörleri.</li>
+        <li data-i18n="projects.axolotl.feature_mechanical">Mekanik Tasarım: Axolotl formunda hidrodinamik tasarım, PETG malzeme, modüler ve sızdırmaz gövde.</li>
+        <li data-i18n="projects.axolotl.feature_software">Yazılım: Python tabanlı görüntü işleme (OpenCV, NumPy), görev yürütme ve motor kontrol algoritmaları.</li>
+        <li data-i18n="projects.axolotl.feature_safety">Güvenlik: Su sızıntı sensörleri, acil yüzey çıkış sistemi, enerji kesme sistemi.</li>
       </ul>
-      <p>
+      <p data-i18n="projects.axolotl.updates_text">
         Proje, Jetson Nano'dan Jetson Xavier NX'e geçiş ve Lidar yerine Arducam MINI M12 kamera sistemi kullanımı gibi önemli donanım güncellemeleriyle performansı artırmayı hedeflemektedir. Mekanik tasarımda sızdırmazlık ve hidrodinamik verimlilik ön planda tutulmuştur.
       </p>
       
