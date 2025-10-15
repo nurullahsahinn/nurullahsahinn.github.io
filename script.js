@@ -712,7 +712,7 @@ function changeLanguage(lang) {
         "services.hardware.title": "Bilgisayar Donanımı",
         "services.hardware.description": "Farklı ihtiyaçlara yönelik özel masaüstü bilgisayar sistemleri toplama ve optimizasyon konusunda deneyim.",
         "services.database.title": "Veritabanı Yönetimi",
-        "services.database.description": "MySQL ve veritabanı yönetimi konusunda tecrübe. Veritabanı tasarımı ve optimizasyonu.",
+        "services.database.description": "MySQL ve veritabanı yönetimi.",
         "projects.subtitle": "Projelerim",
         "projects.title": "<span>Son</span> Projelerim",
         "projects.satellite.title": "Model Uydu Yarışması",
