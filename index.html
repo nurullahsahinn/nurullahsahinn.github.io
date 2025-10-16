@@ -80,7 +80,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: #090c10;
+      background: rgba(9, 12, 16, 0.95);
       z-index: 100000;
       display: flex;
       align-items: center;
@@ -96,7 +96,8 @@
       position: absolute;
       width: 100%;
       height: 100%;
-      opacity: 0.2;
+      opacity: 0.15;
+      z-index: 4;
     }
     .splash-3d-plane {
       position: absolute;
@@ -138,6 +139,7 @@
       width: 100%;
       height: 100%;
       pointer-events: none;
+      z-index: 5;
     }
     .splash-particle {
       position: absolute;
@@ -210,15 +212,19 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(145deg, #0c1016, #060a0f);
-      box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5),
-                 -10px -10px 20px rgba(25, 30, 40, 0.1);
+      background: linear-gradient(145deg, rgba(12, 16, 22, 0.95), rgba(6, 10, 15, 0.95));
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.7),
+                 -10px -10px 20px rgba(25, 30, 40, 0.2),
+                 0 0 30px rgba(242, 72, 11, 0.3);
       margin-bottom: 30px;
       animation: float 4s ease-in-out infinite, glow 3s ease-in-out infinite;
       overflow: hidden;
-      z-index: 2;
+      z-index: 10;
       transform-style: preserve-3d;
       perspective: 500px;
+      border: 2px solid rgba(242, 72, 11, 0.3);
     }
     .splash-logo-container::before {
       content: "";
@@ -246,6 +252,7 @@
       border: 1px solid rgba(242, 72, 11, 0.2);
       animation: expandCircle 3s ease-in-out infinite;
       opacity: 0;
+      z-index: 6;
     }
     .splash-circle:nth-child(1) {
       width: 130px;
@@ -277,12 +284,15 @@
     }
     .splash-logo {
       position: absolute;
-      color: #f2480b;
+      color: #ffffff;
       font-size: 30px;
       font-weight: 900;
       font-family: "Arial Black", Arial, sans-serif;
       z-index: 2;
-      text-shadow: 0 0 15px rgba(242, 72, 11, 0.7);
+      text-shadow: 0 0 20px rgba(242, 72, 11, 0.9),
+                   0 0 40px rgba(242, 72, 11, 0.6),
+                   0 4px 8px rgba(0, 0, 0, 0.8),
+                   0 2px 4px rgba(0, 0, 0, 0.9);
       letter-spacing: 1px;
       animation: pulse 2s ease-in-out infinite;
       display: flex;
@@ -291,7 +301,7 @@
       width: 100%;
       height: 100%;
       transform: translateZ(10px);
-      -webkit-text-stroke: 1px rgba(242, 72, 11, 0.3);
+      -webkit-text-stroke: 1px rgba(242, 72, 11, 0.5);
       text-align: center;
       left: 0;
       right: 0;
@@ -300,26 +310,30 @@
     .splash-progress {
       width: 150px;
       height: 4px;
-      background: rgba(242, 72, 11, 0.1);
+      background: rgba(255, 255, 255, 0.2);
       border-radius: 4px;
       overflow: hidden;
       margin-top: 20px;
       position: relative;
-      z-index: 2;
+      z-index: 10;
       transform-style: preserve-3d;
       perspective: 500px;
       transform: rotateX(5deg);
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5),
+                  0 0 10px rgba(242, 72, 11, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
     .splash-progress-bar {
       height: 100%;
       width: 0;
-      background: linear-gradient(90deg, #f2480b, #ff692e);
+      background: linear-gradient(90deg, #f2480b, #ff692e, #ffffff);
       position: absolute;
       top: 0;
       left: 0;
       border-radius: 4px;
-      box-shadow: 0 0 10px rgba(242, 72, 11, 0.5);
+      box-shadow: 0 0 15px rgba(242, 72, 11, 0.8),
+                  0 0 25px rgba(242, 72, 11, 0.5),
+                  0 2px 4px rgba(0, 0, 0, 0.6);
       animation: progress 2.5s ease-in-out;
       animation-fill-mode: forwards;
     }
@@ -327,27 +341,32 @@
       position: absolute;
       bottom: -24px;
       font-size: 12px;
-      color: rgba(242, 72, 11, 0.8);
+      color: #ffffff;
       width: 100%;
       text-align: center;
       font-family: Arial, sans-serif;
       opacity: 0.8;
       animation: fadeInUp 0.5s ease-out 0.5s forwards, fadeOut 0.5s ease-in 2.5s forwards;
       opacity: 0;
-      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+      text-shadow: 0 0 10px rgba(242, 72, 11, 0.8),
+                   0 2px 4px rgba(0, 0, 0, 0.9),
+                   0 1px 2px rgba(0, 0, 0, 1);
     }
     .splash-text {
       font-size: 14px;
-      color: rgba(242, 72, 11, 0.8);
+      color: #ffffff;
       margin-top: 45px;
       font-family: Arial, sans-serif;
       letter-spacing: 2px;
       opacity: 0;
       animation: fadeInText 0.5s ease-out 1s forwards;
-      z-index: 2;
+      z-index: 10;
       position: relative;
       font-weight: bold;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+      text-shadow: 0 0 15px rgba(242, 72, 11, 0.8),
+                   0 0 30px rgba(242, 72, 11, 0.5),
+                   0 3px 6px rgba(0, 0, 0, 0.9),
+                   0 1px 3px rgba(0, 0, 0, 1);
       width: 100%;
       text-align: center;
       transform: none;
@@ -532,6 +551,190 @@
       .splash-text {
         margin-top: 25px;
         font-size: 11px;
+      }
+    }
+
+    /* Glassmorphism Background Styles */
+    .splash-glassmorphism-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .splash-bg-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+      opacity: 0.7;
+    }
+
+    .splash-trees {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 3;
+      pointer-events: none;
+      opacity: 0.8;
+    }
+
+    .splash-girl {
+      position: absolute;
+      scale: 0.5;
+      pointer-events: none;
+      animation: animateSplashGirl 12s linear infinite;
+      z-index: 2;
+      opacity: 0.9;
+    }
+
+    @keyframes animateSplashGirl {
+      0% {
+        transform: translateX(calc(100% + 100vw));
+      }
+      50% {
+        transform: translateX(calc(-100% - 100vw));
+      }
+      50.01% {
+        transform: translateX(calc(-100% - 100vw)) rotateY(180deg);
+      }
+      100% {
+        transform: translateX(calc(100% + 100vw)) rotateY(180deg);
+      }
+    }
+
+    .splash-leaves {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .splash-leaves-set {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+    }
+
+    .splash-leaves-set div {
+      position: absolute;
+      display: block;
+    }
+
+    .splash-leaves-set div img {
+      width: 40px;
+      opacity: 0.8;
+    }
+
+    .splash-leaves-set div:nth-child(1) {
+      left: 20%;
+      animation: animateSplashLeaves 20s linear infinite;
+      animation-delay: 0s;
+    }
+
+    .splash-leaves-set div:nth-child(2) {
+      left: 50%;
+      animation: animateSplashLeaves 14s linear infinite;
+      animation-delay: 2s;
+    }
+
+    .splash-leaves-set div:nth-child(3) {
+      left: 70%;
+      animation: animateSplashLeaves 12s linear infinite;
+      animation-delay: 4s;
+    }
+
+    .splash-leaves-set div:nth-child(4) {
+      left: 5%;
+      animation: animateSplashLeaves 15s linear infinite;
+      animation-delay: 1s;
+    }
+
+    .splash-leaves-set div:nth-child(5) {
+      left: 85%;
+      animation: animateSplashLeaves 18s linear infinite;
+      animation-delay: 3s;
+    }
+
+    .splash-leaves-set div:nth-child(6) {
+      left: 90%;
+      animation: animateSplashLeaves 12s linear infinite;
+      animation-delay: 5s;
+    }
+
+    .splash-leaves-set div:nth-child(7) {
+      left: 15%;
+      animation: animateSplashLeaves 14s linear infinite;
+      animation-delay: 6s;
+    }
+
+    .splash-leaves-set div:nth-child(8) {
+      left: 60%;
+      animation: animateSplashLeaves 15s linear infinite;
+      animation-delay: 7s;
+    }
+
+    @keyframes animateSplashLeaves {
+      0% {
+        opacity: 0;
+        top: -10%;
+        transform: translateX(20px) rotate(0deg);
+      }
+      10% {
+        opacity: 0.8;
+      }
+      20% {
+        transform: translateX(-20px) rotate(45deg);
+      }
+      40% {
+        transform: translateX(-20px) rotate(90deg);
+      }
+      60% {
+        transform: translateX(20px) rotate(180deg);
+      }
+      80% {
+        transform: translateX(-20px) rotate(45deg);
+      }
+      100% {
+        top: 110%;
+        transform: translateX(20px) rotate(225deg);
+        opacity: 0;
+      }
+    }
+
+    /* Mobil için Glassmorphism optimizasyonu */
+    @media screen and (max-width: 768px) {
+      .splash-girl {
+        scale: 0.4;
+      }
+      .splash-leaves-set div img {
+        width: 30px;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .splash-girl {
+        scale: 0.3;
+      }
+      .splash-leaves-set div img {
+        width: 25px;
       }
     }
 
@@ -740,7 +943,60 @@
   <!-- Arka Plan Parçacık Efekti -->
   <div class="particles-container"></div>
 
+  <!-- Electric Border Effect SVG Filter -->
+  <svg class="electric-svg-filter" style="position: absolute; width: 0; height: 0;">
+    <defs>
+      <filter id="electric-turbulence" colorInterpolationFilters="sRGB" x="-20%" y="-20%" width="140%" height="140%">
+        <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise1" seed="1" />
+        <feOffset in="noise1" dx="0" dy="0" result="offsetNoise1">
+          <animate attributeName="dy" values="700; 0" dur="6s" repeatCount="indefinite" calcMode="linear" />
+        </feOffset>
+
+        <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise2" seed="1" />
+        <feOffset in="noise2" dx="0" dy="0" result="offsetNoise2">
+          <animate attributeName="dy" values="0; -700" dur="6s" repeatCount="indefinite" calcMode="linear" />
+        </feOffset>
+
+        <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise1" seed="2" />
+        <feOffset in="noise1" dx="0" dy="0" result="offsetNoise3">
+          <animate attributeName="dx" values="490; 0" dur="6s" repeatCount="indefinite" calcMode="linear" />
+        </feOffset>
+
+        <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise2" seed="2" />
+        <feOffset in="noise2" dx="0" dy="0" result="offsetNoise4">
+          <animate attributeName="dx" values="0; -490" dur="6s" repeatCount="indefinite" calcMode="linear" />
+        </feOffset>
+
+        <feComposite in="offsetNoise1" in2="offsetNoise2" result="part1" />
+        <feComposite in="offsetNoise3" in2="offsetNoise4" result="part2" />
+        <feBlend in="part1" in2="part2" mode="color-dodge" result="combinedNoise" />
+
+        <feDisplacementMap in="SourceGraphic" in2="combinedNoise" scale="30" xChannelSelector="R" yChannelSelector="B" />
+      </filter>
+    </defs>
+  </svg>
+
   <div id="splashScreen">
+    <!-- Glassmorphism Background -->
+    <div class="splash-glassmorphism-bg">
+      <img src="Glassmorphism Login Page/bg.jpg" class="splash-bg-img" alt="Background">
+      <img src="Glassmorphism Login Page/trees.png" class="splash-trees" alt="Trees">
+      <img src="Glassmorphism Login Page/girl.png" class="splash-girl" alt="Character">
+      
+      <div class="splash-leaves">
+        <div class="splash-leaves-set">
+          <div><img src="Glassmorphism Login Page/leaf_01.png" alt="Leaf"></div>
+          <div><img src="Glassmorphism Login Page/leaf_02.png" alt="Leaf"></div>
+          <div><img src="Glassmorphism Login Page/leaf_03.png" alt="Leaf"></div>
+          <div><img src="Glassmorphism Login Page/leaf_04.png" alt="Leaf"></div>
+          <div><img src="Glassmorphism Login Page/leaf_01.png" alt="Leaf"></div>
+          <div><img src="Glassmorphism Login Page/leaf_02.png" alt="Leaf"></div>
+          <div><img src="Glassmorphism Login Page/leaf_03.png" alt="Leaf"></div>
+          <div><img src="Glassmorphism Login Page/leaf_04.png" alt="Leaf"></div>
+        </div>
+      </div>
+    </div>
+    
     <div class="splash-3d-container">
       <div class="splash-3d-plane"></div>
       <div class="splash-3d-plane"></div>
@@ -1106,6 +1362,11 @@
     <i class="fas fa-arrow-up"></i>
   </div>
 
+  <!-- Spider Clock Widget -->
+  <div class="spider-clock-widget">
+    <iframe src="Spider Clock Animation/index.html" frameborder="0" allowfullscreen></iframe>
+  </div>
+
   <script>
     // AOS başlatma fonksiyonu
     function initAOS() {
@@ -1171,6 +1432,12 @@
 
       // Fare İzleyici Efekti
       const cursorFollower = document.querySelector('.cursor-follower');
+      
+      // Animated Custom Cursor varsa, cursor-follower'ı gizle
+      if (cursorFollower) {
+        cursorFollower.style.display = 'none';
+      }
+      
       let mouseX = 0, mouseY = 0;
       let cursorX = 0, cursorY = 0;
 
@@ -1178,7 +1445,9 @@
       document.addEventListener('mousemove', function(e) {
         mouseX = e.clientX;
         mouseY = e.clientY;
-        cursorFollower.style.opacity = '1';
+        if (cursorFollower) {
+          cursorFollower.style.opacity = '0'; // Animated cursor ile çakışmasın
+        }
       });
 
       // Link ve butonlar üzerinde fare efektini büyüt
@@ -1597,6 +1866,96 @@
     });
   </script>
   <script  src="Reptile Interactive Cursor/script.js"></script>
+
+  <!-- Animated Custom Cursor -->
+  <style>
+    /* Tüm cursor efektlerini kaldır, sadece custom cursor kullan */
+    * {
+      cursor: none !important;
+    }
+    
+    /* Custom cursor container */
+    #customCursor {
+      position: fixed;
+      pointer-events: none;
+      z-index: 99999;
+      transform: translate(-50%, -50%);
+      width: 32px;
+      height: 32px;
+      transition: none;
+    }
+    
+    #customCursor img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  </style>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Custom cursor elementini oluştur
+      const customCursor = document.createElement('div');
+      customCursor.id = 'customCursor';
+      const cursorImg = document.createElement('img');
+      customCursor.appendChild(cursorImg);
+      document.body.appendChild(customCursor);
+
+      // Her sayfa yüklendiğinde rastgele cursor seç
+      const cursors = [
+        { folder: "cursor1", frameCount: 3 },
+        { folder: "cursor2", frameCount: 3 },
+        { folder: "cursor3", frameCount: 4 },
+        { folder: "cursor4", frameCount: 2 },
+        { folder: "cursor5", frameCount: 4 },
+        { folder: "cursor6", frameCount: 3 },
+        { folder: "cursor7", frameCount: 3 }
+      ];
+
+      // Rastgele bir cursor seç
+      const randomCursor = cursors[Math.floor(Math.random() * cursors.length)];
+      const folder = "Animated Custom Cursor/" + randomCursor.folder;
+      const frameCount = randomCursor.frameCount;
+      
+      const frames = [];
+      for (let i = 1; i <= frameCount; i++) {
+        frames.push(`${folder}/frame${i}.png`);
+      }
+
+      let cursorIndex = 0;
+      const fps = 8;
+
+      // Cursor animasyonunu başlat
+      function updateCursorFrame() {
+        cursorImg.src = frames[cursorIndex];
+        cursorIndex = (cursorIndex + 1) % frames.length;
+      }
+
+      // İlk frame'i yükle
+      updateCursorFrame();
+      
+      // Animasyonu başlat
+      setInterval(updateCursorFrame, 1000 / fps);
+
+      // Mouse hareketini takip et
+      document.addEventListener('mousemove', function(e) {
+        customCursor.style.left = e.clientX + 'px';
+        customCursor.style.top = e.clientY + 'px';
+      });
+
+      // Mouse sayfa dışına çıkarsa cursor'u gizle
+      document.addEventListener('mouseenter', function() {
+        customCursor.style.opacity = '1';
+      });
+
+      document.addEventListener('mouseleave', function() {
+        customCursor.style.opacity = '0';
+      });
+
+      console.log(`🎯 Animated Cursor: ${randomCursor.folder} loaded with ${frameCount} frames at ${fps} FPS`);
+      console.log(`📁 Cursor frames:`, frames);
+    });
+  </script>
 
   <!-- Model Uydu Projesi Modal -->
   <div id="modalModelUydu" class="modal">

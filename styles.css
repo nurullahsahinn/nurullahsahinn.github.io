@@ -3782,3 +3782,284 @@ header [data-i18n] {
     font-size: 1.8em;
   }
 }
+
+/* ========================================
+   ELECTRIC BORDER EFFECT FOR CARDS
+   ======================================== */
+
+/* Electric effect variables */
+:root {
+  --electric-border-cyan: #00fffb;
+  --electric-border-yellow: #f2ff00;
+  --electric-light-cyan: oklch(from var(--electric-border-cyan) l c h);
+  --electric-light-yellow: oklch(from var(--electric-border-yellow) l c h);
+  --electric-gradient-cyan: oklch(from var(--electric-border-cyan) 0.3 calc(c / 2) h / 0.4);
+  --electric-gradient-yellow: oklch(from var(--electric-border-yellow) 0.3 calc(c / 2) h / 0.4);
+}
+
+/* Add electric effect wrapper to cards */
+.service__card,
+.project__card,
+.skills__card {
+  position: relative;
+  overflow: visible !important;
+}
+
+/* Electric border layers - Hidden by default, shown on hover */
+/* Service cards - Cyan (Turkuaz) */
+.service__card::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border: 2px solid var(--electric-border-cyan);
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: -1;
+  filter: url(#electric-turbulence);
+}
+
+.service__card::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border: 2px solid var(--electric-border-cyan);
+  border-radius: inherit;
+  filter: blur(2px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Project cards - Yellow (Sarı) */
+.project__card::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border: 2px solid var(--electric-border-yellow);
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: -1;
+  filter: url(#electric-turbulence);
+}
+
+.project__card::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border: 2px solid var(--electric-border-yellow);
+  border-radius: inherit;
+  filter: blur(2px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Skills cards - Cyan (Turkuaz) */
+.skills__card::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border: 2px solid var(--electric-border-cyan);
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: -1;
+  filter: url(#electric-turbulence);
+}
+
+.skills__card::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border: 2px solid var(--electric-border-cyan);
+  border-radius: inherit;
+  filter: blur(2px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Activate electric effect on hover */
+.service__card:hover::before,
+.project__card:hover::before,
+.skills__card:hover::before,
+.service__card:hover::after,
+.project__card:hover::after,
+.skills__card:hover::after {
+  opacity: 1;
+}
+
+/* Additional glow effects - using pseudo-elements on inner content */
+/* Service cards - Cyan glow */
+.service__card:hover {
+  box-shadow: 
+    0 0 20px rgba(0, 255, 251, 0.3),
+    0 0 40px rgba(0, 255, 251, 0.2),
+    0 0 60px rgba(0, 255, 251, 0.1),
+    inset 0 0 20px rgba(0, 255, 251, 0.05);
+  transform: translateY(-5px) scale(1.02);
+  transition: all 0.3s ease;
+}
+
+/* Project cards - Yellow glow */
+.project__card:hover {
+  box-shadow: 
+    0 0 20px rgba(242, 255, 0, 0.3),
+    0 0 40px rgba(242, 255, 0, 0.2),
+    0 0 60px rgba(242, 255, 0, 0.1),
+    inset 0 0 20px rgba(242, 255, 0, 0.05);
+  transform: translateY(-5px) scale(1.02);
+  transition: all 0.3s ease;
+}
+
+/* Skills cards - Cyan glow */
+.skills__card:hover {
+  box-shadow: 
+    0 0 20px rgba(0, 255, 251, 0.3),
+    0 0 40px rgba(0, 255, 251, 0.2),
+    0 0 60px rgba(0, 255, 251, 0.1),
+    inset 0 0 20px rgba(0, 255, 251, 0.05);
+  transform: translateY(-5px) scale(1.02);
+  transition: all 0.3s ease;
+}
+
+/* Electric glow background effect */
+@keyframes electricPulse {
+  0%, 100% {
+    opacity: 0.3;
+    filter: blur(32px);
+  }
+  50% {
+    opacity: 0.5;
+    filter: blur(40px);
+  }
+}
+
+/* Electric background glow - only visible on hover */
+.service__card:hover {
+  background: 
+    radial-gradient(circle at 50% 50%, rgba(0, 255, 251, 0.1), transparent 70%),
+    rgba(20, 25, 30, 0.8);
+}
+
+.project__card:hover {
+  background: 
+    radial-gradient(circle at 50% 50%, rgba(242, 255, 0, 0.1), transparent 70%),
+    rgba(20, 25, 30, 0.8);
+}
+
+.skills__card:hover {
+  background: 
+    radial-gradient(circle at 50% 50%, rgba(0, 255, 251, 0.1), transparent 70%),
+    rgba(20, 25, 30, 0.8);
+}
+
+/* Prevent overflow issues */
+.service__grid,
+.project__grid,
+.skills__grid {
+  overflow: visible !important;
+}
+
+/* Mobile optimization - disable electric effect on smaller screens */
+@media (max-width: 768px) {
+  .service__card::before,
+  .project__card::before,
+  .skills__card::before,
+  .service__card::after,
+  .project__card::after,
+  .skills__card::after {
+    display: none;
+  }
+  
+  .service__card:hover,
+  .skills__card:hover {
+    box-shadow: 0 10px 30px rgba(0, 255, 251, 0.2);
+    transform: translateY(-3px);
+    animation: none;
+  }
+  
+  .project__card:hover {
+    box-shadow: 0 10px 30px rgba(242, 255, 0, 0.2);
+    transform: translateY(-3px);
+    animation: none;
+  }
+}
+
+/* Spider Clock Widget */
+.spider-clock-widget {
+  position: fixed;
+  bottom: 100px;
+  right: 30px;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 2px solid var(--glass-border);
+  box-shadow: var(--glass-shadow), 0 0 20px rgba(242, 72, 11, 0.3);
+  z-index: 98;
+  transition: all var(--transition-fast);
+  opacity: 0.9;
+}
+
+.spider-clock-widget:hover {
+  opacity: 1;
+  transform: scale(1.05);
+  box-shadow: 0 12px 40px rgba(242, 72, 11, 0.5);
+  border-color: var(--primary-color);
+}
+
+.spider-clock-widget iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: transparent;
+}
+
+/* Mobil için Spider Clock Widget */
+@media screen and (max-width: 768px) {
+  .spider-clock-widget {
+    width: 120px;
+    height: 120px;
+    bottom: 70px;
+    right: 15px;
+  }
+}
+
+@media screen and (max-width: 468px) {
+  .spider-clock-widget {
+    width: 100px;
+    height: 100px;
+    bottom: 65px;
+    right: 10px;
+  }
+}
