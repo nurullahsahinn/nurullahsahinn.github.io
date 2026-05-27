@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://nurullahsahinn.github.io/sitemap.xml
