@@ -1342,9 +1342,9 @@
 
         <!-- Non Gravity Model Uydu -->
         <div class="project__card" data-aos="flip-left" data-aos-delay="100" data-modal-target="modalModelUydu">
-          <img src="./modeluydu.jpg" alt="Non Gravity - Model Uydu" loading="lazy" width="400" height="220">
+          <img src="./modeluydu.jpg" alt="TÜRKSAT 2025 Model Uydu - NONGRAVITY" loading="lazy" width="400" height="220">
           <div class="project__content">
-            <h3 data-i18n="projects.nonGravitySatellite.title">Non Gravity Model Uydu</h3>
+            <h3 data-i18n="projects.nonGravitySatellite.title">TÜRKSAT 2025 Model Uydu — NONGRAVITY</h3>
             <p data-i18n="projects.satellite.description_detailed">
               TÜRKSAT Model Uydu Yarışması 2025 için yazılım lideri olarak geliştirdiğim uçtan uca model uydu yazılım sistemi. Sıfırdan tasarlanmış, tam otomatik telemetri (1 Hz), gerçek zamanlı video akışı (240x180@2fps), SD karta yüksek kaliteli video kaydı (640x480@15fps), IoT S2S bonus görevi ve SAHA protokolü ile taşıyıcı-görev yükü haberleşmesi içerir.
             </p>
@@ -1353,6 +1353,22 @@
             </p>
             <p class="project__award" data-i18n="projects.satellite.award"><i class="fas fa-award"></i> TÜBİTAK 2209-A programında tam onay!</p>
             <button class="btn btn--primary" data-i18n="projects.satellite.button">Detaylar</button>
+          </div>
+        </div>
+
+        <!-- TÜRKSAT 2026 Model Uydu — NONGRAVITY SİGMA -->
+        <div class="project__card" data-aos="flip-left" data-aos-delay="150" data-modal-target="modalSigma2026">
+          <img src="./model-uydu-2026.webp" alt="TÜRKSAT 2026 Model Uydu Yazılımı — NONGRAVITY SİGMA" loading="lazy" width="400" height="220">
+          <div class="project__content">
+            <h3 data-i18n="projects.sigma2026.title">TÜRKSAT 2026 Model Uydu — NONGRAVITY SİGMA</h3>
+            <p data-i18n="projects.sigma2026.description">
+              TÜRKSAT 2026 Model Uydu Yarışması SİGMA görevi için geliştirdiğim uçtan uca model uydu yazılımı. Raspberry Pi 5 uçuş kontrolü; çift motorlu aktif iniş ve konum koruma; şifreli XBee telemetri, Walksnail Avatar video hattı, APAM, ARAS ve Electron yer istasyonunu tek mimaride birleştiriyor.
+            </p>
+            <p class="project_technologies" data-i18n="projects.sigma2026.technologies">
+              <strong>Ana Teknolojiler:</strong> Raspberry Pi 5, Python 3.11, React 19, TypeScript, Electron 43, XBee 3, Arduino C++, Walksnail Avatar, H.264/MJPEG ve WebSocket.
+            </p>
+            <p class="project__award" data-i18n="projects.sigma2026.status"><i class="fas fa-circle-check"></i> Aktif geliştirme · 169/169 uçuş ve güvenlik + 3/3 motor testi başarılı</p>
+            <button class="btn btn--primary" data-i18n="projects.sigma2026.button">Projeyi İncele</button>
           </div>
         </div>
         
@@ -2127,12 +2143,47 @@
     });
   </script>
 
-  <!-- Model Uydu Projesi Modal -->
+  <!-- TÜRKSAT 2026 Model Uydu Projesi Modal -->
+  <div id="modalSigma2026" class="modal">
+    <div class="modal-content">
+      <span class="modal-close-button">&times;</span>
+      <img src="./model-uydu-2026.webp" alt="TÜRKSAT 2026 Model Uydu Yazılımı — NONGRAVITY SİGMA" class="modal-img">
+      <h2 data-i18n="projects.sigma2026.title">TÜRKSAT 2026 Model Uydu — NONGRAVITY SİGMA</h2>
+
+      <h4 data-i18n="projects.sigma2026.summary_title">Proje Özeti</h4>
+      <p data-i18n="projects.sigma2026.summary_text">
+        NONGRAVITY SİGMA, TÜRKSAT Model Uydu Yarışması 2026 SİGMA kategorisi için geliştirdiğim açık kaynak ve uçtan uca bir model uydu yazılım sistemidir. Raspberry Pi 5 üzerinde 10 Hz sensör döngüsü ve kapalı çevrim çift ESC kontrolü çalıştırır; 1000 ±10 metrede otonom ayrılma, 8–10 m/s aktif iniş, 200 metrede 10 saniye konum koruma ve gerektiğinde APAM emniyet inişi akışlarını yönetir.
+      </p>
+      <p data-i18n="projects.sigma2026.ownership"><strong>Uçuş yazılımı, Electron yer istasyonu, RF haberleşme protokolleri ve test altyapısı dâhil tüm model uydu yazılımı, Nurullah Şahin tarafından sıfırdan geliştirilmiştir.</strong></p>
+
+      <h4 data-i18n="projects.sigma2026.features_title">Sistem Özellikleri</h4>
+      <ul>
+        <li data-i18n="projects.sigma2026.feature_flight">Raspberry Pi 5 üzerinde gerçek zamanlı görev durum makinesi, çift barometre ve kapalı çevrim çift motor kontrolü.</li>
+        <li data-i18n="projects.sigma2026.feature_rf">1 Hz, 17 alanlı resmî telemetri; üretimde EE=1 şifreli XBee unicast ağı ve Bonus IoT istasyonu.</li>
+        <li data-i18n="projects.sigma2026.feature_video">Walksnail Avatar ana video hattı, Pi 720p15 H.264 yerel kayıt ve XBee 320×180 sıcak video yedeği.</li>
+        <li data-i18n="projects.sigma2026.feature_safety">SİGMA aktif iniş, 200 metrede konum koruma, APAM emniyet sırası ve ARAS hata izleme.</li>
+        <li data-i18n="projects.sigma2026.feature_ground">React, TypeScript ve Electron yer istasyonunda telemetri, görev profili, GPS, duruş, video ve sesli görev asistanı.</li>
+      </ul>
+
+      <h4 data-i18n="projects.sigma2026.validation_title">Doğrulama Durumu</h4>
+      <p data-i18n="projects.sigma2026.validation_text">
+        169/169 uçuş ve güvenlik testi ile 3/3 motor denetleyici testi başarıyla tamamlandı; Electron/Vite Windows paketi üretildi. Bu sonuçlar fiziksel itki, RF menzil, ayrılma, bırakma ve saha uçuş kabul testlerinin yerine geçmez.
+      </p>
+
+      <div class="project__links" style="display:flex; flex-wrap:wrap; gap:12px; margin-top:20px;">
+        <a href="https://github.com/nurullahsahinn/model-uydu-turksat-2026-sigma" target="_blank" rel="noopener noreferrer" class="btn btn--primary" data-i18n="projects.sigma2026.repo_link">GitHub Deposunu Aç</a>
+        <a href="https://nurullahsahinn.github.io/model-uydu-turksat-2026-sigma/" target="_blank" rel="noopener noreferrer" class="btn btn--primary" data-i18n="projects.sigma2026.site_link">Proje Sayfasını Aç</a>
+        <a href="https://github.com/nurullahsahinn/model-uydu-turksat-2026-sigma/blob/main/Sigma.mp4" target="_blank" rel="noopener noreferrer" class="btn btn--primary" data-i18n="projects.sigma2026.video_link">Arayüz Videosu</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- TÜRKSAT 2025 Model Uydu Projesi Modal -->
   <div id="modalModelUydu" class="modal">
     <div class="modal-content">
       <span class="modal-close-button">&times;</span>
-      <img src="./modeluydu.jpg" alt="Non Gravity Model Uydu" class="modal-img">
-      <h2 data-i18n="projects.nonGravitySatellite.title">Non Gravity Model Uydu</h2>
+      <img src="./modeluydu.jpg" alt="TÜRKSAT 2025 Model Uydu - NONGRAVITY" class="modal-img">
+      <h2 data-i18n="projects.nonGravitySatellite.title">TÜRKSAT 2025 Model Uydu — NONGRAVITY</h2>
       
       <h4 data-i18n="projects.nonGravitySatellite.summary_title">Proje Özeti</h4>
       <p data-i18n="projects.nonGravitySatellite.summary_text">
