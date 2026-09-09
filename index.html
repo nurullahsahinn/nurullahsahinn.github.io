@@ -19,926 +19,15 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>Nurullah Şahin - Yazılım Mühendisi · Full Stack & AI</title>
   
-  <!-- YENİ DEBUG KODU - inline olarak dil değiştirme fonksiyonu -->
-  <script>
-    console.log('HTML dosyasındaki inline dil değiştirme kodu');
-    document.addEventListener('DOMContentLoaded', function() {
-      // İlk YÜKLENDİĞİNDE BİR KEZ ÇALIŞIR
-      setTimeout(function() {
-        // Butonlara doğrudan tıklama işleyicileri ekle
-        const trBtn = document.querySelector('.nav-language-btn[data-lang="tr"]');
-        const enBtn = document.querySelector('.nav-language-btn[data-lang="en"]');
-        
-        console.log('DOĞRUDAN BUTONLAR:', trBtn, enBtn);
-        
-        // TR butonu
-        if (trBtn) {
-          trBtn.onclick = function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            console.log('TR butonu tıklandı - DOĞRUDAN HTML IÇINDEN');
-            
-            // Dil değiştirme işlevini gerçekleştir
-            if (typeof changeLanguage === 'function') {
-              changeLanguage('tr');
-            } else {
-              console.error('changeLanguage fonksiyonu bulunamadı');
-              alert('Dil değiştirme işlevi şu anda kullanılamıyor, sayfayı yenileyin.');
-            }
-            return false;
-          };
-        }
-        
-        // EN butonu
-        if (enBtn) {
-          enBtn.onclick = function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            console.log('EN butonu tıklandı - DOĞRUDAN HTML IÇINDEN');
-            
-            // Dil değiştirme işlevini gerçekleştir
-            if (typeof changeLanguage === 'function') {
-              changeLanguage('en');
-            } else {
-              console.error('changeLanguage fonksiyonu bulunamadı');
-              alert('Dil değiştirme işlevi şu anda kullanılamıyor, sayfayı yenileyin.');
-            }
-            return false;
-          };
-        }
-      }, 500);
-    });
-  </script>
-  
-  <style>
-    /* Minimum gerekli stiller - Yükleme Ekranı */
-    body {
-      margin: 0;
-      padding: 0;
-      background: #090c10;
-      opacity: 0;
-      transition: opacity 0.75s ease;
-      overflow-x: hidden;
-    }
-    body.loaded {
-      opacity: 1;
-    }
-    #splashScreen {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(9, 12, 16, 0.95);
-      z-index: 100000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      transition: opacity 0.75s ease, visibility 0.75s ease;
-      overflow: hidden;
-      perspective: 1000px;
-    }
-    .splash-3d-container {
-      transform-style: preserve-3d;
-      animation: rotate3d 20s linear infinite;
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      opacity: 0.15;
-      z-index: 4;
-    }
-    .splash-3d-plane {
-      position: absolute;
-      width: 250px;
-      height: 250px;
-      border: 1px solid rgba(242, 72, 11, 0.15);
-      border-radius: 5px;
-    }
-    .splash-3d-plane:nth-child(1) {
-      transform: rotateY(0deg) translateZ(200px);
-    }
-    .splash-3d-plane:nth-child(2) {
-      transform: rotateY(60deg) translateZ(200px);
-    }
-    .splash-3d-plane:nth-child(3) {
-      transform: rotateY(120deg) translateZ(200px);
-    }
-    .splash-3d-plane:nth-child(4) {
-      transform: rotateY(180deg) translateZ(200px);
-    }
-    .splash-3d-plane:nth-child(5) {
-      transform: rotateY(240deg) translateZ(200px);
-    }
-    .splash-3d-plane:nth-child(6) {
-      transform: rotateY(300deg) translateZ(200px);
-    }
-    @keyframes rotate3d {
-      0% {
-        transform: rotateX(5deg) rotateY(0deg);
-      }
-      100% {
-        transform: rotateX(5deg) rotateY(360deg);
-      }
-    }
-    .splash-particles {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 5;
-    }
-    .splash-particle {
-      position: absolute;
-      width: 5px;
-      height: 5px;
-      background: #f2480b;
-      border-radius: 50%;
-      opacity: 0.3;
-      animation: particles 3s linear infinite;
-    }
-    .splash-particle:nth-child(1) {
-      top: 20%;
-      left: 20%;
-      animation-delay: 0s;
-    }
-    .splash-particle:nth-child(2) {
-      top: 80%;
-      left: 40%;
-      animation-delay: 0.3s;
-    }
-    .splash-particle:nth-child(3) {
-      top: 40%;
-      left: 60%;
-      animation-delay: 0.7s;
-    }
-    .splash-particle:nth-child(4) {
-      top: 60%;
-      left: 80%;
-      animation-delay: 1s;
-    }
-    .splash-particle:nth-child(5) {
-      top: 30%;
-      left: 70%;
-      animation-delay: 1.3s;
-    }
-    .splash-particle:nth-child(6) {
-      top: 70%;
-      left: 20%;
-      animation-delay: 1.7s;
-    }
-    .splash-particle:nth-child(7) {
-      top: 50%;
-      left: 30%;
-      animation-delay: 2s;
-    }
-    .splash-particle:nth-child(8) {
-      top: 15%;
-      left: 60%;
-      animation-delay: 2.3s;
-    }
-    @keyframes particles {
-      0% {
-        transform: scale(1);
-        opacity: 0.3;
-      }
-      50% {
-        transform: scale(2);
-        opacity: 0.6;
-      }
-      100% {
-        transform: scale(1);
-        opacity: 0.3;
-      }
-    }
-    .splash-logo-container {
-      position: relative;
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(145deg, rgba(12, 16, 22, 0.95), rgba(6, 10, 15, 0.95));
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.7),
-                 -10px -10px 20px rgba(25, 30, 40, 0.2),
-                 0 0 30px rgba(242, 72, 11, 0.3);
-      margin-bottom: 30px;
-      animation: float 4s ease-in-out infinite, glow 3s ease-in-out infinite;
-      overflow: hidden;
-      z-index: 10;
-      transform-style: preserve-3d;
-      perspective: 500px;
-      border: 2px solid rgba(242, 72, 11, 0.3);
-    }
-    .splash-logo-container::before {
-      content: "";
-      position: absolute;
-      width: 116px;
-      height: 116px;
-      border-radius: 50%;
-      background: #090c10;
-      z-index: 1;
-      transform: translateZ(-5px);
-    }
-    .splash-logo-container::after {
-      content: "";
-      position: absolute;
-      width: 150%;
-      height: 150%;
-      background: conic-gradient(from 90deg, transparent 50%, #f2480b 50%);
-      animation: rotateConic 2s linear infinite;
-      opacity: 0.8;
-      filter: blur(1px);
-    }
-    .splash-circle {
-      position: absolute;
-      border-radius: 50%;
-      border: 1px solid rgba(242, 72, 11, 0.2);
-      animation: expandCircle 3s ease-in-out infinite;
-      opacity: 0;
-      z-index: 6;
-    }
-    .splash-circle:nth-child(1) {
-      width: 130px;
-      height: 130px;
-      animation-delay: 0s;
-    }
-    .splash-circle:nth-child(2) {
-      width: 150px;
-      height: 150px;
-      animation-delay: 0.5s;
-    }
-    .splash-circle:nth-child(3) {
-      width: 170px;
-      height: 170px;
-      animation-delay: 1s;
-    }
-    @keyframes expandCircle {
-      0% {
-        transform: scale(0.8);
-        opacity: 0;
-      }
-      50% {
-        opacity: 0.5;
-      }
-      100% {
-        transform: scale(1.2);
-        opacity: 0;
-      }
-    }
-    .splash-logo {
-      position: absolute;
-      color: #ffffff;
-      font-size: 30px;
-      font-weight: 900;
-      font-family: "Arial Black", Arial, sans-serif;
-      z-index: 2;
-      text-shadow: 0 0 20px rgba(242, 72, 11, 0.9),
-                   0 0 40px rgba(242, 72, 11, 0.6),
-                   0 4px 8px rgba(0, 0, 0, 0.8),
-                   0 2px 4px rgba(0, 0, 0, 0.9);
-      letter-spacing: 1px;
-      animation: pulse 2s ease-in-out infinite;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      height: 100%;
-      transform: translateZ(10px);
-      -webkit-text-stroke: 1px rgba(242, 72, 11, 0.5);
-      text-align: center;
-      left: 0;
-      right: 0;
-      margin: 0 auto;
-    }
-    .splash-progress {
-      width: 150px;
-      height: 4px;
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 4px;
-      overflow: hidden;
-      margin-top: 20px;
-      position: relative;
-      z-index: 10;
-      transform-style: preserve-3d;
-      perspective: 500px;
-      transform: rotateX(5deg);
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5),
-                  0 0 10px rgba(242, 72, 11, 0.3);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    .splash-progress-bar {
-      height: 100%;
-      width: 0;
-      background: linear-gradient(90deg, #f2480b, #ff692e, #ffffff);
-      position: absolute;
-      top: 0;
-      left: 0;
-      border-radius: 4px;
-      box-shadow: 0 0 15px rgba(242, 72, 11, 0.8),
-                  0 0 25px rgba(242, 72, 11, 0.5),
-                  0 2px 4px rgba(0, 0, 0, 0.6);
-      animation: progress 2.5s ease-in-out;
-      animation-fill-mode: forwards;
-    }
-    .splash-progress-percent {
-      position: absolute;
-      bottom: -24px;
-      font-size: 12px;
-      color: #ffffff;
-      width: 100%;
-      text-align: center;
-      font-family: Arial, sans-serif;
-      opacity: 0.8;
-      animation: fadeInUp 0.5s ease-out 0.5s forwards, fadeOut 0.5s ease-in 2.5s forwards;
-      opacity: 0;
-      text-shadow: 0 0 10px rgba(242, 72, 11, 0.8),
-                   0 2px 4px rgba(0, 0, 0, 0.9),
-                   0 1px 2px rgba(0, 0, 0, 1);
-    }
-    .splash-text {
-      font-size: 14px;
-      color: #ffffff;
-      margin-top: 45px;
-      font-family: Arial, sans-serif;
-      letter-spacing: 2px;
-      opacity: 0;
-      animation: fadeInText 0.5s ease-out 1s forwards;
-      z-index: 10;
-      position: relative;
-      font-weight: bold;
-      text-shadow: 0 0 15px rgba(242, 72, 11, 0.8),
-                   0 0 30px rgba(242, 72, 11, 0.5),
-                   0 3px 6px rgba(0, 0, 0, 0.9),
-                   0 1px 3px rgba(0, 0, 0, 1);
-      width: 100%;
-      text-align: center;
-      transform: none;
-      white-space: nowrap;
-      overflow: visible;
-    }
-    .splash-text::after {
-      content: "";
-      position: absolute;
-      bottom: -8px;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(to right, transparent, rgba(242, 72, 11, 0.4), transparent);
-      animation: none;
-    }
-    @keyframes expandLine {
-      0% {
-        width: 0;
-        left: 50%;
-        opacity: 0;
-      }
-      50% {
-        width: 100%;
-        left: 0;
-        opacity: 1;
-      }
-      100% {
-        width: 0;
-        left: 50%;
-        opacity: 0;
-      }
-    }
-    @keyframes fadeInText {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes progress {
-      0% { width: 0; }
-      10% { width: 10%; }
-      30% { width: 40%; }
-      50% { width: 60%; }
-      70% { width: 75%; }
-      90% { width: 90%; }
-      100% { width: 100%; }
-    }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeOut {
-      from { opacity: 1; }
-      to { opacity: 0; }
-    }
-    @keyframes rotateConic {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-    @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-6px); }
-      100% { transform: translateY(0px); }
-    }
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
-    @keyframes glow {
-      0% { box-shadow: 0 0 5px rgba(242, 72, 11, 0.3), 
-                      inset 0 0 5px rgba(242, 72, 11, 0.3); }
-      50% { box-shadow: 0 0 20px rgba(242, 72, 11, 0.7), 
-                       inset 0 0 10px rgba(242, 72, 11, 0.5); }
-      100% { box-shadow: 0 0 5px rgba(242, 72, 11, 0.3), 
-                        inset 0 0 5px rgba(242, 72, 11, 0.3); }
-    }
-    /* Mobil uyumluluk için ek stiller */
-    @media screen and (max-width: 480px) {
-      .splash-logo-container {
-        width: 100px;
-        height: 100px;
-        margin-bottom: 25px;
-      }
-      .splash-logo-container::before {
-        width: 96px;
-        height: 96px;
-      }
-      .splash-logo {
-        font-size: 28px;
-        font-weight: 900;
-      }
-      .splash-progress {
-        width: 120px;
-        height: 3px;
-        margin-top: 15px;
-      }
-      .splash-progress-percent {
-        font-size: 10px;
-        bottom: -20px;
-      }
-      .splash-circle:nth-child(1) {
-        width: 110px;
-        height: 110px;
-      }
-      .splash-circle:nth-child(2) {
-        width: 130px;
-        height: 130px;
-      }
-      .splash-circle:nth-child(3) {
-        width: 150px;
-        height: 150px;
-      }
-      .splash-text {
-        font-size: 12px;
-        margin-top: 30px;
-        letter-spacing: 1.5px;
-      }
-      .splash-particle {
-        width: 3px;
-        height: 3px;
-      }
-      .splash-3d-plane {
-        width: 150px;
-        height: 150px;
-      }
-      .splash-3d-plane:nth-child(1) {
-        transform: rotateY(0deg) translateZ(120px);
-      }
-      .splash-3d-plane:nth-child(2) {
-        transform: rotateY(60deg) translateZ(120px);
-      }
-      .splash-3d-plane:nth-child(3) {
-        transform: rotateY(120deg) translateZ(120px);
-      }
-      .splash-3d-plane:nth-child(4) {
-        transform: rotateY(180deg) translateZ(120px);
-      }
-      .splash-3d-plane:nth-child(5) {
-        transform: rotateY(240deg) translateZ(120px);
-      }
-      .splash-3d-plane:nth-child(6) {
-        transform: rotateY(300deg) translateZ(120px);
-      }
-      /* Animasyonlar mobil için optimize edildi */
-      @keyframes float {
-        0% { transform: translateY(0px); }
-        50% { transform: translateY(-6px); }
-        100% { transform: translateY(0px); }
-      }
-      @keyframes expandCircle {
-        0% {
-          transform: scale(0.9);
-          opacity: 0;
-        }
-        50% {
-          opacity: 0.4;
-        }
-        100% {
-          transform: scale(1.1);
-          opacity: 0;
-        }
-      }
-    }
-    
-    @media screen and (max-width: 320px) {
-      .splash-logo-container {
-        width: 90px;
-        height: 90px;
-        margin-bottom: 20px;
-      }
-      .splash-logo-container::before {
-        width: 86px;
-        height: 86px;
-      }
-      .splash-logo {
-        font-size: 24px;
-        font-weight: 900;
-      }
-      .splash-progress {
-        width: 100px;
-      }
-      .splash-text {
-        margin-top: 25px;
-        font-size: 11px;
-      }
-    }
-
-    /* Glassmorphism Background Styles */
-    .splash-glassmorphism-bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      overflow: hidden;
-    }
-
-    .splash-bg-img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      pointer-events: none;
-      opacity: 0.7;
-    }
-
-    .splash-trees {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 3;
-      pointer-events: none;
-      opacity: 0.8;
-    }
-
-    .splash-girl {
-      position: absolute;
-      scale: 0.5;
-      pointer-events: none;
-      animation: animateSplashGirl 12s linear infinite;
-      z-index: 2;
-      opacity: 0.9;
-    }
-
-    @keyframes animateSplashGirl {
-      0% {
-        transform: translateX(calc(100% + 100vw));
-      }
-      50% {
-        transform: translateX(calc(-100% - 100vw));
-      }
-      50.01% {
-        transform: translateX(calc(-100% - 100vw)) rotateY(180deg);
-      }
-      100% {
-        transform: translateX(calc(100% + 100vw)) rotateY(180deg);
-      }
-    }
-
-    .splash-leaves {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    .splash-leaves-set {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-    }
-
-    .splash-leaves-set div {
-      position: absolute;
-      display: block;
-    }
-
-    .splash-leaves-set div img {
-      width: 40px;
-      opacity: 0.8;
-    }
-
-    .splash-leaves-set div:nth-child(1) {
-      left: 20%;
-      animation: animateSplashLeaves 20s linear infinite;
-      animation-delay: 0s;
-    }
-
-    .splash-leaves-set div:nth-child(2) {
-      left: 50%;
-      animation: animateSplashLeaves 14s linear infinite;
-      animation-delay: 2s;
-    }
-
-    .splash-leaves-set div:nth-child(3) {
-      left: 70%;
-      animation: animateSplashLeaves 12s linear infinite;
-      animation-delay: 4s;
-    }
-
-    .splash-leaves-set div:nth-child(4) {
-      left: 5%;
-      animation: animateSplashLeaves 15s linear infinite;
-      animation-delay: 1s;
-    }
-
-    .splash-leaves-set div:nth-child(5) {
-      left: 85%;
-      animation: animateSplashLeaves 18s linear infinite;
-      animation-delay: 3s;
-    }
-
-    .splash-leaves-set div:nth-child(6) {
-      left: 90%;
-      animation: animateSplashLeaves 12s linear infinite;
-      animation-delay: 5s;
-    }
-
-    .splash-leaves-set div:nth-child(7) {
-      left: 15%;
-      animation: animateSplashLeaves 14s linear infinite;
-      animation-delay: 6s;
-    }
-
-    .splash-leaves-set div:nth-child(8) {
-      left: 60%;
-      animation: animateSplashLeaves 15s linear infinite;
-      animation-delay: 7s;
-    }
-
-    @keyframes animateSplashLeaves {
-      0% {
-        opacity: 0;
-        top: -10%;
-        transform: translateX(20px) rotate(0deg);
-      }
-      10% {
-        opacity: 0.8;
-      }
-      20% {
-        transform: translateX(-20px) rotate(45deg);
-      }
-      40% {
-        transform: translateX(-20px) rotate(90deg);
-      }
-      60% {
-        transform: translateX(20px) rotate(180deg);
-      }
-      80% {
-        transform: translateX(-20px) rotate(45deg);
-      }
-      100% {
-        top: 110%;
-        transform: translateX(20px) rotate(225deg);
-        opacity: 0;
-      }
-    }
-
-    /* Mobil için Glassmorphism optimizasyonu */
-    @media screen and (max-width: 768px) {
-      .splash-girl {
-        scale: 0.4;
-      }
-      .splash-leaves-set div img {
-        width: 30px;
-      }
-    }
-
-    @media screen and (max-width: 480px) {
-      .splash-girl {
-        scale: 0.3;
-      }
-      .splash-leaves-set div img {
-        width: 25px;
-      }
-    }
-
-    /* Scroll İlerleme Çubuğu */
-    .scroll-progress-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: transparent;
-      z-index: 99999;
-    }
-    
-    .scroll-progress-bar {
-      height: 100%;
-      background: var(--primary-color);
-      width: 0%;
-      transition: width 0.1s ease;
-      box-shadow: 0 0 10px rgba(242, 72, 11, 0.5);
-    }
-
-    /* Fare İzleyici Efekti */
-    .cursor-follower {
-      position: fixed;
-      width: 20px;
-      height: 20px;
-      background: rgba(242, 72, 11, 0.5);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 99998;
-      opacity: 0;
-      transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease, background 0.3s ease;
-      transform: translate(-50%, -50%);
-      mix-blend-mode: screen;
-      box-shadow: 0 0 15px rgba(242, 72, 11, 0.3);
-    }
-
-    /* Tıklama Splash Efekti */
-    .click-splash {
-      position: fixed;
-      pointer-events: none;
-      background: radial-gradient(circle, rgba(242, 72, 11, 0.6) 0%, rgba(242, 72, 11, 0) 70%);
-      border-radius: 50%;
-      z-index: 99997;
-      transform: translate(-50%, -50%) scale(0);
-      animation: clickSplash 0.8s ease-out forwards;
-    }
-
-    @keyframes clickSplash {
-      0% {
-        transform: translate(-50%, -50%) scale(0);
-        opacity: 0.7;
-      }
-      100% {
-        transform: translate(-50%, -50%) scale(3);
-        opacity: 0;
-      }
-    }
-  </style>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="./assets/css/site.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <script src="script.js" defer></script>
+  <script src="./assets/js/app.js" defer></script>
 
-  <script>
-    // Geliştirilmiş yükleme ekranı kodu
-    document.addEventListener('DOMContentLoaded', function() {
-      // Sayfanın görünürlüğünü hazırlayalım
-      setTimeout(function() {
-        document.body.classList.add('loaded');
-      }, 300);
-      
-      // Hamburger menü doğrudan bağlantı
-      const hamburger = document.querySelector('.hamburger');
-      const body = document.body;
-      
-      if (hamburger) {
-        hamburger.addEventListener('click', function(e) {
-          e.preventDefault();
-          e.stopPropagation();
-          body.classList.toggle('menu-open');
-          console.log('Hamburger tıklandı', body.classList.contains('menu-open'));
-        });
-      }
-
-      // Gerçekçi ve düzgün yükleme simülasyonu
-      const progressBar = document.querySelector('.splash-progress-bar');
-      const progressPercent = document.querySelector('.splash-progress-percent');
-      const loadingText = document.querySelector('.splash-text');
-      let percent = 0;
-      
-      // NS logosunu düzelt
-      const splashLogo = document.querySelector('.splash-logo');
-      if (splashLogo) {
-        splashLogo.style.position = "absolute";
-        splashLogo.style.top = "50%";
-        splashLogo.style.left = "50%";
-        splashLogo.style.transform = "translate(-50%, -50%)";
-        splashLogo.style.fontSize = "30px";
-        splashLogo.style.fontWeight = "900";
-        splashLogo.style.color = "#f2480b";
-        splashLogo.style.textShadow = "0 0 15px rgba(242, 72, 11, 0.7)";
-        splashLogo.style.zIndex = "2";
-        
-        // NS yazısı stili
-        const nsText = splashLogo.querySelector('span');
-        if (nsText) {
-          nsText.style.marginLeft = "4px";
-          nsText.style.fontSize = "26px";
-          nsText.style.fontWeight = "900";
-          nsText.style.color = "#f2480b";
-          nsText.style.textShadow = "0 0 15px rgba(242, 72, 11, 0.7)";
-        }
-      }
-      
-      // Yükleme yazısının konumunu sabitleme
-      if (loadingText) {
-        loadingText.innerHTML = "YÜKLENİYOR...";
-        loadingText.style.whiteSpace = "nowrap";
-        loadingText.style.overflow = "visible";
-        loadingText.style.transform = "none";
-        loadingText.style.left = "0";
-        
-        // Yükleme simülasyonu için hız kontrolü
-        const simulateLoading = () => {
-          if (percent < 100) {
-            // Gerçekçi yükleme hızı simulasyonu (başta hızlı, sonra yavaşlar)
-            let increment = 1;
-            if (percent < 20) increment = 2;
-            else if (percent > 80) increment = 0.5;
-            
-            percent = Math.min(100, percent + increment);
-            
-            // UI güncelleme
-            progressBar.style.width = percent + '%';
-            progressPercent.textContent = Math.round(percent) + '%';
-            
-            // Sonraki frame için zamanlama
-            const delay = percent < 80 ? 30 : 50; // Sona doğru yavaşlat
-            setTimeout(simulateLoading, delay);
-          } else {
-            // Yükleme tamamlandı
-            loadingText.textContent = "TAMAMLANDI!";
-          }
-        };
-        
-        // Simülasyonu başlat
-        setTimeout(simulateLoading, 500);
-      }
-    });
-    
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        const splashScreen = document.getElementById('splashScreen');
-        if (splashScreen) {
-          splashScreen.style.opacity = '0';
-          splashScreen.style.visibility = 'hidden';
-          
-          setTimeout(function() {
-            splashScreen.remove();
-            document.body.classList.add('loaded');
-          }, 800);
-        }
-      }, 3500);
-    });
-
-    // Tarayıcı ortamını kontrol etme ve uygun yükleme modunu kullanma
-    document.addEventListener('DOMContentLoaded', function() {
-      console.log('Sayfa yüklendi, ortam kontrol ediliyor...');
-      
-      // Dosya sisteminden mi yoksa sunucudan mı açıldığını kontrol et
-      const isFileProtocol = window.location.protocol === 'file:';
-      console.log('Dosya protokolü mü?', isFileProtocol);
-      
-      // Dosya protokolünde fetch çalışmayacağı için alternatif yöntem kullan
-      if (isFileProtocol) {
-        // Tarayıcıyı uyar (sadece console.warn mesajı)
-        console.warn('Dosya sisteminden açıldığında dil değiştirme için alternatif metod kullanılıyor.');
-        
-        // Mesaj gösterilmeyecek
-        // setTimeout(function() {
-        //   alert('Bu web sayfası bir sunucu üzerinden açılmadığı için dil değiştirme özelliği çalışmayabilir. En iyi deneyim için lütfen bu sayfayı bir web sunucusu üzerinden açın (örn. http://localhost:5173/ veya benzeri).');
-        // }, 1000);
-        
-        // Dil değiştiricisini yüklemek için setupLanguageSwitcher fonksiyonunu doğrudan çağır
-        if (typeof setupLanguageSwitcher === 'function') {
-          setupLanguageSwitcher();
-        }
-      }
-    });
-  </script>
+  <script src="./assets/js/splash.js" defer></script>
 </head>
 <body>
   <!-- Scroll İlerleme Çubuğu -->
@@ -988,20 +77,20 @@
   <div id="splashScreen">
     <!-- Glassmorphism Background -->
     <div class="splash-glassmorphism-bg">
-      <img src="Glassmorphism Login Page/bg.jpg" class="splash-bg-img" alt="Background">
-      <img src="Glassmorphism Login Page/trees.png" class="splash-trees" alt="Trees">
-      <img src="Glassmorphism Login Page/girl.png" class="splash-girl" alt="Character">
+      <img src="./assets/images/splash/background.jpg" class="splash-bg-img" alt="Background">
+      <img src="./assets/images/splash/trees.png" class="splash-trees" alt="Trees">
+      <img src="./assets/images/splash/character.png" class="splash-girl" alt="Character">
       
       <div class="splash-leaves">
         <div class="splash-leaves-set">
-          <div><img src="Glassmorphism Login Page/leaf_01.png" alt="Leaf"></div>
-          <div><img src="Glassmorphism Login Page/leaf_02.png" alt="Leaf"></div>
-          <div><img src="Glassmorphism Login Page/leaf_03.png" alt="Leaf"></div>
-          <div><img src="Glassmorphism Login Page/leaf_04.png" alt="Leaf"></div>
-          <div><img src="Glassmorphism Login Page/leaf_01.png" alt="Leaf"></div>
-          <div><img src="Glassmorphism Login Page/leaf_02.png" alt="Leaf"></div>
-          <div><img src="Glassmorphism Login Page/leaf_03.png" alt="Leaf"></div>
-          <div><img src="Glassmorphism Login Page/leaf_04.png" alt="Leaf"></div>
+          <div><img src="./assets/images/splash/leaf-01.png" alt="Leaf"></div>
+          <div><img src="./assets/images/splash/leaf-02.png" alt="Leaf"></div>
+          <div><img src="./assets/images/splash/leaf-03.png" alt="Leaf"></div>
+          <div><img src="./assets/images/splash/leaf-04.png" alt="Leaf"></div>
+          <div><img src="./assets/images/splash/leaf-01.png" alt="Leaf"></div>
+          <div><img src="./assets/images/splash/leaf-02.png" alt="Leaf"></div>
+          <div><img src="./assets/images/splash/leaf-03.png" alt="Leaf"></div>
+          <div><img src="./assets/images/splash/leaf-04.png" alt="Leaf"></div>
         </div>
       </div>
     </div>
@@ -1090,7 +179,7 @@
       </p>
       <div class="action__btns" style="display: flex; gap: 15px; flex-wrap: wrap; align-items: center;">
         <button class="btn" data-i18n="header.contact"><i class="fas fa-paper-plane"></i>&nbsp;İletişime Geç</button>
-        <a href="./Nurullah_Sahin_CV.docx" class="btn" target="_blank" style="text-decoration: none; display: flex; align-items: center; justify-content: center; background: rgba(242, 72, 11, 0.1); border: 1px solid #f2480b;">
+        <a href="./assets/docs/Nurullah_Sahin.pdf" class="btn" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: flex; align-items: center; justify-content: center; background: rgba(242, 72, 11, 0.1); border: 1px solid #f2480b;">
           <i class="fas fa-file-word"></i>&nbsp;<span data-i18n="header.cv">Özgeçmiş (CV)</span>
         </a>
         <a href="https://github.com/nurullahsahinn" class="video" target="_blank" rel="noopener">
@@ -1107,7 +196,7 @@
   <section class="about" id="about">
     <div class="section__container about__container">
       <div class="about__image" data-aos="fade-right">
-        <img src="./2.jpeg" alt="Nurullah Şahin" loading="lazy" width="400" height="auto">
+        <img src="./assets/images/profile/nurullah-sahin.jpg" alt="Nurullah Şahin" loading="lazy" width="400" height="auto">
       </div>
       <div class="about__content" data-aos="fade-left">
         <h2 class="section__title" data-i18n="about.title">Hakkımda</h2>
@@ -1130,7 +219,6 @@
           <div class="skills__section">
             <h3 data-i18n="about.contact">İletişim</h3>
             <ul>
-              <li><i class="fas fa-phone"></i> <a href="tel:+905015807016" aria-label="Telefon">+90 501 580 70 16</a></li>
               <li><i class="fas fa-envelope"></i> <a href="mailto:nurullahsahin0088@gmail.com" aria-label="Email Adresi">nurullahsahin0088@gmail.com</a></li>
               <li><i class="fab fa-github"></i> <a href="https://github.com/nurullahsahinn" target="_blank" rel="noopener" aria-label="GitHub Hesabı">github.com/nurullahsahinn</a></li>
               <li><i class="fab fa-linkedin"></i> <a href="https://linkedin.com/in/nurullahsahinn" target="_blank" rel="noopener" aria-label="LinkedIn Hesabı">linkedin.com/in/nurullahsahinn</a></li>
@@ -1329,7 +417,7 @@
       <div class="project__grid">
         <!-- KamuFlow AI -->
         <div class="project__card" data-aos="flip-left" data-aos-delay="50" data-modal-target="modalKamuflow">
-          <img src="./KamuFlow.jpg" alt="KamuFlow AI" loading="lazy" width="400" height="220">
+          <img src="./assets/images/projects/kamuflow-ai.jpg" alt="KamuFlow AI" loading="lazy" width="400" height="220">
           <div class="project__content">
             <h3 data-i18n="projects.kamuflow.title">KamuFlow AI</h3>
             <p data-i18n="projects.kamuflow.description">
@@ -1342,7 +430,7 @@
 
         <!-- Non Gravity Model Uydu -->
         <div class="project__card" data-aos="flip-left" data-aos-delay="100" data-modal-target="modalModelUydu">
-          <img src="./modeluydu.jpg" alt="TÜRKSAT 2025 Model Uydu - NONGRAVITY" loading="lazy" width="400" height="220">
+          <img src="./assets/images/projects/model-satellite-2025.jpg" alt="TÜRKSAT 2025 Model Uydu - NONGRAVITY" loading="lazy" width="400" height="220">
           <div class="project__content">
             <h3 data-i18n="projects.nonGravitySatellite.title">TÜRKSAT 2025 Model Uydu — NONGRAVITY</h3>
             <p data-i18n="projects.satellite.description_detailed">
@@ -1358,7 +446,7 @@
 
         <!-- TÜRKSAT 2026 Model Uydu — NONGRAVITY SİGMA -->
         <div class="project__card" data-aos="flip-left" data-aos-delay="150" data-modal-target="modalSigma2026">
-          <img src="./model-uydu-2026.webp" alt="TÜRKSAT 2026 Model Uydu Yazılımı — NONGRAVITY SİGMA" loading="lazy" width="400" height="220">
+          <img src="./assets/images/projects/model-satellite-2026.webp" alt="TÜRKSAT 2026 Model Uydu Yazılımı — NONGRAVITY SİGMA" loading="lazy" width="400" height="220">
           <div class="project__content">
             <h3 data-i18n="projects.sigma2026.title">TÜRKSAT 2026 Model Uydu — NONGRAVITY SİGMA</h3>
             <p data-i18n="projects.sigma2026.description">
@@ -1374,7 +462,7 @@
         
         <!-- Otonom Sualtı Aracı -->
         <div class="project__card" data-aos="flip-left" data-aos-delay="200" data-modal-target="modalSualtiAraci">
-          <img src="./sualtı.jpg" alt="Otonom Sualtı Aracı Projesi" loading="lazy" width="400" height="220">
+          <img src="./assets/images/projects/axolotl.jpg" alt="Otonom Sualtı Aracı Projesi" loading="lazy" width="400" height="220">
           <div class="project__content">
             <h3 data-i18n="projects.sualti.title">Otonom Sualtı Aracı - AXOLOTL</h3>
             <p data-i18n="projects.sualti.description">
@@ -1387,7 +475,7 @@
 
         <!-- Translation Evolution -->
         <div class="project__card" data-aos="flip-left" data-aos-delay="300" data-modal-target="modalTranslationEvolution">
-          <img src="./çeviri evrimi.jpg" alt="Translation Evolution" loading="lazy" width="400" height="220">
+          <img src="./assets/images/projects/translation-evolution.jpg" alt="Translation Evolution" loading="lazy" width="400" height="220">
           <div class="project__content">
             <h3 data-i18n="projects.translationEvolution.title">Translation Evolution</h3>
             <p data-i18n="projects.translationEvolution.description">
@@ -1415,7 +503,7 @@
               <h3 data-i18n="experience.atabaum.title" style="color: #f2480b; font-size: 1.2rem; font-weight: 700; margin: 0 0 5px 0;">Yazılım Mühendisi (Stajyer)</h3>
               <p data-i18n="experience.atabaum.company" style="color: #f2f2f2; font-size: 0.95rem; margin: 0;">ATABAUM — Atatürk Üniversitesi Bilgisayar Bilimleri Araştırma ve Uygulama Merkezi</p>
             </div>
-            <span data-i18n="experience.atabaum.period" style="font-size: 0.82rem; color: #f2480b; padding: 0.25rem 0.75rem; border-radius: 20px; background: rgba(242, 72, 11, 0.1); white-space: nowrap; height: fit-content;">Ocak 2025 – Mayıs 2025</span>
+            <span data-i18n="experience.atabaum.period" style="font-size: 0.82rem; color: #f2480b; padding: 0.25rem 0.75rem; border-radius: 20px; background: rgba(242, 72, 11, 0.1); white-space: nowrap; height: fit-content;">Ocak 2026 – Mayıs 2026</span>
           </div>
           <!-- Proje adı -->
           <p data-i18n="experience.atabaum.project" style="color: #f2480b; font-size: 0.9rem; font-weight: 600; margin: 0 0 1.25rem 0; opacity: 0.9;">AsistTR — Kurumsal Yapay Zeka Destekli Canlı Destek &amp; Helpdesk Platformu</p>
@@ -1469,7 +557,7 @@
         <!-- Atatürk Üniversitesi -->
         <div class="education-item" data-aos="fade-up" data-aos-delay="100" style="flex: 1; min-width: 250px; max-width: 300px; margin-bottom: 20px;">
           <div class="education-logo" style="width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 20px auto; border: 3px solid #f2480b; overflow: hidden;">
-            <img src="./atauni1957_logo.jpeg" alt="Atatürk Üniversitesi" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;">
+            <img src="./assets/images/education/ataturk-university.jpg" alt="Atatürk Üniversitesi" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;">
           </div>
           <div class="education-content" style="background: rgba(20, 25, 30, 0.6); padding: 1.5rem; border-radius: 15px; text-align: center; border-top: 3px solid #f2480b;">
             <h4 data-i18n="education.atauni.name" style="color: #f2480b; font-size: 1.1rem; font-weight: 600; margin-bottom: 10px;">Atatürk Üniversitesi</h4>
@@ -1481,7 +569,7 @@
         <!-- İskenderun Teknik Üniversitesi -->
         <div class="education-item" data-aos="fade-up" data-aos-delay="200" style="flex: 1; min-width: 250px; max-width: 300px; margin-bottom: 20px;">
           <div class="education-logo" style="width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 20px auto; border: 3px solid #f2480b; overflow: hidden; display: flex; justify-content: center; align-items: center; background-color: #ffffff;">
-            <img src="./iste.png" alt="İskenderun Teknik Üniversitesi" loading="lazy" style="width: 85%; height: 85%; object-fit: contain;" crossorigin>
+            <img src="./assets/images/education/iskenderun-technical-university.png" alt="İskenderun Teknik Üniversitesi" loading="lazy" style="width: 85%; height: 85%; object-fit: contain;" crossorigin>
           </div>
           <div class="education-content" style="background: rgba(20, 25, 30, 0.6); padding: 1.5rem; border-radius: 15px; text-align: center; border-top: 3px solid #f2480b;">
             <h4 data-i18n="education.iste.name" style="color: #f2480b; font-size: 1.1rem; font-weight: 600; margin-bottom: 10px;">İskenderun Teknik Üniversitesi (İSTE)</h4>
@@ -1493,7 +581,7 @@
         <!-- Mersin Üniversitesi -->
         <div class="education-item" data-aos="fade-up" data-aos-delay="300" style="flex: 1; min-width: 250px; max-width: 300px; margin-bottom: 20px;">
           <div class="education-logo" style="width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 20px auto; border: 3px solid #f2480b; overflow: hidden;">
-            <img src="./mersin_university_logo.jpeg" alt="Mersin Üniversitesi" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;">
+            <img src="./assets/images/education/mersin-university.jpg" alt="Mersin Üniversitesi" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;">
           </div>
           <div class="education-content" style="background: rgba(20, 25, 30, 0.6); padding: 1.5rem; border-radius: 15px; text-align: center; border-top: 3px solid #f2480b;">
             <h4 data-i18n="education.mersin.name" style="color: #f2480b; font-size: 1.1rem; font-weight: 600; margin-bottom: 10px;">Mersin Üniversitesi</h4>
@@ -1505,7 +593,7 @@
         <!-- Azərbaycan Texniki Universiteti -->
         <div class="education-item" data-aos="fade-up" data-aos-delay="400" style="flex: 1; min-width: 250px; max-width: 300px; margin-bottom: 20px;">
           <div class="education-logo" style="width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 20px auto; border: 3px solid #f2480b; overflow: hidden;">
-            <img src="./aztu.jpeg" alt="Azərbaycan Texniki Universiteti" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;">
+            <img src="./assets/images/education/azerbaijan-technical-university.jpg" alt="Azərbaycan Texniki Universiteti" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;">
           </div>
           <div class="education-content" style="background: rgba(20, 25, 30, 0.6); padding: 1.5rem; border-radius: 15px; text-align: center; border-top: 3px solid #f2480b;">
             <h4 data-i18n="education.aztu.name" style="color: #f2480b; font-size: 1.1rem; font-weight: 600; margin-bottom: 10px;">Azərbaycan Texniki Universiteti</h4>
@@ -1550,604 +638,22 @@
 
   <!-- Spider Clock Widget -->
   <div class="spider-clock-widget">
-    <iframe src="Spider Clock Animation/index.html" frameborder="0" allowfullscreen></iframe>
+    <iframe src="./assets/animations/spider-clock/index.html" frameborder="0" allowfullscreen></iframe>
   </div>
 
-  <script>
-    // AOS başlatma fonksiyonu
-    function initAOS() {
-      if (typeof AOS !== 'undefined') {
-        AOS.init({
-          duration: 800,
-          offset: 120,
-          once: false,
-          disable: false,
-          easing: 'ease-in-out',
-          delay: 100
-        });
-      }
-    }
-
-    // Sayfa yüklendiğinde AOS'u başlat
-    document.addEventListener('DOMContentLoaded', function() {
-      console.log('DOM yüklendi, AOS başlatılıyor...');
-      initAOS();
-    });
-
-    // Yükleme ekranı kaldırıldığında AOS'u yeniden başlat
-    window.addEventListener('load', function() {
-      console.log('Sayfa tamamen yüklendi...');
-      
-      setTimeout(function() {
-        const splashScreen = document.getElementById('splashScreen');
-        if (splashScreen) {
-          console.log('Yükleme ekranı kaldırılıyor...');
-          splashScreen.style.opacity = '0';
-          splashScreen.style.visibility = 'hidden';
-          
-          setTimeout(function() {
-            splashScreen.remove();
-            document.body.classList.add('loaded');
-            console.log('AOS yeniden başlatılıyor...');
-            if (typeof AOS !== 'undefined') {
-              AOS.refresh();
-              initAOS();
-            }
-          }, 800);
-        }
-      }, 3500);
-    });
-
-    // Sayfa yeniden boyutlandığında AOS'u yenile
-    window.addEventListener('resize', function() {
-      if (typeof AOS !== 'undefined') {
-        AOS.refresh();
-      }
-    });
-  </script>
-
   <!-- Görsel Efektler Script -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Scroll İlerleme Çubuğu
-      window.addEventListener('scroll', function() {
-        const totalHeight = document.body.scrollHeight - window.innerHeight;
-        const progress = (window.pageYOffset / totalHeight) * 100;
-        document.querySelector('.scroll-progress-bar').style.width = progress + '%';
-      });
-
-      // Fare İzleyici Efekti
-      const cursorFollower = document.querySelector('.cursor-follower');
-      
-      // Animated Custom Cursor varsa, cursor-follower'ı gizle
-      if (cursorFollower) {
-        cursorFollower.style.display = 'none';
-      }
-      
-      let mouseX = 0, mouseY = 0;
-      let cursorX = 0, cursorY = 0;
-
-      // Fare pozisyonunu güncelleyen fonksiyon
-      document.addEventListener('mousemove', function(e) {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        if (cursorFollower) {
-          cursorFollower.style.opacity = '0'; // Animated cursor ile çakışmasın
-        }
-      });
-
-      // Link ve butonlar üzerinde fare efektini büyüt
-      const hoverElements = document.querySelectorAll('a, button, .btn, .nav__link, .service__card, .project__card, .skills__card, .video, .icon');
-      
-      hoverElements.forEach(element => {
-        element.addEventListener('mouseenter', () => {
-          cursorFollower.style.width = '50px';
-          cursorFollower.style.height = '50px';
-          cursorFollower.style.background = 'rgba(242, 72, 11, 0.2)';
-        });
-        
-        element.addEventListener('mouseleave', () => {
-          cursorFollower.style.width = '20px';
-          cursorFollower.style.height = '20px';
-          cursorFollower.style.background = 'rgba(242, 72, 11, 0.5)';
-        });
-      });
-
-      // Fare izleyiciyi animasyon ile güncelle
-      function animateCursor() {
-        const dx = mouseX - cursorX;
-        const dy = mouseY - cursorY;
-        
-        cursorX += dx * 0.1;
-        cursorY += dy * 0.1;
-        
-        if (cursorFollower) {
-          cursorFollower.style.transform = `translate(${cursorX}px, ${cursorY}px) translate(-50%, -50%)`;
-        }
-        
-        requestAnimationFrame(animateCursor);
-      }
-      
-      animateCursor();
-
-      // Tıklama Splash Efekti
-      document.addEventListener('click', function(e) {
-        // Sadece mobil olmayan cihazlarda göster
-        if (window.innerWidth > 768) {
-          // Yeni splash elementi oluştur
-          const splash = document.createElement('div');
-          splash.className = 'click-splash';
-          
-          // Pozisyonu ayarla
-          splash.style.left = e.clientX + 'px';
-          splash.style.top = e.clientY + 'px';
-          splash.style.width = '100px';
-          splash.style.height = '100px';
-          
-          // Sayfaya ekle
-          document.body.appendChild(splash);
-          
-          // Animasyon bitince elementi kaldır
-          setTimeout(() => {
-            splash.remove();
-          }, 800);
-        }
-      });
-
-      // Mobil cihaz kontrolü
-      const isMobile = window.innerWidth <= 768;
-      
-      // Tıklama dalga efekti
-      function createBubble(e) {
-        // Video arkaplanına tıklandığında dalga efektini oluşturma
-        // Böylece parti modunu engellemez
-        if (e.target.closest('.video-background') || 
-            e.target.closest('.video-particles-container')) {
-          // Video arkaplanına tıklandığında dalga oluşturma
-          console.log('Video arkaplanına tıklandı, dalga oluşturulmadı');
-          return;
-        }
-        
-        // Diğer alanlara tıklandığında dalga efekti oluştur
-        const bubble = document.createElement('div');
-        bubble.className = 'water-bubble';
-        
-        // Rastgele boyut (20-40px)
-        const size = Math.random() * 20 + 20;
-        
-        bubble.style.width = size + 'px';
-        bubble.style.height = size + 'px';
-        bubble.style.left = e.clientX + 'px';
-        bubble.style.top = e.clientY + 'px';
-        
-        document.body.appendChild(bubble);
-        
-        setTimeout(() => {
-          bubble.remove();
-        }, 2000);
-      }
-      
-      document.addEventListener('click', createBubble);
-
-      // Mobil cihazlar için özel işlemler
-      if (isMobile) {
-        // Sayfa genelinde dokunma dalga efektlerini etkinleştir
-        let touchFollower = null;
-        let touchRipples = [];
-        let touchAnimationFrame = null;
-        
-        document.body.addEventListener('touchstart', function(e) {
-          // Video arkaplanına dokunulduğunda dalga efektini oluşturma
-          if (e.target.closest('.video-background') || 
-              e.target.closest('.video-particles-container')) {
-            console.log('Video arkaplanına dokunuldu, takip efekti oluşturulmadı');
-            return;
-          }
-          
-          // Takipçiyi oluştur
-          if (!touchFollower) {
-            touchFollower = document.createElement('div');
-            touchFollower.className = 'touch-follower';
-            touchFollower.style.position = 'fixed';
-            touchFollower.style.width = '30px';
-            touchFollower.style.height = '30px';
-            touchFollower.style.borderRadius = '50%';
-            touchFollower.style.background = 'radial-gradient(circle, rgba(242, 72, 11, 0.7) 0%, rgba(242, 72, 11, 0.3) 70%)';
-            touchFollower.style.boxShadow = '0 0 10px rgba(242, 72, 11, 0.5)';
-            touchFollower.style.pointerEvents = 'none';
-            touchFollower.style.zIndex = '9999';
-            touchFollower.style.transform = 'translate(-50%, -50%)';
-            touchFollower.style.transition = 'transform 0.05s linear, width 0.2s ease, height 0.2s ease';
-            document.body.appendChild(touchFollower);
-          }
-          
-          // Dokunma noktasını al
-          const touch = e.touches[0];
-          const x = touch.clientX;
-          const y = touch.clientY;
-          
-          // Takipçiyi güncelle
-          touchFollower.style.left = x + 'px';
-          touchFollower.style.top = y + 'px';
-          touchFollower.style.opacity = '1';
-          
-          // Dokunulan noktada küçük bir ripple oluştur
-          const ripple = document.createElement('div');
-          ripple.className = 'touch-ripple-small';
-          ripple.style.position = 'fixed';
-          ripple.style.left = x + 'px';
-          ripple.style.top = y + 'px';
-          ripple.style.width = '10px';
-          ripple.style.height = '10px';
-          ripple.style.borderRadius = '50%';
-          ripple.style.background = 'rgba(242, 72, 11, 0.8)';
-          ripple.style.transform = 'translate(-50%, -50%) scale(1)';
-          ripple.style.opacity = '0.8';
-          ripple.style.pointerEvents = 'none';
-          ripple.style.zIndex = '9998';
-          document.body.appendChild(ripple);
-          
-          // Ripple animasyonu
-          touchRipples.push({
-            element: ripple,
-            createdAt: Date.now(),
-            duration: 600
-          });
-          
-          // Animasyon fonksiyonu başlat
-          if (!touchAnimationFrame) {
-            animateTouchRipples();
-          }
-        }, {passive: true});
-        
-        // Parmak hareketi takibi - çok daha hızlı
-        document.body.addEventListener('touchmove', function(e) {
-          // Video arkaplanına dokunulduğunda efekti geçersiz kıl
-          if (e.target.closest('.video-background') || 
-              e.target.closest('.video-particles-container')) {
-            return;
-          }
-          
-          if (touchFollower) {
-            const touch = e.touches[0];
-            const x = touch.clientX;
-            const y = touch.clientY;
-            
-            // Doğrudan konum güncelleme (transition olmadan)
-            touchFollower.style.left = x + 'px';
-            touchFollower.style.top = y + 'px';
-            
-            // Her harekette küçük parçacıklar bırak
-            if (Math.random() < 0.3) { // Her 3 hareketten birinde
-              const particle = document.createElement('div');
-              particle.className = 'touch-particle';
-              particle.style.position = 'fixed';
-              particle.style.left = (x + (Math.random() * 20 - 10)) + 'px';
-              particle.style.top = (y + (Math.random() * 20 - 10)) + 'px';
-              particle.style.width = Math.random() * 8 + 2 + 'px';
-              particle.style.height = particle.style.width;
-              particle.style.borderRadius = '50%';
-              particle.style.background = 'rgba(242, 72, 11, ' + (Math.random() * 0.5 + 0.2) + ')';
-              particle.style.transform = 'translate(-50%, -50%)';
-              particle.style.pointerEvents = 'none';
-              particle.style.zIndex = '9997';
-              document.body.appendChild(particle);
-              
-              // Parçacık animasyonu
-              touchRipples.push({
-                element: particle,
-                createdAt: Date.now(),
-                duration: 400
-              });
-            }
-          }
-        }, {passive: true});
-        
-        // Dokunma bitince
-        document.body.addEventListener('touchend', function(e) {
-          // Video arkaplanına dokunulduğunda efekti geçersiz kıl
-          if (e.target && (e.target.closest('.video-background') || 
-              e.target.closest('.video-particles-container'))) {
-            return;
-          }
-          
-          if (touchFollower) {
-            // Son konum effekti
-            const finalRipple = document.createElement('div');
-            finalRipple.className = 'touch-ripple-end';
-            finalRipple.style.position = 'fixed';
-            finalRipple.style.left = touchFollower.style.left;
-            finalRipple.style.top = touchFollower.style.top;
-            finalRipple.style.width = '40px';
-            finalRipple.style.height = '40px';
-            finalRipple.style.borderRadius = '50%';
-            finalRipple.style.background = 'radial-gradient(circle, rgba(242, 72, 11, 0.6) 0%, rgba(242, 72, 11, 0) 70%)';
-            finalRipple.style.transform = 'translate(-50%, -50%) scale(0)';
-            finalRipple.style.pointerEvents = 'none';
-            finalRipple.style.zIndex = '9996';
-            document.body.appendChild(finalRipple);
-            
-            // Final ripple animasyonu
-            touchRipples.push({
-              element: finalRipple,
-              createdAt: Date.now(),
-              duration: 500,
-              endAnimation: true
-            });
-            
-            // Takipçiyi kaldır
-            setTimeout(() => {
-              if (touchFollower) {
-                touchFollower.style.opacity = '0';
-                setTimeout(() => {
-                  if (touchFollower) {
-                    touchFollower.remove();
-                    touchFollower = null;
-                  }
-                }, 200);
-              }
-            }, 100);
-          }
-        }, {passive: true});
-        
-        // Ripple ve parçacık animasyonlarını yönet
-        function animateTouchRipples() {
-          const now = Date.now();
-          let hasActiveRipples = false;
-          
-          touchRipples.forEach((ripple, index) => {
-            const elapsed = now - ripple.createdAt;
-            const progress = Math.min(elapsed / ripple.duration, 1);
-            
-            if (progress < 1) {
-              hasActiveRipples = true;
-              
-              if (ripple.element.className === 'touch-ripple-small') {
-                // Küçük ripple büyüme animasyonu
-                ripple.element.style.transform = `translate(-50%, -50%) scale(${1 + progress * 2})`;
-                ripple.element.style.opacity = (0.8 * (1 - progress)).toString();
-              } else if (ripple.element.className === 'touch-particle') {
-                // Parçacık hareket ve solma animasyonu
-                ripple.element.style.transform = `translate(-50%, -50%) translate(${progress * 20}px, ${progress * 20 - 10}px)`;
-                ripple.element.style.opacity = (0.7 * (1 - progress)).toString();
-              } else if (ripple.element.className === 'touch-ripple-end') {
-                // Son ripple büyüme animasyonu
-                ripple.element.style.transform = `translate(-50%, -50%) scale(${progress * 3})`;
-                ripple.element.style.opacity = (0.6 * (1 - progress)).toString();
-              }
-            } else {
-              // Animasyon tamamlandı, elementi kaldır
-              ripple.element.remove();
-              touchRipples.splice(index, 1);
-            }
-          });
-          
-          // Hala aktif ripple'lar varsa animasyona devam et
-          if (hasActiveRipples) {
-            touchAnimationFrame = requestAnimationFrame(animateTouchRipples);
-          } else {
-            touchAnimationFrame = null;
-          }
-        }
-        
-        // Mobil için giriş animasyonları
-        const setupMobileAnimations = () => {
-          const sections = document.querySelectorAll('section');
-          
-          // Her bölüm için IntersectionObserver tanımla
-          const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add('mobile-fade-in');
-                observer.unobserve(entry.target);
-              }
-            });
-          }, {
-            threshold: 0.1
-          });
-          
-          // Bölümleri gözlemle
-          sections.forEach(section => {
-            observer.observe(section);
-          });
-        };
-        
-        // Paralaks efekti oluştur
-        const setupParallaxEffect = () => {
-          const header = document.querySelector('header');
-          if (!header) return;
-          
-          // Eğer başlık bölümünde video arka planı varsa atlayalım
-          if (header.querySelector('.video-background')) return;
-          
-          // Paralaks konteyneri oluştur
-          const parallaxContainer = document.createElement('div');
-          parallaxContainer.className = 'mobile-parallax-container';
-          
-          // Paralaks katmanlarını oluştur
-          const background = document.createElement('div');
-          background.className = 'mobile-parallax-background';
-          background.style.backgroundImage = 'url("2.jpeg")';
-          background.style.opacity = '0.3';
-          
-          const middleground = document.createElement('div');
-          middleground.className = 'mobile-parallax-middleground';
-          middleground.style.backgroundImage = 'linear-gradient(135deg, rgba(242, 72, 11, 0.2), transparent)';
-          
-          const foreground = document.createElement('div');
-          foreground.className = 'mobile-parallax-foreground';
-          foreground.style.backgroundImage = 'linear-gradient(45deg, var(--dark-color), transparent)';
-          foreground.style.opacity = '0.7';
-          
-          parallaxContainer.appendChild(background);
-          parallaxContainer.appendChild(middleground);
-          parallaxContainer.appendChild(foreground);
-          
-          // Sayfaya ekle (isteğe bağlı olarak yerleştirilebilir)
-          const aboutSection = document.querySelector('#about');
-          if (aboutSection) {
-            aboutSection.insertBefore(parallaxContainer, aboutSection.firstChild);
-          }
-          
-          // Paralaks efektini etkinleştir
-          window.addEventListener('deviceorientation', function(e) {
-            if (!e.beta || !e.gamma) return;
-            
-            const tiltX = e.gamma / 10; // -10 ila 10 arası
-            const tiltY = e.beta / 10;  // -10 ila 10 arası
-            
-            background.style.transform = `translate3d(${tiltX * -2}px, ${tiltY * -2}px, 0)`;
-            middleground.style.transform = `translate3d(${tiltX * -1}px, ${tiltY * -1}px, 0)`;
-            foreground.style.transform = `translate3d(${tiltX * -0.5}px, ${tiltY * -0.5}px, 0)`;
-          });
-        };
-        
-        // Sayfa geçiş efekti
-        const setupPageTransitions = () => {
-          const transitionElement = document.createElement('div');
-          transitionElement.className = 'mobile-page-transition';
-          document.body.appendChild(transitionElement);
-          
-          // Bağlantıları dinle
-          const links = document.querySelectorAll('a[href^="#"]');
-          
-          links.forEach(link => {
-            link.addEventListener('click', (e) => {
-              const target = link.getAttribute('href');
-              
-              if (target.startsWith('#') && target !== '#') {
-                e.preventDefault();
-                
-                // Geçiş animasyonunu başlat
-                transitionElement.classList.add('active');
-                
-                // Hedef bölüme git
-                setTimeout(() => {
-                  const targetElement = document.querySelector(target);
-                  if (targetElement) {
-                    window.scrollTo({
-                      top: targetElement.offsetTop - 70,
-                      behavior: 'instant'
-                    });
-                  }
-                  
-                  // Animasyonu kapat
-                  setTimeout(() => {
-                    transitionElement.classList.remove('active');
-                  }, 100);
-                }, 300);
-              }
-            });
-          });
-        };
-        
-        // Mobil animasyonları başlat
-        setupMobileAnimations();
-        setupParallaxEffect();
-        setupPageTransitions();
-      } else {
-        // Masaüstü cihazlar için fare takibi ve diğer efektler
-        // ... existing code ...
-      }
-    });
-  </script>
-  <script  src="Reptile Interactive Cursor/script.js"></script>
+  <script src="./assets/js/effects.js" defer></script>
+  <script src="./assets/js/reptile-cursor.js" defer></script>
 
   <!-- Animated Custom Cursor -->
-  <style>
-    /* Tüm cursor efektlerini kaldır, sadece custom cursor kullan */
-    * {
-      cursor: none !important;
-    }
-    
-    /* Custom cursor container */
-    #customCursor {
-      position: fixed;
-      pointer-events: none;
-      z-index: 99999;
-      transform: translate(-50%, -50%);
-      width: 32px;
-      height: 32px;
-      transition: none;
-    }
-    
-    #customCursor img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-  </style>
   
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Custom cursor elementini oluştur
-      const customCursor = document.createElement('div');
-      customCursor.id = 'customCursor';
-      const cursorImg = document.createElement('img');
-      customCursor.appendChild(cursorImg);
-      document.body.appendChild(customCursor);
-
-      // Her sayfa yüklendiğinde rastgele cursor seç
-      const cursors = [
-        { folder: "cursor1", frameCount: 3 },
-        { folder: "cursor2", frameCount: 3 },
-        { folder: "cursor3", frameCount: 4 },
-        { folder: "cursor4", frameCount: 2 },
-        { folder: "cursor5", frameCount: 4 },
-        { folder: "cursor6", frameCount: 3 },
-        { folder: "cursor7", frameCount: 3 }
-      ];
-
-      // Rastgele bir cursor seç
-      const randomCursor = cursors[Math.floor(Math.random() * cursors.length)];
-      const folder = "Animated Custom Cursor/" + randomCursor.folder;
-      const frameCount = randomCursor.frameCount;
-      
-      const frames = [];
-      for (let i = 1; i <= frameCount; i++) {
-        frames.push(`${folder}/frame${i}.png`);
-      }
-
-      let cursorIndex = 0;
-      const fps = 8;
-
-      // Cursor animasyonunu başlat
-      function updateCursorFrame() {
-        cursorImg.src = frames[cursorIndex];
-        cursorIndex = (cursorIndex + 1) % frames.length;
-      }
-
-      // İlk frame'i yükle
-      updateCursorFrame();
-      
-      // Animasyonu başlat
-      setInterval(updateCursorFrame, 1000 / fps);
-
-      // Mouse hareketini takip et
-      document.addEventListener('mousemove', function(e) {
-        customCursor.style.left = e.clientX + 'px';
-        customCursor.style.top = e.clientY + 'px';
-      });
-
-      // Mouse sayfa dışına çıkarsa cursor'u gizle
-      document.addEventListener('mouseenter', function() {
-        customCursor.style.opacity = '1';
-      });
-
-      document.addEventListener('mouseleave', function() {
-        customCursor.style.opacity = '0';
-      });
-
-      console.log(`🎯 Animated Cursor: ${randomCursor.folder} loaded with ${frameCount} frames at ${fps} FPS`);
-      console.log(`📁 Cursor frames:`, frames);
-    });
-  </script>
+  <script src="./assets/js/animated-cursor.js" defer></script>
 
   <!-- TÜRKSAT 2026 Model Uydu Projesi Modal -->
   <div id="modalSigma2026" class="modal">
     <div class="modal-content">
       <span class="modal-close-button">&times;</span>
-      <img src="./model-uydu-2026.webp" alt="TÜRKSAT 2026 Model Uydu Yazılımı — NONGRAVITY SİGMA" class="modal-img">
+      <img src="./assets/images/projects/model-satellite-2026.webp" alt="TÜRKSAT 2026 Model Uydu Yazılımı — NONGRAVITY SİGMA" class="modal-img">
       <h2 data-i18n="projects.sigma2026.title">TÜRKSAT 2026 Model Uydu — NONGRAVITY SİGMA</h2>
 
       <h4 data-i18n="projects.sigma2026.summary_title">Proje Özeti</h4>
@@ -2182,7 +688,7 @@
   <div id="modalModelUydu" class="modal">
     <div class="modal-content">
       <span class="modal-close-button">&times;</span>
-      <img src="./modeluydu.jpg" alt="TÜRKSAT 2025 Model Uydu - NONGRAVITY" class="modal-img">
+      <img src="./assets/images/projects/model-satellite-2025.jpg" alt="TÜRKSAT 2025 Model Uydu - NONGRAVITY" class="modal-img">
       <h2 data-i18n="projects.nonGravitySatellite.title">TÜRKSAT 2025 Model Uydu — NONGRAVITY</h2>
       
       <h4 data-i18n="projects.nonGravitySatellite.summary_title">Proje Özeti</h4>
@@ -2227,7 +733,7 @@
   <div id="modalSualtiAraci" class="modal">
     <div class="modal-content">
       <span class="modal-close-button">&times;</span>
-      <img src="./sualtı.jpg" alt="Otonom Sualtı Aracı Projesi" class="modal-img">
+      <img src="./assets/images/projects/axolotl.jpg" alt="Otonom Sualtı Aracı Projesi" class="modal-img">
       <h2 data-i18n="projects.sualti.title">Otonom Sualtı Aracı - AXOLOTL</h2>
       <p data-i18n="projects.axolotl.summary_text">
         AXOLOTL projesi, TEKNOFEST 2025 İnsansız Su Altı Sistemleri Yarışması için geliştirilmiş olup, su altı koşullarında otonom görevler gerçekleştirebilen bir su altı aracıdır. Proje, TÜBİTAK 2209-A Üniversite Öğrencileri Araştırma Projeleri Destekleme Programı'ndan destek almıştır.
@@ -2253,7 +759,7 @@
   <div id="modalKamuflow" class="modal">
     <div class="modal-content">
       <span class="modal-close-button">&times;</span>
-      <img src="./KamuFlow.jpg" alt="KamuFlow AI" class="modal-img">
+      <img src="./assets/images/projects/kamuflow-ai.jpg" alt="KamuFlow AI" class="modal-img">
       <h2 data-i18n="projects.kamuflow.title">KamuFlow AI</h2>
       <p data-i18n="projects.kamuflow.description">
         Vatandaşların kamu başvurularında doğru kuruma, belgeye ve dilekçeye ulaşmasını kolaylaştıran RAG destekli akıllı kamu asistanı. Flutter mobil uygulama, Node.js/Express backend, React yönetim paneli ve PostgreSQL + pgvector hibrit retrieval.
@@ -2272,7 +778,7 @@
   <div id="modalTranslationEvolution" class="modal">
     <div class="modal-content">
       <span class="modal-close-button">&times;</span>
-      <img src="./çeviri evrimi.jpg" alt="Translation Evolution" class="modal-img">
+      <img src="./assets/images/projects/translation-evolution.jpg" alt="Translation Evolution" class="modal-img">
       <h2 data-i18n="projects.translationEvolution.title">Translation Evolution</h2>
       <p data-i18n="projects.translationEvolution.description">
         SMT, NMT ve LLM çeviri mimarilerini karşılaştıran interaktif eğitim platformu. Tokenization → embedding → attention süreçlerini adım adım görselleştiren simülasyon motoru. Gemini API ile atasözü ve deyimlerin kültürel karşılıklarını bulma stratejileri.
@@ -2286,15 +792,7 @@
     </div>
   </div>
 
-<script>
-  // AsistTR Widget Configuration
-  window.AsistTRConfig = {
-    apiKey: '9263706f4e5b2e2b5bb48111b53dea2a48ce23b0928c9a73e39772bc62b68dfc',
-    siteId: 'f8aa8411-4c30-4bca-bc69-302d07056ff7',
-    apiUrl: 'https://bilgibankasi.atauni.edu.tr',
-    wsUrl: 'https://bilgibankasi.atauni.edu.tr'
-  };
-</script>
+<script src="./assets/js/widget-config.js"></script>
 <script src="https://bilgibankasi.atauni.edu.tr/widget/widget.js" async></script>
 
 </body>

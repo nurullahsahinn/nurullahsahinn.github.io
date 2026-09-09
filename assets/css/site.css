@@ -1,3 +1,738 @@
+/* Splash and page-level styles extracted from index.html. */
+/* Minimum gerekli stiller - Yükleme Ekranı */
+    body {
+      margin: 0;
+      padding: 0;
+      background: #090c10;
+      opacity: 0;
+      transition: opacity 0.75s ease;
+      overflow-x: hidden;
+    }
+    body.loaded {
+      opacity: 1;
+    }
+    #splashScreen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(9, 12, 16, 0.95);
+      z-index: 100000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      transition: opacity 0.75s ease, visibility 0.75s ease;
+      overflow: hidden;
+      perspective: 1000px;
+    }
+    .splash-3d-container {
+      transform-style: preserve-3d;
+      animation: rotate3d 20s linear infinite;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0.15;
+      z-index: 4;
+    }
+    .splash-3d-plane {
+      position: absolute;
+      width: 250px;
+      height: 250px;
+      border: 1px solid rgba(242, 72, 11, 0.15);
+      border-radius: 5px;
+    }
+    .splash-3d-plane:nth-child(1) {
+      transform: rotateY(0deg) translateZ(200px);
+    }
+    .splash-3d-plane:nth-child(2) {
+      transform: rotateY(60deg) translateZ(200px);
+    }
+    .splash-3d-plane:nth-child(3) {
+      transform: rotateY(120deg) translateZ(200px);
+    }
+    .splash-3d-plane:nth-child(4) {
+      transform: rotateY(180deg) translateZ(200px);
+    }
+    .splash-3d-plane:nth-child(5) {
+      transform: rotateY(240deg) translateZ(200px);
+    }
+    .splash-3d-plane:nth-child(6) {
+      transform: rotateY(300deg) translateZ(200px);
+    }
+    @keyframes rotate3d {
+      0% {
+        transform: rotateX(5deg) rotateY(0deg);
+      }
+      100% {
+        transform: rotateX(5deg) rotateY(360deg);
+      }
+    }
+    .splash-particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 5;
+    }
+    .splash-particle {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      background: #f2480b;
+      border-radius: 50%;
+      opacity: 0.3;
+      animation: particles 3s linear infinite;
+    }
+    .splash-particle:nth-child(1) {
+      top: 20%;
+      left: 20%;
+      animation-delay: 0s;
+    }
+    .splash-particle:nth-child(2) {
+      top: 80%;
+      left: 40%;
+      animation-delay: 0.3s;
+    }
+    .splash-particle:nth-child(3) {
+      top: 40%;
+      left: 60%;
+      animation-delay: 0.7s;
+    }
+    .splash-particle:nth-child(4) {
+      top: 60%;
+      left: 80%;
+      animation-delay: 1s;
+    }
+    .splash-particle:nth-child(5) {
+      top: 30%;
+      left: 70%;
+      animation-delay: 1.3s;
+    }
+    .splash-particle:nth-child(6) {
+      top: 70%;
+      left: 20%;
+      animation-delay: 1.7s;
+    }
+    .splash-particle:nth-child(7) {
+      top: 50%;
+      left: 30%;
+      animation-delay: 2s;
+    }
+    .splash-particle:nth-child(8) {
+      top: 15%;
+      left: 60%;
+      animation-delay: 2.3s;
+    }
+    @keyframes particles {
+      0% {
+        transform: scale(1);
+        opacity: 0.3;
+      }
+      50% {
+        transform: scale(2);
+        opacity: 0.6;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 0.3;
+      }
+    }
+    .splash-logo-container {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(145deg, rgba(12, 16, 22, 0.95), rgba(6, 10, 15, 0.95));
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.7),
+                 -10px -10px 20px rgba(25, 30, 40, 0.2),
+                 0 0 30px rgba(242, 72, 11, 0.3);
+      margin-bottom: 30px;
+      animation: float 4s ease-in-out infinite, glow 3s ease-in-out infinite;
+      overflow: hidden;
+      z-index: 10;
+      transform-style: preserve-3d;
+      perspective: 500px;
+      border: 2px solid rgba(242, 72, 11, 0.3);
+    }
+    .splash-logo-container::before {
+      content: "";
+      position: absolute;
+      width: 116px;
+      height: 116px;
+      border-radius: 50%;
+      background: #090c10;
+      z-index: 1;
+      transform: translateZ(-5px);
+    }
+    .splash-logo-container::after {
+      content: "";
+      position: absolute;
+      width: 150%;
+      height: 150%;
+      background: conic-gradient(from 90deg, transparent 50%, #f2480b 50%);
+      animation: rotateConic 2s linear infinite;
+      opacity: 0.8;
+      filter: blur(1px);
+    }
+    .splash-circle {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(242, 72, 11, 0.2);
+      animation: expandCircle 3s ease-in-out infinite;
+      opacity: 0;
+      z-index: 6;
+    }
+    .splash-circle:nth-child(1) {
+      width: 130px;
+      height: 130px;
+      animation-delay: 0s;
+    }
+    .splash-circle:nth-child(2) {
+      width: 150px;
+      height: 150px;
+      animation-delay: 0.5s;
+    }
+    .splash-circle:nth-child(3) {
+      width: 170px;
+      height: 170px;
+      animation-delay: 1s;
+    }
+    @keyframes expandCircle {
+      0% {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      50% {
+        opacity: 0.5;
+      }
+      100% {
+        transform: scale(1.2);
+        opacity: 0;
+      }
+    }
+    .splash-logo {
+      position: absolute;
+      color: #ffffff;
+      font-size: 30px;
+      font-weight: 900;
+      font-family: "Arial Black", Arial, sans-serif;
+      z-index: 2;
+      text-shadow: 0 0 20px rgba(242, 72, 11, 0.9),
+                   0 0 40px rgba(242, 72, 11, 0.6),
+                   0 4px 8px rgba(0, 0, 0, 0.8),
+                   0 2px 4px rgba(0, 0, 0, 0.9);
+      letter-spacing: 1px;
+      animation: pulse 2s ease-in-out infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      transform: translateZ(10px);
+      -webkit-text-stroke: 1px rgba(242, 72, 11, 0.5);
+      text-align: center;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+    }
+    .splash-progress {
+      width: 150px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 20px;
+      position: relative;
+      z-index: 10;
+      transform-style: preserve-3d;
+      perspective: 500px;
+      transform: rotateX(5deg);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5),
+                  0 0 10px rgba(242, 72, 11, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .splash-progress-bar {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, #f2480b, #ff692e, #ffffff);
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-radius: 4px;
+      box-shadow: 0 0 15px rgba(242, 72, 11, 0.8),
+                  0 0 25px rgba(242, 72, 11, 0.5),
+                  0 2px 4px rgba(0, 0, 0, 0.6);
+      animation: progress 2.5s ease-in-out;
+      animation-fill-mode: forwards;
+    }
+    .splash-progress-percent {
+      position: absolute;
+      bottom: -24px;
+      font-size: 12px;
+      color: #ffffff;
+      width: 100%;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      opacity: 0.8;
+      animation: fadeInUp 0.5s ease-out 0.5s forwards, fadeOut 0.5s ease-in 2.5s forwards;
+      opacity: 0;
+      text-shadow: 0 0 10px rgba(242, 72, 11, 0.8),
+                   0 2px 4px rgba(0, 0, 0, 0.9),
+                   0 1px 2px rgba(0, 0, 0, 1);
+    }
+    .splash-text {
+      font-size: 14px;
+      color: #ffffff;
+      margin-top: 45px;
+      font-family: Arial, sans-serif;
+      letter-spacing: 2px;
+      opacity: 0;
+      animation: fadeInText 0.5s ease-out 1s forwards;
+      z-index: 10;
+      position: relative;
+      font-weight: bold;
+      text-shadow: 0 0 15px rgba(242, 72, 11, 0.8),
+                   0 0 30px rgba(242, 72, 11, 0.5),
+                   0 3px 6px rgba(0, 0, 0, 0.9),
+                   0 1px 3px rgba(0, 0, 0, 1);
+      width: 100%;
+      text-align: center;
+      transform: none;
+      white-space: nowrap;
+      overflow: visible;
+    }
+    .splash-text::after {
+      content: "";
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(242, 72, 11, 0.4), transparent);
+      animation: none;
+    }
+    @keyframes expandLine {
+      0% {
+        width: 0;
+        left: 50%;
+        opacity: 0;
+      }
+      50% {
+        width: 100%;
+        left: 0;
+        opacity: 1;
+      }
+      100% {
+        width: 0;
+        left: 50%;
+        opacity: 0;
+      }
+    }
+    @keyframes fadeInText {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes progress {
+      0% { width: 0; }
+      10% { width: 10%; }
+      30% { width: 40%; }
+      50% { width: 60%; }
+      70% { width: 75%; }
+      90% { width: 90%; }
+      100% { width: 100%; }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+    @keyframes rotateConic {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+      100% { transform: translateY(0px); }
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    @keyframes glow {
+      0% { box-shadow: 0 0 5px rgba(242, 72, 11, 0.3), 
+                      inset 0 0 5px rgba(242, 72, 11, 0.3); }
+      50% { box-shadow: 0 0 20px rgba(242, 72, 11, 0.7), 
+                       inset 0 0 10px rgba(242, 72, 11, 0.5); }
+      100% { box-shadow: 0 0 5px rgba(242, 72, 11, 0.3), 
+                        inset 0 0 5px rgba(242, 72, 11, 0.3); }
+    }
+    /* Mobil uyumluluk için ek stiller */
+    @media screen and (max-width: 480px) {
+      .splash-logo-container {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 25px;
+      }
+      .splash-logo-container::before {
+        width: 96px;
+        height: 96px;
+      }
+      .splash-logo {
+        font-size: 28px;
+        font-weight: 900;
+      }
+      .splash-progress {
+        width: 120px;
+        height: 3px;
+        margin-top: 15px;
+      }
+      .splash-progress-percent {
+        font-size: 10px;
+        bottom: -20px;
+      }
+      .splash-circle:nth-child(1) {
+        width: 110px;
+        height: 110px;
+      }
+      .splash-circle:nth-child(2) {
+        width: 130px;
+        height: 130px;
+      }
+      .splash-circle:nth-child(3) {
+        width: 150px;
+        height: 150px;
+      }
+      .splash-text {
+        font-size: 12px;
+        margin-top: 30px;
+        letter-spacing: 1.5px;
+      }
+      .splash-particle {
+        width: 3px;
+        height: 3px;
+      }
+      .splash-3d-plane {
+        width: 150px;
+        height: 150px;
+      }
+      .splash-3d-plane:nth-child(1) {
+        transform: rotateY(0deg) translateZ(120px);
+      }
+      .splash-3d-plane:nth-child(2) {
+        transform: rotateY(60deg) translateZ(120px);
+      }
+      .splash-3d-plane:nth-child(3) {
+        transform: rotateY(120deg) translateZ(120px);
+      }
+      .splash-3d-plane:nth-child(4) {
+        transform: rotateY(180deg) translateZ(120px);
+      }
+      .splash-3d-plane:nth-child(5) {
+        transform: rotateY(240deg) translateZ(120px);
+      }
+      .splash-3d-plane:nth-child(6) {
+        transform: rotateY(300deg) translateZ(120px);
+      }
+      /* Animasyonlar mobil için optimize edildi */
+      @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-6px); }
+        100% { transform: translateY(0px); }
+      }
+      @keyframes expandCircle {
+        0% {
+          transform: scale(0.9);
+          opacity: 0;
+        }
+        50% {
+          opacity: 0.4;
+        }
+        100% {
+          transform: scale(1.1);
+          opacity: 0;
+        }
+      }
+    }
+    
+    @media screen and (max-width: 320px) {
+      .splash-logo-container {
+        width: 90px;
+        height: 90px;
+        margin-bottom: 20px;
+      }
+      .splash-logo-container::before {
+        width: 86px;
+        height: 86px;
+      }
+      .splash-logo {
+        font-size: 24px;
+        font-weight: 900;
+      }
+      .splash-progress {
+        width: 100px;
+      }
+      .splash-text {
+        margin-top: 25px;
+        font-size: 11px;
+      }
+    }
+
+    /* Glassmorphism Background Styles */
+    .splash-glassmorphism-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .splash-bg-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+      opacity: 0.7;
+    }
+
+    .splash-trees {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 3;
+      pointer-events: none;
+      opacity: 0.8;
+    }
+
+    .splash-girl {
+      position: absolute;
+      scale: 0.5;
+      pointer-events: none;
+      animation: animateSplashGirl 12s linear infinite;
+      z-index: 2;
+      opacity: 0.9;
+    }
+
+    @keyframes animateSplashGirl {
+      0% {
+        transform: translateX(calc(100% + 100vw));
+      }
+      50% {
+        transform: translateX(calc(-100% - 100vw));
+      }
+      50.01% {
+        transform: translateX(calc(-100% - 100vw)) rotateY(180deg);
+      }
+      100% {
+        transform: translateX(calc(100% + 100vw)) rotateY(180deg);
+      }
+    }
+
+    .splash-leaves {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .splash-leaves-set {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+    }
+
+    .splash-leaves-set div {
+      position: absolute;
+      display: block;
+    }
+
+    .splash-leaves-set div img {
+      width: 40px;
+      opacity: 0.8;
+    }
+
+    .splash-leaves-set div:nth-child(1) {
+      left: 20%;
+      animation: animateSplashLeaves 20s linear infinite;
+      animation-delay: 0s;
+    }
+
+    .splash-leaves-set div:nth-child(2) {
+      left: 50%;
+      animation: animateSplashLeaves 14s linear infinite;
+      animation-delay: 2s;
+    }
+
+    .splash-leaves-set div:nth-child(3) {
+      left: 70%;
+      animation: animateSplashLeaves 12s linear infinite;
+      animation-delay: 4s;
+    }
+
+    .splash-leaves-set div:nth-child(4) {
+      left: 5%;
+      animation: animateSplashLeaves 15s linear infinite;
+      animation-delay: 1s;
+    }
+
+    .splash-leaves-set div:nth-child(5) {
+      left: 85%;
+      animation: animateSplashLeaves 18s linear infinite;
+      animation-delay: 3s;
+    }
+
+    .splash-leaves-set div:nth-child(6) {
+      left: 90%;
+      animation: animateSplashLeaves 12s linear infinite;
+      animation-delay: 5s;
+    }
+
+    .splash-leaves-set div:nth-child(7) {
+      left: 15%;
+      animation: animateSplashLeaves 14s linear infinite;
+      animation-delay: 6s;
+    }
+
+    .splash-leaves-set div:nth-child(8) {
+      left: 60%;
+      animation: animateSplashLeaves 15s linear infinite;
+      animation-delay: 7s;
+    }
+
+    @keyframes animateSplashLeaves {
+      0% {
+        opacity: 0;
+        top: -10%;
+        transform: translateX(20px) rotate(0deg);
+      }
+      10% {
+        opacity: 0.8;
+      }
+      20% {
+        transform: translateX(-20px) rotate(45deg);
+      }
+      40% {
+        transform: translateX(-20px) rotate(90deg);
+      }
+      60% {
+        transform: translateX(20px) rotate(180deg);
+      }
+      80% {
+        transform: translateX(-20px) rotate(45deg);
+      }
+      100% {
+        top: 110%;
+        transform: translateX(20px) rotate(225deg);
+        opacity: 0;
+      }
+    }
+
+    /* Mobil için Glassmorphism optimizasyonu */
+    @media screen and (max-width: 768px) {
+      .splash-girl {
+        scale: 0.4;
+      }
+      .splash-leaves-set div img {
+        width: 30px;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .splash-girl {
+        scale: 0.3;
+      }
+      .splash-leaves-set div img {
+        width: 25px;
+      }
+    }
+
+    /* Scroll İlerleme Çubuğu */
+    .scroll-progress-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: transparent;
+      z-index: 99999;
+    }
+    
+    .scroll-progress-bar {
+      height: 100%;
+      background: var(--primary-color);
+      width: 0%;
+      transition: width 0.1s ease;
+      box-shadow: 0 0 10px rgba(242, 72, 11, 0.5);
+    }
+
+    /* Fare İzleyici Efekti */
+    .cursor-follower {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background: rgba(242, 72, 11, 0.5);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99998;
+      opacity: 0;
+      transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease, background 0.3s ease;
+      transform: translate(-50%, -50%);
+      mix-blend-mode: screen;
+      box-shadow: 0 0 15px rgba(242, 72, 11, 0.3);
+    }
+
+    /* Tıklama Splash Efekti */
+    .click-splash {
+      position: fixed;
+      pointer-events: none;
+      background: radial-gradient(circle, rgba(242, 72, 11, 0.6) 0%, rgba(242, 72, 11, 0) 70%);
+      border-radius: 50%;
+      z-index: 99997;
+      transform: translate(-50%, -50%) scale(0);
+      animation: clickSplash 0.8s ease-out forwards;
+    }
+
+    @keyframes clickSplash {
+      0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0.7;
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(3);
+        opacity: 0;
+      }
+    }
+
+/* Core site styles. */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
 * {
@@ -4063,3 +4798,26 @@ header [data-i18n] {
     right: 10px;
   }
 }
+
+/* Page override block 1. */
+/* Tüm cursor efektlerini kaldır, sadece custom cursor kullan */
+    * {
+      cursor: none !important;
+    }
+    
+    /* Custom cursor container */
+    #customCursor {
+      position: fixed;
+      pointer-events: none;
+      z-index: 99999;
+      transform: translate(-50%, -50%);
+      width: 32px;
+      height: 32px;
+      transition: none;
+    }
+    
+    #customCursor img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
